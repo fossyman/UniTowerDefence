@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://m8v4ibhr58d5"]
+
+[ext_resource type="Texture2D" uid="uid://d0qkobtj1niov" path="res://assets/Sprites/TEMP_Alden.png" id="1_gtgwm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gtgwm"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_ls88k"]
+sky_material = SubResource("ProceduralSkyMaterial_gtgwm")
+
+[sub_resource type="Environment" id="Environment_4o1g0"]
+background_mode = 2
+sky = SubResource("Sky_ls88k")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ls88k"]
+albedo_texture = ExtResource("1_gtgwm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4o1g0"]
+
+[node name="ROOT_MAINMENU" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4o1g0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -396.0
+offset_top = -442.0
+offset_right = -90.0
+offset_bottom = -320.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Play"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -396.0
+offset_top = -302.0
+offset_right = -90.0
+offset_bottom = -180.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Options"
+
+[node name="Button3" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -396.0
+offset_top = -152.0
+offset_right = -90.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Quit"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.29055)
+material_override = SubResource("StandardMaterial3D_ls88k")
+mesh = SubResource("QuadMesh_4o1g0")

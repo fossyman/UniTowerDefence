@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://3pu1ralxgg5i"]
+
+[ext_resource type="PackedScene" uid="uid://comrba122j0wy" path="res://scenes/ROOT_gameplay.tscn" id="1_o5qli"]
+
+[node name="main" type="Node"]
+
+[node name="ROOTCONTAINER" type="Node" parent="."]
+
+[node name="ROOT_GAMEPLAY" parent="ROOTCONTAINER" instance=ExtResource("1_o5qli")]
+
+[node name="CONSTANTS" type="Node" parent="."]

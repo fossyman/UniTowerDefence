@@ -1,0 +1,74 @@
+extends Node
+class_name GameplayController
+
+static var instance:GameplayController
+
+@export var MainCamera:Camera3D
+
+@export var PlacementDecal:Area3D
+
+@export var UpgradeScreen:UpgradeAreaManager
+
+@export var TowerPurchaseScreen:TowerPurchaseMenu
+
+enum MOUSESTATES{PLAYING,PLACING}
+
+var MouseState:MOUSESTATES = MOUSESTATES.PLAYING
+
+var PlacingTower:Tower
+
+var ValidPlacement:bool = false
+
+var SelectedTower:TowerScene
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	instance = self
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	
+	match(MouseState):
+		MOUSESTATES.PLAYING:
+			if Input.is_action_just_pressed("click"):
+				var result = RaycastToFloor()
+				if result:
+					print(result["normal"] == Vector3.UP)
+					print((result["collider"] as Area3D).get_parent().name)
+					match (result["collider"].collision_layer):
+						8: # UpgradeAreaCollision
+							var T = (result["collider"].get_parent() as TowerScene)
+							UpgradeScreen.populateSettings(T.Stats)
+							
+							pass
+		MOUSESTATES.PLACING:
+			var result = RaycastToFloor()
+			if result && result["normal"] == Vector3.UP:
+				PlacementDecal.global_position = result["position"]
+				PlacementDecal.visible = !PlacementDecal.has_overlapping_areas()
+				ValidPlacement = true
+			else:
+				ValidPlacement = false
+				
+			if Input.is_action_just_pressed("click"):
+				if ValidPlacement:
+					var TowerScn = PlacingTower.TowerScn.instantiate() as TowerScene
+					add_child(TowerScn)
+					TowerScn.global_position = result["position"]
+					TowerScn.Stats = PlacingTower
+					MouseState = MOUSESTATES.PLAYING
+					PlacementDecal.visible = false
+					pass
+			pass
+	pass
+
+func RaycastToFloor() -> Dictionary:
+	#Raycasting learned by Godot Docs
+	var space_state = get_tree().root.world_3d.direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(MainCamera.global_position, MainCamera.project_position(get_viewport().get_mouse_position(),999))
+	query.collide_with_areas = true
+	var result = space_state.intersect_ray(query)
+	
+	return result

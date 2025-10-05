@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyromsm1ruyf"]
+
+[ext_resource type="Script" uid="uid://d38myg33cevc3" path="res://scripts/SCR_StatUpgradeButton.gd" id="1_g6jnc"]
+[ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="1_i14dp"]
+
+[node name="StatUpgradeButton" type="Button" node_paths=PackedStringArray("Icon", "NameText", "PriceText")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_g6jnc")
+Icon = NodePath("TextureRect")
+NameText = NodePath("NameText")
+PriceText = NodePath("PriceText")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_i14dp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.625
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Faster Attack"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriceText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.875
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "$25"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
