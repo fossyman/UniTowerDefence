@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://472q2pjrqno4"]
+
+[ext_resource type="Script" uid="uid://dy7rphjuwqt2c" path="res://scripts/SCR_Projectile.gd" id="1_htbna"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_l8xpq"]
+radial_segments = 4
+rings = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_htbna"]
+
+[node name="ScnProjectileTest" type="Node3D"]
+script = ExtResource("1_htbna")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l8xpq")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_htbna")

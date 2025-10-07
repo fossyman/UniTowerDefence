@@ -14,8 +14,9 @@ radial_segments = 6
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
 radius = 0.291
 
-[node name="ScnMageTower" type="Node3D"]
+[node name="ScnMageTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint")]
 script = ExtResource("1_tkgji")
+ProjectileSpawnPoint = NodePath("ProjectileSpawn")
 
 [node name="Mesh" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -38,3 +39,6 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ngv6k")
 debug_color = Color(0.976219, 0, 0.4171, 0.596078)
+
+[node name="ProjectileSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

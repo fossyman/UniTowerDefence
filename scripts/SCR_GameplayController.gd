@@ -11,6 +11,8 @@ static var instance:GameplayController
 
 @export var TowerPurchaseScreen:TowerPurchaseMenu
 
+@export var ActiveEnemies:Array[Node3D]
+
 enum MOUSESTATES{PLAYING,PLACING}
 
 var MouseState:MOUSESTATES = MOUSESTATES.PLAYING
