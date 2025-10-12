@@ -5,7 +5,7 @@ var Stats:Tower
 
 @export var ProjectileSpawnPoint:Node3D
 
-var Tickrate:float = 1
+@export var Tickrate:float = 0.2
 var TickAmt:float
 
 var Target:Node3D
@@ -21,11 +21,16 @@ func _process(delta: float) -> void:
 		Tick()
 
 func Tick():
+	print("1")
 	Target = Get_ClosestEnemy(true)
-	
+	print("2")
 	if Target:
 		SpawnProjectile()
+		print("3")
+	else:
+		print("4")
 	pass
+	print("5")
 	
 func SpawnProjectile():
 	if Stats is DamageTower:
@@ -43,17 +48,17 @@ func SpawnProjectile():
 
 func Get_ClosestEnemy(UseRadius:bool = false) -> Node3D:
 	if GameplayController.instance.ActiveEnemies.is_empty():
+		print("EMPTY")
 		return null
 	
 	var Closest:Node3D = GameplayController.instance.ActiveEnemies[0]
 	
 	for i in GameplayController.instance.ActiveEnemies.size():
 		var Distance:float = global_position.distance_to(GameplayController.instance.ActiveEnemies[i].global_position)
-		print(Distance)
 		if UseRadius:
-			print(Distance < Stats.Stats[1].Amount)
 			if Distance < Stats.Stats[1].Amount:
 				Closest = GameplayController.instance.ActiveEnemies[i]
+				break
 			else:
 				Closest = null
 		else:

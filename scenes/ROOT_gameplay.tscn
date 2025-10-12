@@ -1,9 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://comrba122j0wy"]
+[gd_scene load_steps=38 format=3 uid="uid://comrba122j0wy"]
 
 [ext_resource type="Texture2D" uid="uid://o8kgut6vgqea" path="res://assets/Textures/Map/Paths/TowerDefence_Path1.png" id="1_y7bvw"]
-[ext_resource type="Script" uid="uid://cpdhqs5q7lns1" path="res://PathCheckerTool.gd" id="2_ipg8x"]
-[ext_resource type="Texture2D" uid="uid://bq3k1xoswmbwk" path="res://assets/Sprites/Character art/Gobbo/Gobbo_1.png" id="3_m2r50"]
 [ext_resource type="Script" uid="uid://b631pkjuq0b4m" path="res://scripts/SCR_TowerCreationButton.gd" id="3_vivt6"]
+[ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_EnemyTest.tscn" id="3_xflyc"]
 [ext_resource type="Resource" uid="uid://ynliovj8lt5u" path="res://assets/Resources/Towers/RES_TestTower.tres" id="4_nsrc6"]
 [ext_resource type="Script" uid="uid://smrgjuau0c1f" path="res://scripts/SCR_GameplayController.gd" id="4_ub8nv"]
 [ext_resource type="Texture2D" uid="uid://ccusln60llum1" path="res://assets/Sprites/UI/SPR_Coins.png" id="6_5erwy"]
@@ -11,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="7_dfawl"]
 [ext_resource type="Script" uid="uid://c6u8rwxmbywg0" path="res://scripts/SCR_TowerPurchaseMenu.gd" id="8_pqfbv"]
 [ext_resource type="PackedScene" uid="uid://dyromsm1ruyf" path="res://scenes/StatUpgradeButton.tscn" id="9_a8648"]
+[ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="12_xflyc"]
+[ext_resource type="PackedScene" uid="uid://driu3bx8heggq" path="res://assets/Models/Props/MapBoards/MapBoard1.glb" id="13_g4qo0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6tgx1"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -24,6 +25,12 @@ background_mode = 2
 sky = SubResource("Sky_y7bvw")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 20.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_6tgx1"]
 
@@ -38,27 +45,10 @@ albedo_texture = ExtResource("1_y7bvw")
 
 [sub_resource type="Curve3D" id="Curve3D_y7bvw"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.01, 0, 2.04, -0.0351415, 0, -0.48652, 0.0351415, 0, 0.48652, 0.0610952, 0, 5.73138, -0.47574, 0, -0.0202441, 0.47574, 0, 0.0202441, 1.10257, 0, 6.67242, -0.0830798, 0, 0.155083, 0.0830798, 0, -0.155083, 1.71792, 0, 6.03399, 0, 0, 0, 0, 0, 0, 1.76509, 0, 5.39433, -0.110773, 0, 0.293549, 0.110773, 0, -0.293549, 1.63628, 0, 3.01659, -0.155083, 0, 0.0609252, 0.155083, 0, -0.0609252, 2.17688, 0, 2.2951, 0, 0, 0, 0, 0, 0, 2.90277, 0, 2.19196, -0.58572, 0, -0.0718229, 0.58572, 0, 0.0718229, 6.17537, 0, 2.17791, 0, 0, 0, 0, 0, 0, 6.84955, 0, 2.33241, -0.0996962, 0, -0.227085, 0.0996962, 0, 0.227085, 7.13772, 0, 2.72052, 0, 0, -0.121851, 0, 0, 0.121851, 7.23188, 0, 3.0473, 0.0885673, 0, -0.130043, -0.0885673, 0, 0.130043, 7.06023, 0, 3.52628, 0, 0, 0, 0, 0, 0, 6.66696, 0, 3.86337, 0.645876, 0, -0.0280161, -0.645876, 0, 0.0280161, 5.83828, 0, 4.14428, 0.35499, 0, -0.0143113, -0.35499, 0, 0.0143113, 4.16686, 0, 4.14428, 0.148347, 0, -0.300052, -0.148347, 0, 0.300052, 3.43789, 0, 4.56701, -0.0261569, 0, -0.373866, 0.0261569, 0, 0.373866, 3.28343, 0, 5.06902, 0, 0, 0, 0, 0, 0, 3.33818, 0, 5.46455, -0.161125, 0, -0.131309, 0.161125, 0, 0.131309, 3.59787, 0, 5.80825, -0.343288, 0, -0.0410848, 0.343288, 0, 0.0410848, 4.03369, 0, 5.97374, 0, 0, 0, 0, 0, 0, 4.72868, 0, 5.98424, 0, 0, 0, 0, 0, 0, 5.47309, 0, 5.97019, -0.301801, 0, -0.033812, 0.301801, 0, 0.033812, 6.38493, 0, 5.96324, -0.25928, 0, -0.270314, 0.25928, 0, 0.270314, 7.06347, 0, 6.3163, 0.0676651, 0, -0.222617, -0.0676651, 0, 0.222617, 7.2856, 0, 7.38808, 0, 0, 0, 0, 0, 0, 7.13702, 0, 7.73908, 0.161508, 0, -0.135666, -0.161508, 0, 0.135666, 6.9154, 0, 7.99143, 0, 0, 0, 0, 0, 0, 6.4981, 0, 8.18141, 0, 0, 0, 0, 0, 0, 5.89194, 0, 8.23056, 0.247793, 0, 0.0395918, -0.247793, 0, -0.0395918, 5.46599, 0, 8.16503, 0.234796, 0, -0.0359097, -0.234796, 0, 0.0359097, 4.15538, 0, 8.18141, 0.264872, 0, -0.0129204, -0.264872, 0, 0.0129204, 3.09166, 0, 8.35869, 0.143648, 0, -0.0548115, -0.143648, 0, 0.0548115, 2.1567, 0, 8.378, 0.0315601, 0, -0.16637, -0.0315601, 0, 0.16637, 1.96126, 0, 8.76777, 0.00966382, 0, -0.266212, -0.00966382, 0, 0.266212, 2.02908, 0, 9.22742, 0.191319, 0, -0.25739, -0.191319, 0, 0.25739, 1.91603, 0, 9.98602, 0.284781, 0, -0.038537, -0.284781, 0, 0.038537, 0.862469, 0, 10.1473, 0.226207, 0, -0.0266142, -0.226207, 0, 0.0266142, 0.43652, 0, 10.2129, 0.301292, 0, 0.0191059, -0.301292, 0, -0.0191059, -0.98877, 0, 10.1801, 0, 0, 0, 0, 0, 0, -2.29938, 0, 10.2129),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.01, 0, 2.04, -0.0351415, 0, -0.48652, 0.0351415, 0, 0.48652, 0.0610952, 0, 5.73138, -0.47574, 0, -0.0202441, 0.47574, 0, 0.0202441, 1.10257, 0, 6.67242, -0.0830798, 0, 0.155083, 0.0830798, 0, -0.155083, 1.71792, 0, 6.03399, 0, 0, 0, 0, 0, 0, 1.76509, 0, 5.39433, -0.110773, 0, 0.293549, 0.110773, 0, -0.293549, 1.63628, 0, 3.01659, -0.155083, 0, 0.0609252, 0.155083, 0, -0.0609252, 2.17688, 0, 2.2951, 0, 0, 0, 0, 0, 0, 2.90277, 0, 2.19196, -0.58572, 0, -0.0718229, 0.58572, 0, 0.0718229, 6.17537, 0, 2.17791, 0, 0, 0, 0, 0, 0, 6.84955, 0, 2.33241, -0.0996962, 0, -0.227085, 0.0996962, 0, 0.227085, 7.13772, 0, 2.72052, 0, 0, -0.121851, 0, 0, 0.121851, 7.23188, 0, 3.0473, 0.0885673, 0, -0.130043, -0.0885673, 0, 0.130043, 7.06023, 0, 3.52628, 0, 0, 0, 0, 0, 0, 6.66696, 0, 3.86337, 0.645876, 0, -0.0280161, -0.645876, 0, 0.0280161, 5.83828, 0, 4.14428, 0.35499, 0, -0.0143113, -0.35499, 0, 0.0143113, 4.16686, 0, 4.14428, 0.148347, 0, -0.300052, -0.148347, 0, 0.300052, 3.43789, 0, 4.56701, -0.0261569, 0, -0.373866, 0.0261569, 0, 0.373866, 3.28343, 0, 5.06902, 0, 0, 0, 0, 0, 0, 3.33818, 0, 5.46455, -0.161125, 0, -0.131309, 0.161125, 0, 0.131309, 3.59787, 0, 5.80825, -0.343288, 0, -0.0410848, 0.343288, 0, 0.0410848, 4.03369, 0, 5.97374, 0, 0, 0, 0, 0, 0, 4.72868, 0, 5.98424, 0, 0, 0, 0, 0, 0, 5.47309, 0, 5.97019, -0.301801, 0, -0.033812, 0.301801, 0, 0.033812, 6.38493, 0, 5.96324, -0.25928, 0, -0.270314, 0.25928, 0, 0.270314, 7.06347, 0, 6.3163, 0.0676651, 0, -0.222617, -0.0676651, 0, 0.222617, 7.2856, 0, 7.38808, 0, 0, 0, 0, 0, 0, 7.13702, 0, 7.73908, 0.161508, 0, -0.135666, -0.161508, 0, 0.135666, 6.9154, 0, 7.99143, 0, 0, 0, 0, 0, 0, 6.4981, 0, 8.18141, 0, 0, 0, 0, 0, 0, 5.89194, 0, 8.23056, 0.247793, 0, 0.0395918, -0.247793, 0, -0.0395918, 5.46599, 0, 8.16503, 0.234796, 0, -0.0359097, -0.234796, 0, 0.0359097, 4.15538, 0, 8.18141, 0.264872, 0, -0.0129204, -0.264872, 0, 0.0129204, 3.09166, 0, 8.35869, 0.143648, 0, -0.0548115, -0.143648, 0, 0.0548115, 2.1567, 0, 8.378, 0.0315601, 0, -0.16637, -0.0315601, 0, 0.16637, 1.96126, 0, 8.76777, 0.00966382, 0, -0.266212, -0.00966382, 0, 0.266212, 2.02908, 0, 9.22742, 0.191319, 0, -0.25739, -0.191319, 0, 0.25739, 1.91603, 0, 9.98602, 0.284781, 0, -0.038537, -0.284781, 0, 0.038537, 0.862469, 0, 10.1473, 0.226207, 0, -0.0266142, -0.226207, 0, 0.0266142, 0.43652, 0, 10.2129, 0.301292, 0, 0.0191059, -0.301292, 0, -0.0191059, -0.98877, 0, 10.1801, 0.691839, 0.520561, -2.09808e-05, -0.691839, -0.520561, 2.09808e-05, -2.17884, -0.516563, 10.2129, 0, 0, 0, 0, 0, 0, -3.04332, -2.69865, 10.1474),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 42
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7bvw"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ipg8x"]
-size = Vector3(0.045, 2.25, 0.05)
-
-[sub_resource type="BoxMesh" id="BoxMesh_5erwy"]
-size = Vector3(1, 1, 0.065)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8648"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("3_m2r50")
-
-[sub_resource type="QuadMesh" id="QuadMesh_pqfbv"]
+point_count = 43
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ub8nv"]
 size = Vector3(3.905, 1, 1.32)
@@ -119,6 +109,16 @@ radius = 1.0
 
 [node name="ROOT_GAMEPLAY" type="Node"]
 
+[node name="MainController" type="Node" parent="." node_paths=PackedStringArray("MainCamera", "PlacementDecal", "UpgradeScreen", "TowerPurchaseScreen", "MapPath")]
+script = ExtResource("4_ub8nv")
+MainCamera = NodePath("../Map/Camera3D")
+PlacementDecal = NodePath("../Area3D")
+UpgradeScreen = NodePath("../Control/UpgradeMenu")
+TowerPurchaseScreen = NodePath("../Control/TowerPurchaseArea")
+MapPath = NodePath("../Map/Path3D")
+Enemies = Array[PackedScene]([ExtResource("3_xflyc")])
+SpawnTickrate = 1.2
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ipg8x")
 
@@ -143,34 +143,6 @@ mesh = SubResource("QuadMesh_6tgx1")
 [node name="Path3D" type="Path3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -5.562)
 curve = SubResource("Curve3D_y7bvw")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Map/Path3D"]
-transform = Transform3D(0.99983, 0, 0, 0, 1.00003, 0, 0, 0, 0.99983, 5.73294, 0, 5.95697)
-progress = 25.7512
-rotation_mode = 0
-tilt_enabled = false
-script = ExtResource("2_ipg8x")
-TravelSpeed = 0.02
-
-[node name="Node3D" type="Node3D" parent="Map/Path3D/PathFollow3D"]
-transform = Transform3D(1, 0, 0, 0, 0.913545, 0.406737, 0, -0.406737, 0.913545, 0, -1, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Path3D/PathFollow3D/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = SubResource("StandardMaterial3D_y7bvw")
-mesh = SubResource("BoxMesh_ipg8x")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Path3D/PathFollow3D/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("BoxMesh_5erwy")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Map/Path3D/PathFollow3D/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0649998)
-material_override = SubResource("StandardMaterial3D_a8648")
-mesh = SubResource("QuadMesh_pqfbv")
-skeleton = NodePath("../..")
 
 [node name="PlacingArea" type="Area3D" parent="Map"]
 collision_layer = 2
@@ -503,25 +475,27 @@ icon = ExtResource("6_5erwy")
 icon_alignment = 1
 expand_icon = true
 
-[node name="MainController" type="Node" parent="." node_paths=PackedStringArray("MainCamera", "PlacementDecal", "UpgradeScreen", "TowerPurchaseScreen", "ActiveEnemies")]
-script = ExtResource("4_ub8nv")
-MainCamera = NodePath("../Map/Camera3D")
-PlacementDecal = NodePath("../Area3D")
-UpgradeScreen = NodePath("../Control/UpgradeMenu")
-TowerPurchaseScreen = NodePath("../Control/TowerPurchaseArea")
-ActiveEnemies = [NodePath("../Map/Path3D/PathFollow3D/Node3D")]
-
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67276, 0, 2.08862)
-visible = false
 collision_layer = 0
 collision_mask = 12
+
+[node name="PlacementDecal" type="Decal" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0027388, 0)
+sorting_offset = 1.0
+size = Vector3(2, 1, 2)
+texture_albedo = ExtResource("7_dfawl")
+
+[node name="RangeDecal" type="Decal" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00619012, 0)
+size = Vector3(2, 0.1, 2)
+texture_albedo = ExtResource("12_xflyc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_dfawl")
 debug_color = Color(0.272703, 0.632412, 1.92523e-07, 0.42)
 
-[node name="Decal" type="Decal" parent="Area3D"]
-texture_albedo = ExtResource("7_dfawl")
+[node name="MapBoard1" parent="." instance=ExtResource("13_g4qo0")]
+transform = Transform3D(-5.6, 0, 8.45576e-07, 0, 5.6, 0, -8.45576e-07, 0, -5.6, 0, 0.0830511, 0)
 
 [connection signal="pressed" from="Control/TowerPurchaseArea/Button" to="Control/TowerPurchaseArea" method="ToggleMenu"]

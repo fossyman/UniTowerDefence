@@ -13,6 +13,8 @@ static var instance:GameplayController
 
 @export var ActiveEnemies:Array[Node3D]
 
+@export var MapPath:Path3D
+
 enum MOUSESTATES{PLAYING,PLACING}
 
 var MouseState:MOUSESTATES = MOUSESTATES.PLAYING
@@ -23,6 +25,11 @@ var ValidPlacement:bool = false
 
 var SelectedTower:TowerScene
 
+@export var Enemies:Array[PackedScene]
+
+@export var SpawnTickrate:float
+var CurrentSpawnTickrate:float
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
@@ -31,6 +38,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	CurrentSpawnTickrate += delta
+	if CurrentSpawnTickrate >= SpawnTickrate:
+		SpawnEnemy()
+		CurrentSpawnTickrate = 0
+	
 	
 	match(MouseState):
 		MOUSESTATES.PLAYING:
@@ -74,3 +86,10 @@ func RaycastToFloor() -> Dictionary:
 	var result = space_state.intersect_ray(query)
 	
 	return result
+
+func SpawnEnemy():
+	var Enemy = Enemies[0].instantiate()
+
+	MapPath.add_child(Enemy)
+	ActiveEnemies.append(Enemy)
+	Enemy.progress_ratio = 0

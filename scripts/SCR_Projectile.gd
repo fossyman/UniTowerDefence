@@ -1,7 +1,14 @@
 extends Node3D
 
-var Speed:float
-var Damage:int
+@export var Speed:float
+@export var Damage:int
 
 func _process(delta: float) -> void:
 	global_position += -transform.basis.z * Speed
+
+
+func HitboxEntered(area: Area3D) -> void:
+	if area is Hurtbox:
+		area.HealthComponent.Damage(Damage)
+		queue_free()
+	pass # Replace with function body.

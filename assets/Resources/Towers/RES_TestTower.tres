@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://d1mwqxyusqdo4"
 
 [sub_resource type="Resource" id="Resource_wsvwy"]
 script = ExtResource("1_d0ovc")
-Name = "Attack Range"
+Name = "Spell Damage"
 Amount = 5.0
 Level = 0
 Cost = 0
@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_sdif4"]
 script = ExtResource("1_d0ovc")
-Name = ""
+Name = "Cast Range"
 Amount = 2.0
 Level = 0
 Cost = 0
@@ -32,8 +32,8 @@ metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_5amgi"]
 script = ExtResource("1_d0ovc")
-Name = ""
-Amount = 0.0
+Name = "speed"
+Amount = 0.1
 Level = 0
 Cost = 0
 metadata/_custom_type_script = "uid://btxknbasomvh3"

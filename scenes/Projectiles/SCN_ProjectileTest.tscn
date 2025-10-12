@@ -16,7 +16,9 @@ mesh = SubResource("SphereMesh_l8xpq")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_htbna")
+
+[connection signal="area_entered" from="Area3D" to="." method="HitboxEntered"]
