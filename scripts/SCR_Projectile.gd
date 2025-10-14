@@ -8,7 +8,7 @@ func _process(delta: float) -> void:
 
 
 func HitboxEntered(area: Area3D) -> void:
-	if area is Hurtbox:
+	if area is HurtboxComponent:
 		area.HealthComponent.Damage(Damage)
 		queue_free()
 	pass # Replace with function body.

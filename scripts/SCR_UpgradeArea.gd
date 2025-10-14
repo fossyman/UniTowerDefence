@@ -29,6 +29,6 @@ func populateSettings(settings:Tower):
 		UpgradeButtonContainer.add_child(btn)
 		btn.Icon.texture = settings.Stats[i].Icon
 		btn.NameText.text = settings.Stats[i].Name
-		btn.PriceText.text = "$" + str(settings.Stats[i].Cost)
+		btn.PriceText.text = "$" + str(settings.Stats[i].GetCost())
 	print("POPULATING")
 	pass

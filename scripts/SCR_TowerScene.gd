@@ -56,7 +56,8 @@ func Get_ClosestEnemy(UseRadius:bool = false) -> Node3D:
 	for i in GameplayController.instance.ActiveEnemies.size():
 		var Distance:float = global_position.distance_to(GameplayController.instance.ActiveEnemies[i].global_position)
 		if UseRadius:
-			if Distance < Stats.Stats[1].Amount:
+			var RangeStatValue = Stats.GetCurrentAttackRange()
+			if Distance < RangeStatValue:
 				Closest = GameplayController.instance.ActiveEnemies[i]
 				break
 			else:

@@ -38,6 +38,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	DEVTOOLS_PROCESS()
 	CurrentSpawnTickrate += delta
 	if CurrentSpawnTickrate >= SpawnTickrate:
 		SpawnEnemy()
@@ -93,3 +94,10 @@ func SpawnEnemy():
 	MapPath.add_child(Enemy)
 	ActiveEnemies.append(Enemy)
 	Enemy.progress_ratio = 0
+
+func DEVTOOLS_PROCESS():
+	if Input.is_action_just_pressed("DEV_SpeedTime"):
+		Engine.time_scale+=0.1
+	elif Input.is_action_just_pressed("DEV_SlowTime"):
+		Engine.time_scale-= 0.1
+	pass

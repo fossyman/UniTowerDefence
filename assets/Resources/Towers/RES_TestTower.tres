@@ -17,25 +17,25 @@ metadata/_custom_type_script = "uid://d1mwqxyusqdo4"
 [sub_resource type="Resource" id="Resource_wsvwy"]
 script = ExtResource("1_d0ovc")
 Name = "Spell Damage"
-Amount = 5.0
+Amount = Array[float]([1.0, 2.0, 3.0])
 Level = 0
-Cost = 0
+Cost = Array[int]([50, 250, 500])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_sdif4"]
 script = ExtResource("1_d0ovc")
 Name = "Cast Range"
-Amount = 2.0
+Amount = Array[float]([2.0, 5.0, 10.0])
 Level = 0
-Cost = 0
+Cost = Array[int]([50, 250, 500])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_5amgi"]
 script = ExtResource("1_d0ovc")
 Name = "speed"
-Amount = 0.1
+Amount = Array[float]([1.0, 2.0, 3.0])
 Level = 0
-Cost = 0
+Cost = Array[int]([50, 250, 500])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [resource]

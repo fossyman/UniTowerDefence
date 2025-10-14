@@ -6,7 +6,7 @@ var PosCache:Vector3
 @export var MeshParent:Node3D
 @export var HealthComp:COMPONENT_HEALTH
 var IsDead:bool = false
-
+@export var Hurtbox:HurtboxComponent
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !IsDead:
@@ -20,7 +20,8 @@ func _process(delta: float) -> void:
 func Death():
 	IsDead = true
 	var Deathtween = get_tree().create_tween()
-	
+	Hurtbox.set_deferred("monitorable",false)
+	Hurtbox.set_deferred("monitoring",false)
 	if dir.x > 0.9 || dir.x < -0.9:
 		#LEFT
 		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
@@ -31,6 +32,9 @@ func Death():
 		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,90,0),0.3)
 		Deathtween.tween_property(MeshParent,"position:y",-5,1)
 		pass
+	else:
+		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
+		Deathtween.tween_property(MeshParent,"position:y",-5,1)
 	await Deathtween.finished
 	GameplayController.instance.ActiveEnemies.erase(self)
 	queue_free()

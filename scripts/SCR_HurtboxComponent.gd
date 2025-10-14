@@ -1,5 +1,5 @@
 extends Area3D
-class_name Hurtbox
+class_name HurtboxComponent
 
 @export var HealthComponent:COMPONENT_HEALTH
 
