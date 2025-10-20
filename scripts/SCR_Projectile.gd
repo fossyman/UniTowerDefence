@@ -1,10 +1,14 @@
 extends Node3D
+class_name ProjectileScene
+@export var Speed:float = 1.0
+@export var Damage:int = 1
 
-@export var Speed:float
-@export var Damage:int
+func _Setup(_speed:float,_damage:int) -> void:
+	Speed = _speed
+	Damage = _damage
 
 func _process(delta: float) -> void:
-	global_position += -transform.basis.z * Speed
+	global_position += -transform.basis.z * Speed * delta
 
 
 func HitboxEntered(area: Area3D) -> void:

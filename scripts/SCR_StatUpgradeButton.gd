@@ -5,11 +5,18 @@ class_name StatUpgradeButton
 @export var NameText:RichTextLabel
 @export var PriceText:RichTextLabel
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var UpgradeStat:Stat
+@export var UpgradingTower:TowerScene
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func Pressed():
+	if !UpgradeStat:
+		return
+		
+	if GameplayController.instance.Gold >= UpgradeStat.Cost[UpgradeStat.Level]:
+		GameplayController.instance.SubtractGold(UpgradeStat.Cost[UpgradeStat.Level])
+		UpgradeStat.UpgradeLevel()
+		GameplayController.instance.SelectedTower.refreshStats()
+		pass
+	else:
+		print(str(UpgradeStat.Cost[UpgradeStat.Level]) + " needed. You have: " + str(GameplayController.instance.Gold))
 	pass

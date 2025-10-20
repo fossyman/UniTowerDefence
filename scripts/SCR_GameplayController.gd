@@ -7,6 +7,8 @@ static var instance:GameplayController
 
 @export var PlacementDecal:Area3D
 
+@export var GoldText:RichTextLabel
+
 @export var UpgradeScreen:UpgradeAreaManager
 
 @export var TowerPurchaseScreen:TowerPurchaseMenu
@@ -29,6 +31,10 @@ var SelectedTower:TowerScene
 
 @export var SpawnTickrate:float
 var CurrentSpawnTickrate:float
+
+@export var Gold:int = 0
+
+@export_flags_3d_physics var COLLISIONMASK:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,8 +60,8 @@ func _process(delta: float) -> void:
 					print((result["collider"] as Area3D).get_parent().name)
 					match (result["collider"].collision_layer):
 						8: # UpgradeAreaCollision
-							var T = (result["collider"].get_parent() as TowerScene)
-							UpgradeScreen.populateSettings(T.Stats)
+							SelectedTower = (result["collider"].get_parent() as TowerScene)
+							UpgradeScreen.populateSettings(SelectedTower)
 							
 							pass
 		MOUSESTATES.PLACING:
@@ -66,23 +72,23 @@ func _process(delta: float) -> void:
 				ValidPlacement = true
 			else:
 				ValidPlacement = false
-				
 			if Input.is_action_just_pressed("click"):
 				if ValidPlacement:
 					var TowerScn = PlacingTower.TowerScn.instantiate() as TowerScene
+					TowerScn.TowerResource = PlacingTower
 					add_child(TowerScn)
 					TowerScn.global_position = result["position"]
-					TowerScn.Stats = PlacingTower
 					MouseState = MOUSESTATES.PLAYING
 					PlacementDecal.visible = false
 					pass
 			pass
+	print(ValidPlacement)
 	pass
 
 func RaycastToFloor() -> Dictionary:
 	#Raycasting learned by Godot Docs
 	var space_state = get_tree().root.world_3d.direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(MainCamera.global_position, MainCamera.project_position(get_viewport().get_mouse_position(),999))
+	var query = PhysicsRayQueryParameters3D.create(MainCamera.global_position, MainCamera.project_position(get_viewport().get_mouse_position(),999),COLLISIONMASK)
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
 	
@@ -97,7 +103,20 @@ func SpawnEnemy():
 
 func DEVTOOLS_PROCESS():
 	if Input.is_action_just_pressed("DEV_SpeedTime"):
-		Engine.time_scale+=0.1
+		Engine.time_scale+=1
 	elif Input.is_action_just_pressed("DEV_SlowTime"):
-		Engine.time_scale-= 0.1
+		Engine.time_scale-=1
+	pass
+
+func AddGold(_amount:int):
+	Gold += _amount
+	GoldText.text = str("%.2f" % Gold)
+	pass
+func SubtractGold(_amount:int):
+	Gold -= _amount
+	GoldText.text = str("%.2f" % Gold)
+	pass
+func SetGold(_amount:int):
+	Gold = _amount
+	GoldText.text = str("%.2f" % Gold)
 	pass

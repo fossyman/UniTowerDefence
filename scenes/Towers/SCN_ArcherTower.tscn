@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5hqlanwlvy3l"]
+
+[ext_resource type="Script" uid="uid://d0o2gje0lnfdg" path="res://scripts/SCR_TowerScene.gd" id="1_phuia"]
+[ext_resource type="PackedScene" uid="uid://d1hqqq05rh8m5" path="res://assets/Models/Towers/ArcherTower.glb" id="2_phuia"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
+radius = 1.0
+height = 3.408
+
+[node name="ScnArcherTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint")]
+script = ExtResource("1_phuia")
+ProjectileSpawnPoint = NodePath("ProjectileSpawn")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.651369, 1, -0.281166)
+shape = SubResource("CapsuleShape3D_ngv6k")
+debug_color = Color(0.976219, 0, 0.4171, 0.596078)
+
+[node name="ProjectileSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21164, 0.313206, 0)
+
+[node name="ArcherTower" parent="." instance=ExtResource("2_phuia")]

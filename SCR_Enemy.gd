@@ -24,8 +24,8 @@ func Death():
 	Hurtbox.set_deferred("monitoring",false)
 	if dir.x > 0.9 || dir.x < -0.9:
 		#LEFT
-		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
-		Deathtween.tween_property(MeshParent,"position:y",-5,1)
+		Deathtween.parallel().tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
+		Deathtween.parallel().tween_property(MeshParent,"position:y",-5,1)
 		pass
 	elif dir.z > 0.9 || dir.z < -0.9:
 		#UP

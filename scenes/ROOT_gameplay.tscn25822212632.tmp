@@ -1,0 +1,503 @@
+[gd_scene load_steps=38 format=3 uid="uid://comrba122j0wy"]
+
+[ext_resource type="Texture2D" uid="uid://o8kgut6vgqea" path="res://assets/Textures/Map/Paths/TowerDefence_Path1.png" id="1_y7bvw"]
+[ext_resource type="Script" uid="uid://b631pkjuq0b4m" path="res://scripts/SCR_TowerCreationButton.gd" id="3_vivt6"]
+[ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_EnemyTest.tscn" id="3_xflyc"]
+[ext_resource type="Resource" uid="uid://ynliovj8lt5u" path="res://assets/Resources/Towers/RES_TestTower.tres" id="4_nsrc6"]
+[ext_resource type="Script" uid="uid://smrgjuau0c1f" path="res://scripts/SCR_GameplayController.gd" id="4_ub8nv"]
+[ext_resource type="Texture2D" uid="uid://ccusln60llum1" path="res://assets/Sprites/UI/SPR_Coins.png" id="6_5erwy"]
+[ext_resource type="Script" uid="uid://i2kdvk6gpc0p" path="res://scripts/SCR_UpgradeArea.gd" id="7_5erwy"]
+[ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="7_dfawl"]
+[ext_resource type="Script" uid="uid://c6u8rwxmbywg0" path="res://scripts/SCR_TowerPurchaseMenu.gd" id="8_pqfbv"]
+[ext_resource type="PackedScene" uid="uid://dyromsm1ruyf" path="res://scenes/StatUpgradeButton.tscn" id="9_a8648"]
+[ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="12_xflyc"]
+[ext_resource type="PackedScene" uid="uid://driu3bx8heggq" path="res://assets/Models/Props/MapBoards/MapBoard1.glb" id="13_g4qo0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6tgx1"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_y7bvw"]
+sky_material = SubResource("ProceduralSkyMaterial_6tgx1")
+
+[sub_resource type="Environment" id="Environment_ipg8x"]
+background_mode = 2
+sky = SubResource("Sky_y7bvw")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 20.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_6tgx1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipg8x"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("1_y7bvw")
+
+[sub_resource type="Curve3D" id="Curve3D_y7bvw"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.01, 0, 2.04, -0.0351415, 0, -0.48652, 0.0351415, 0, 0.48652, 0.0610952, 0, 5.73138, -0.47574, 0, -0.0202441, 0.47574, 0, 0.0202441, 1.10257, 0, 6.67242, -0.0830798, 0, 0.155083, 0.0830798, 0, -0.155083, 1.71792, 0, 6.03399, 0, 0, 0, 0, 0, 0, 1.76509, 0, 5.39433, -0.110773, 0, 0.293549, 0.110773, 0, -0.293549, 1.63628, 0, 3.01659, -0.155083, 0, 0.0609252, 0.155083, 0, -0.0609252, 2.17688, 0, 2.2951, 0, 0, 0, 0, 0, 0, 2.90277, 0, 2.19196, -0.58572, 0, -0.0718229, 0.58572, 0, 0.0718229, 6.17537, 0, 2.17791, 0, 0, 0, 0, 0, 0, 6.84955, 0, 2.33241, -0.0996962, 0, -0.227085, 0.0996962, 0, 0.227085, 7.13772, 0, 2.72052, 0, 0, -0.121851, 0, 0, 0.121851, 7.23188, 0, 3.0473, 0.0885673, 0, -0.130043, -0.0885673, 0, 0.130043, 7.06023, 0, 3.52628, 0, 0, 0, 0, 0, 0, 6.66696, 0, 3.86337, 0.645876, 0, -0.0280161, -0.645876, 0, 0.0280161, 5.83828, 0, 4.14428, 0.35499, 0, -0.0143113, -0.35499, 0, 0.0143113, 4.16686, 0, 4.14428, 0.148347, 0, -0.300052, -0.148347, 0, 0.300052, 3.43789, 0, 4.56701, -0.0261569, 0, -0.373866, 0.0261569, 0, 0.373866, 3.28343, 0, 5.06902, 0, 0, 0, 0, 0, 0, 3.33818, 0, 5.46455, -0.161125, 0, -0.131309, 0.161125, 0, 0.131309, 3.59787, 0, 5.80825, -0.343288, 0, -0.0410848, 0.343288, 0, 0.0410848, 4.03369, 0, 5.97374, 0, 0, 0, 0, 0, 0, 4.72868, 0, 5.98424, 0, 0, 0, 0, 0, 0, 5.47309, 0, 5.97019, -0.301801, 0, -0.033812, 0.301801, 0, 0.033812, 6.38493, 0, 5.96324, -0.25928, 0, -0.270314, 0.25928, 0, 0.270314, 7.06347, 0, 6.3163, 0.0676651, 0, -0.222617, -0.0676651, 0, 0.222617, 7.2856, 0, 7.38808, 0, 0, 0, 0, 0, 0, 7.13702, 0, 7.73908, 0.161508, 0, -0.135666, -0.161508, 0, 0.135666, 6.9154, 0, 7.99143, 0, 0, 0, 0, 0, 0, 6.4981, 0, 8.18141, 0, 0, 0, 0, 0, 0, 5.89194, 0, 8.23056, 0.247793, 0, 0.0395918, -0.247793, 0, -0.0395918, 5.46599, 0, 8.16503, 0.234796, 0, -0.0359097, -0.234796, 0, 0.0359097, 4.15538, 0, 8.18141, 0.264872, 0, -0.0129204, -0.264872, 0, 0.0129204, 3.09166, 0, 8.35869, 0.143648, 0, -0.0548115, -0.143648, 0, 0.0548115, 2.1567, 0, 8.378, 0.0315601, 0, -0.16637, -0.0315601, 0, 0.16637, 1.96126, 0, 8.76777, 0.00966382, 0, -0.266212, -0.00966382, 0, 0.266212, 2.02908, 0, 9.22742, 0.191319, 0, -0.25739, -0.191319, 0, 0.25739, 1.91603, 0, 9.98602, 0.284781, 0, -0.038537, -0.284781, 0, 0.038537, 0.862469, 0, 10.1473, 0.226207, 0, -0.0266142, -0.226207, 0, 0.0266142, 0.43652, 0, 10.2129, 0.301292, 0, 0.0191059, -0.301292, 0, -0.0191059, -0.98877, 0, 10.1801, 0.691839, 0.520561, -2.09808e-05, -0.691839, -0.520561, 2.09808e-05, -2.17884, -0.516563, 10.2129, 0, 0, 0, 0, 0, 0, -3.04332, -2.69865, 10.1474),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 43
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ub8nv"]
+size = Vector3(3.905, 1, 1.32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vivt6"]
+size = Vector3(3.905, 1, 1.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nsrc6"]
+size = Vector3(5.35, 1, 2.045)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m4lxa"]
+size = Vector3(3.905, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dfawl"]
+size = Vector3(4.285, 1, 1.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2r50"]
+size = Vector3(2.15804, 1, 1.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5erwy"]
+size = Vector3(3.38972, 1, 2.559)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a8648"]
+size = Vector3(8.191, 1, 1.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0aqm6"]
+size = Vector3(0.44, 1, 4.905)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xflyc"]
+size = Vector3(0.64, 1, 2.185)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eoap7"]
+size = Vector3(0.79, 1, 4.36)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbscu"]
+size = Vector3(0.535, 1, 4.905)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pqfbv"]
+size = Vector3(1, 1, 4.905)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4qo0"]
+size = Vector3(1, 1, 3.055)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vigue"]
+size = Vector3(0.465, 1, 4.905)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0o7aq"]
+size = Vector3(2.835, 1, 1.73)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7jkmi"]
+size = Vector3(2.185, 1, 0.44)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l812o"]
+size = Vector3(2.105, 1, 0.775)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dfawl"]
+radius = 1.0
+
+[node name="ROOT_GAMEPLAY" type="Node"]
+
+[node name="MainController" type="Node" parent="." node_paths=PackedStringArray("MainCamera", "PlacementDecal", "GoldText", "UpgradeScreen", "TowerPurchaseScreen", "MapPath")]
+script = ExtResource("4_ub8nv")
+MainCamera = NodePath("../Map/Camera3D")
+PlacementDecal = NodePath("../Area3D")
+GoldText = NodePath("../Control/GoldAmount")
+UpgradeScreen = NodePath("../Control/UpgradeMenu")
+TowerPurchaseScreen = NodePath("../Control/TowerPurchaseArea")
+MapPath = NodePath("../Map/Path3D")
+Enemies = Array[PackedScene]([ExtResource("3_xflyc")])
+SpawnTickrate = 1.2
+Gold = 500
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ipg8x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Map"]
+transform = Transform3D(0.999991, 0.00379029, -0.00212663, 0, 0.489315, 0.872107, 0.00434613, -0.872098, 0.48931, 0, 5.612, 4.582)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+mesh = SubResource("QuadMesh_6tgx1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0.010469, -4.57613e-10)
+material_override = SubResource("StandardMaterial3D_ipg8x")
+mesh = SubResource("QuadMesh_6tgx1")
+
+[node name="Path3D" type="Path3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -5.562)
+curve = SubResource("Curve3D_y7bvw")
+
+[node name="PlacingArea" type="Area3D" parent="Map"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50218, -0.454314, -2.34815)
+shape = SubResource("BoxShape3D_ub8nv")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9852, -0.454314, -0.533092)
+shape = SubResource("BoxShape3D_ub8nv")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94999, -0.454314, -4.2786)
+shape = SubResource("BoxShape3D_ub8nv")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.710482, -0.454314, -4.2786)
+shape = SubResource("BoxShape3D_ub8nv")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.16037, -0.454314, -1.75843)
+shape = SubResource("BoxShape3D_vivt6")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31264, -0.454314, 3.9562)
+shape = SubResource("BoxShape3D_nsrc6")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.421099, -0.457156, -0.58705)
+shape = SubResource("BoxShape3D_m4lxa")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23743, -0.457156, 1.52663)
+shape = SubResource("BoxShape3D_dfawl")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(0.903313, 0, 0.428982, 0, 1, 0, -0.428982, 0, 0.903313, -1.03977, -0.457156, 1.84704)
+shape = SubResource("BoxShape3D_dfawl")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(0.755922, 0, -0.654662, 0, 1, 0, 0.654662, 0, 0.755922, -2.85445, -0.457156, 1.87971)
+shape = SubResource("BoxShape3D_m2r50")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2987, -0.457156, 2.88117)
+shape = SubResource("BoxShape3D_5erwy")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Map/PlacingArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.11401, -0.457156, -0.886799)
+shape = SubResource("BoxShape3D_a8648")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CantPlaceArea" type="Area3D" parent="Map"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95022, -0.454314, -2.5594)
+shape = SubResource("BoxShape3D_0aqm6")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(0.617173, 0, 0.786827, 0, 1, 0, -0.786827, 0, 0.617173, -2.43631, -0.454314, 0.704113)
+shape = SubResource("BoxShape3D_xflyc")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30204, -0.454314, -1.17447)
+shape = SubResource("BoxShape3D_eoap7")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.49505, -0.454314, -3.29995)
+shape = SubResource("BoxShape3D_fbscu")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.49505, -0.454314, 2.56743)
+shape = SubResource("BoxShape3D_pqfbv")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.79743, -0.454314, 4.65079)
+shape = SubResource("BoxShape3D_pqfbv")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01932, -0.454314, 3.59867)
+shape = SubResource("BoxShape3D_g4qo0")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.39021, -0.454314, 0.438431)
+shape = SubResource("BoxShape3D_vigue")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.39021, -0.454314, -1.43453)
+shape = SubResource("BoxShape3D_vigue")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.15239, -0.454314, 1.53197)
+shape = SubResource("BoxShape3D_0o7aq")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.15239, -0.454314, -2.44974)
+shape = SubResource("BoxShape3D_7jkmi")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Map/CantPlaceArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.56728, -0.454314, -0.484218)
+shape = SubResource("BoxShape3D_l812o")
+debug_color = Color(0.658824, 0.513726, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -373.0
+offset_top = -12.0
+offset_right = -223.0
+offset_bottom = 138.0
+grow_horizontal = 0
+texture = ExtResource("6_5erwy")
+expand_mode = 1
+
+[node name="GoldAmount" type="RichTextLabel" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -223.0
+offset_top = 26.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "99,999"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="UpgradeMenu" type="Control" parent="Control" node_paths=PackedStringArray("TowerName", "TowerIcon", "UpgradeButtonContainer")]
+anchors_preset = 0
+offset_right = 336.0
+offset_bottom = 720.0
+script = ExtResource("7_5erwy")
+TowerName = NodePath("TowerTitle")
+TowerIcon = NodePath("TowerIcon")
+UpgradeButtonContainer = NodePath("AspectRatioContainer/GridContainer")
+ButtonPrefab = ExtResource("9_a8648")
+
+[node name="TowerIcon" type="TextureRect" parent="Control/UpgradeMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.5
+offset_top = 71.0
+offset_right = 122.5
+offset_bottom = 315.0
+grow_horizontal = 2
+texture = ExtResource("7_dfawl")
+
+[node name="TowerTitle" type="RichTextLabel" parent="Control/UpgradeMenu"]
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 71.0
+theme_override_font_sizes/normal_font_size = 50
+text = "Test Tower"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/UpgradeMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -405.0
+offset_right = 336.0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="Control/UpgradeMenu/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="StatUpgradeButton" parent="Control/UpgradeMenu/AspectRatioContainer/GridContainer" instance=ExtResource("9_a8648")]
+layout_mode = 2
+
+[node name="StatUpgradeButton2" parent="Control/UpgradeMenu/AspectRatioContainer/GridContainer" instance=ExtResource("9_a8648")]
+layout_mode = 2
+
+[node name="StatUpgradeButton3" parent="Control/UpgradeMenu/AspectRatioContainer/GridContainer" instance=ExtResource("9_a8648")]
+layout_mode = 2
+
+[node name="StatUpgradeButton4" parent="Control/UpgradeMenu/AspectRatioContainer/GridContainer" instance=ExtResource("9_a8648")]
+layout_mode = 2
+
+[node name="TowerPurchaseArea" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 450.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("8_pqfbv")
+OpenPosition = Vector2(830, 0)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TowerPurchaseArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="Control/TowerPurchaseArea/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button2" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button3" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button4" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button5" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button6" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button7" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button8" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button9" type="Button" parent="Control/TowerPurchaseArea/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower"
+script = ExtResource("3_vivt6")
+TowerRes = ExtResource("4_nsrc6")
+
+[node name="Button" type="Button" parent="Control/TowerPurchaseArea"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -115.0
+grow_vertical = 0
+icon = ExtResource("6_5erwy")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67276, 0, 2.08862)
+collision_layer = 0
+collision_mask = 12
+
+[node name="PlacementDecal" type="Decal" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0027388, 0)
+sorting_offset = 1.0
+size = Vector3(2, 1, 2)
+texture_albedo = ExtResource("7_dfawl")
+
+[node name="RangeDecal" type="Decal" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00619012, 0)
+size = Vector3(2, 0.1, 2)
+texture_albedo = ExtResource("12_xflyc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_dfawl")
+debug_color = Color(0.272703, 0.632412, 1.92523e-07, 0.42)
+
+[node name="MapBoard1" parent="." instance=ExtResource("13_g4qo0")]
+transform = Transform3D(-5.6, 0, 8.45576e-07, 0, 5.6, 0, -8.45576e-07, 0, -5.6, 0, 0.0830511, 0)
+
+[connection signal="pressed" from="Control/TowerPurchaseArea/Button" to="Control/TowerPurchaseArea" method="ToggleMenu"]

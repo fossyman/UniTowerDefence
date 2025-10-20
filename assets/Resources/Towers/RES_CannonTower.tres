@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DamageTower" load_steps=11 format=3 uid="uid://13bt3od3b2o5"]
+
+[ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="1_fs6ls"]
+[ext_resource type="PackedScene" uid="uid://472q2pjrqno4" path="res://scenes/Projectiles/SCN_ProjectileTest.tscn" id="2_37fv2"]
+[ext_resource type="Script" uid="uid://d1mwqxyusqdo4" path="res://scripts/Resources/SCR_ProjectileResource.gd" id="3_w7w2f"]
+[ext_resource type="Script" uid="uid://btxknbasomvh3" path="res://scripts/Resources/SCR_StatResource.gd" id="4_o0dei"]
+[ext_resource type="PackedScene" uid="uid://tdsxlydol4qx" path="res://scenes/Towers/SCN_CannonTower.tscn" id="5_fs6ls"]
+[ext_resource type="Script" uid="uid://dequkfhrd571b" path="res://scripts/SCR_CombatTower.gd" id="6_t5w5d"]
+
+[sub_resource type="Resource" id="Resource_sfr1c"]
+script = ExtResource("3_w7w2f")
+Scene = ExtResource("2_37fv2")
+Speed = 25.0
+Damage = 5
+metadata/_custom_type_script = "uid://d1mwqxyusqdo4"
+
+[sub_resource type="Resource" id="Resource_wsvwy"]
+script = ExtResource("4_o0dei")
+Name = "Arrow Sharpness"
+Amount = Array[float]([1.0, 100.0, 3.0])
+Level = 0
+Cost = Array[int]([1, 100, 500])
+metadata/_custom_type_script = "uid://btxknbasomvh3"
+
+[sub_resource type="Resource" id="Resource_sdif4"]
+script = ExtResource("4_o0dei")
+Name = "Bow Range"
+Amount = Array[float]([2.0, 5.0, 10.0])
+Level = 0
+Cost = Array[int]([50, 250, 500])
+metadata/_custom_type_script = "uid://btxknbasomvh3"
+
+[sub_resource type="Resource" id="Resource_5amgi"]
+script = ExtResource("4_o0dei")
+Name = "Archer Dexterity"
+Amount = Array[float]([2.0, 2.0, 0.5])
+Level = 0
+Cost = Array[int]([50, 250, 500])
+metadata/_custom_type_script = "uid://btxknbasomvh3"
+
+[resource]
+script = ExtResource("6_t5w5d")
+ProjectileResource = SubResource("Resource_sfr1c")
+Name = "Cannon Tower"
+Icon = ExtResource("1_fs6ls")
+TowerScn = ExtResource("5_fs6ls")
+Price = 10
+PlacementRange = 0.5
+Stats = Array[ExtResource("4_o0dei")]([SubResource("Resource_wsvwy"), SubResource("Resource_sdif4"), SubResource("Resource_5amgi")])
+metadata/_custom_type_script = "uid://c8041o1437idf"

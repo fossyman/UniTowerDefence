@@ -1,15 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnufxdgy8fc1n"]
+[gd_scene load_steps=4 format=3 uid="uid://bnufxdgy8fc1n"]
 
 [ext_resource type="Script" uid="uid://d0o2gje0lnfdg" path="res://scripts/SCR_TowerScene.gd" id="1_tkgji"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ngv6k"]
-radial_segments = 5
-rings = 0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_tkgji"]
-top_radius = 0.0
-bottom_radius = 0.7
-radial_segments = 6
+[ext_resource type="PackedScene" uid="uid://dvmboswiq8kbk" path="res://assets/Models/Towers/WizardTower.glb" id="2_u4x05"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
 radius = 0.291
@@ -17,19 +9,6 @@ radius = 0.291
 [node name="ScnMageTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint")]
 script = ExtResource("1_tkgji")
 ProjectileSpawnPoint = NodePath("ProjectileSpawn")
-
-[node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CylinderMesh_ngv6k")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-mesh = SubResource("CylinderMesh_tkgji")
-skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
@@ -41,4 +20,6 @@ shape = SubResource("CapsuleShape3D_ngv6k")
 debug_color = Color(0.976219, 0, 0.4171, 0.596078)
 
 [node name="ProjectileSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00249, 0)
+
+[node name="WizardTower" parent="." instance=ExtResource("2_u4x05")]

@@ -57,8 +57,8 @@ skeleton = NodePath("../..")
 
 [node name="HEALTH" type="Node" parent="."]
 script = ExtResource("3_e3vbg")
-Health = 3
-HealthCap = 3
+Health = 5
+HealthCap = 5
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
 collision_layer = 16

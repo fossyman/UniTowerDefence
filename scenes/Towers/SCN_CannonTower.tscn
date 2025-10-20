@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://tdsxlydol4qx"]
+
+[ext_resource type="Script" uid="uid://d0o2gje0lnfdg" path="res://scripts/SCR_TowerScene.gd" id="1_andnk"]
+[ext_resource type="PackedScene" uid="uid://3s2k4702n0sd" path="res://assets/Models/Towers/CannonTower.glb" id="2_andnk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
+radius = 0.8
+height = 3.34
+
+[node name="ScnCannonTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint", "LookAtNode")]
+script = ExtResource("1_andnk")
+ProjectileSpawnPoint = NodePath("ProjectileSpawn")
+LookAtTarget = true
+LookAtNode = NodePath("CannonTower")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ngv6k")
+debug_color = Color(0.976219, 0, 0.4171, 0.596078)
+
+[node name="ProjectileSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317971, 0)
+
+[node name="CannonTower" parent="." instance=ExtResource("2_andnk")]
+
+[editable path="CannonTower"]

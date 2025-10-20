@@ -1,17 +1,26 @@
 extends Node3D
 class_name TowerScene
 
-var Stats:Tower
+var TowerResource:Tower
 
 @export var ProjectileSpawnPoint:Node3D
 
-@export var Tickrate:float = 0.2
+@export var Tickrate:float = 1.0
 var TickAmt:float
+
+var _damage:float
 
 var Target:Node3D
 
+var TowerModifiers:Array[TowerModifier]
+
+@export var LookAtTarget:bool = false
+
+@export var LookAtNode:Node3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	refreshStats()
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
@@ -21,23 +30,17 @@ func _process(delta: float) -> void:
 		Tick()
 
 func Tick():
-	print("1")
 	Target = Get_ClosestEnemy(true)
-	print("2")
 	if Target:
 		SpawnProjectile()
-		print("3")
-	else:
-		print("4")
-	pass
-	print("5")
-	
+		if LookAtTarget:
+			rotation.y = (global_position - Target.global_position).normalized().z
+
 func SpawnProjectile():
-	if Stats is DamageTower:
-		var inst = Stats.ProjectileResource.Scene.instantiate() as Node3D
+	if TowerResource is DamageTower:
+		var inst = TowerResource.ProjectileResource.Scene.instantiate() as ProjectileScene
 		ProjectileSpawnPoint.add_child(inst)
-		inst.Speed = Stats.ProjectileResource.Speed
-		inst.Damage =  Stats.ProjectileResource.Damage
+		inst._Setup(TowerResource.ProjectileResource.Speed,TowerResource.GetCurrentAttackDamage())
 		
 		var dir = (Target.global_transform.origin - global_transform.origin)
 		dir.y = 0
@@ -56,7 +59,7 @@ func Get_ClosestEnemy(UseRadius:bool = false) -> Node3D:
 	for i in GameplayController.instance.ActiveEnemies.size():
 		var Distance:float = global_position.distance_to(GameplayController.instance.ActiveEnemies[i].global_position)
 		if UseRadius:
-			var RangeStatValue = Stats.GetCurrentAttackRange()
+			var RangeStatValue = TowerResource.GetCurrentAttackRange()
 			if Distance < RangeStatValue:
 				Closest = GameplayController.instance.ActiveEnemies[i]
 				break
@@ -66,3 +69,7 @@ func Get_ClosestEnemy(UseRadius:bool = false) -> Node3D:
 			Closest = GameplayController.instance.ActiveEnemies[i]
 
 	return Closest
+
+func refreshStats():
+	Tickrate = TowerResource.GetCurrentAttackSpeed()
+	_damage = TowerResource.GetCurrentAttackDamage()

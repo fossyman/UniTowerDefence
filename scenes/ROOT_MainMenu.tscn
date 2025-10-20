@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://m8v4ibhr58d5"]
+[gd_scene load_steps=6 format=3 uid="uid://m8v4ibhr58d5"]
 
-[ext_resource type="Texture2D" uid="uid://d0qkobtj1niov" path="res://assets/Sprites/TEMP_Alden.png" id="1_gtgwm"]
+[ext_resource type="Texture2D" uid="uid://b5xum4j6febne" path="res://assets/Sprites/UI/Titlecard.png" id="1_gtgwm"]
+[ext_resource type="PackedScene" uid="uid://c47xlrv5yjad2" path="res://assets/Models/Props/Stage.glb" id="2_ls88k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gtgwm"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_ls88k"]
 sky_material = SubResource("ProceduralSkyMaterial_gtgwm")
@@ -12,22 +15,13 @@ sky_material = SubResource("ProceduralSkyMaterial_gtgwm")
 [sub_resource type="Environment" id="Environment_4o1g0"]
 background_mode = 2
 sky = SubResource("Sky_ls88k")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ls88k"]
-albedo_texture = ExtResource("1_gtgwm")
-
-[sub_resource type="QuadMesh" id="QuadMesh_4o1g0"]
+ambient_light_source = 2
+ambient_light_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 
 [node name="ROOT_MAINMENU" type="Node"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4o1g0")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -39,54 +33,75 @@ grow_vertical = 2
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -396.0
-offset_top = -442.0
-offset_right = -90.0
-offset_bottom = -320.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 86.0
+offset_right = 153.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Play"
 
 [node name="Button2" type="Button" parent="Control"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -396.0
-offset_top = -302.0
-offset_right = -90.0
-offset_bottom = -180.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 156.0
+offset_right = 153.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Options"
 
 [node name="Button3" type="Button" parent="Control"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -396.0
-offset_top = -152.0
-offset_right = -90.0
-offset_bottom = -30.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 226.0
+offset_right = 153.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Quit"
 
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.978803, -0.204804, 0, 0.204804, 0.978803, 0, 0.00546587, -4.079)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.29055)
-material_override = SubResource("StandardMaterial3D_ls88k")
-mesh = SubResource("QuadMesh_4o1g0")
+[node name="Sprite3D" type="Sprite3D" parent="Node3D"]
+transform = Transform3D(0.265, 0, 0, 0, 0.259209, -0.0550966, 0, 0.0550966, 0.259209, 0, 1.978, -7.765)
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_gtgwm")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.904396, -0.221511, -0.364694, 3.95853e-09, 0.854694, -0.519131, 0.426695, 0.4695, 0.772982, -2, 0, -5.03179)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+spot_range = 4.995
+spot_attenuation = -0.99
+spot_angle = 32.23
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.904083, 0.222021, 0.36516, 0, 0.854459, -0.519519, -0.427358, 0.469688, 0.772501, 2, 0, -5)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+spot_range = 4.995
+spot_attenuation = -0.99
+spot_angle = 32.23
+
+[node name="Stage" parent="." instance=ExtResource("2_ls88k")]
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, 0, -4.382, -9.631)

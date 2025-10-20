@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DamageTower" load_steps=11 format=3 uid="uid://ynliovj8lt5u"]
+
+[ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="1_0jr8w"]
+[ext_resource type="PackedScene" uid="uid://472q2pjrqno4" path="res://scenes/Projectiles/SCN_ProjectileTest.tscn" id="2_j2dy0"]
+[ext_resource type="Script" uid="uid://d1mwqxyusqdo4" path="res://scripts/Resources/SCR_ProjectileResource.gd" id="3_uxjmr"]
+[ext_resource type="Script" uid="uid://btxknbasomvh3" path="res://scripts/Resources/SCR_StatResource.gd" id="4_yu1tr"]
+[ext_resource type="PackedScene" uid="uid://bnufxdgy8fc1n" path="res://scenes/Towers/SCN_MageTower.tscn" id="5_nl126"]
+[ext_resource type="Script" uid="uid://dequkfhrd571b" path="res://scripts/SCR_CombatTower.gd" id="6_o45lx"]
+
+[sub_resource type="Resource" id="Resource_sfr1c"]
+script = ExtResource("3_uxjmr")
+Scene = ExtResource("2_j2dy0")
+Speed = 25.0
+Damage = 5
+metadata/_custom_type_script = "uid://d1mwqxyusqdo4"
+
+[sub_resource type="Resource" id="Resource_wsvwy"]
+script = ExtResource("4_yu1tr")
+Name = "Spell Damage"
+Amount = Array[float]([1.0, 100.0, 3.0])
+Level = 0
+Cost = Array[int]([1, 100, 500])
+metadata/_custom_type_script = "uid://btxknbasomvh3"
+
+[sub_resource type="Resource" id="Resource_sdif4"]
+script = ExtResource("4_yu1tr")
+Name = "Cast Range"
+Amount = Array[float]([2.0, 5.0, 10.0])
+Level = 0
+Cost = Array[int]([50, 250, 500])
+metadata/_custom_type_script = "uid://btxknbasomvh3"
+
+[sub_resource type="Resource" id="Resource_5amgi"]
+script = ExtResource("4_yu1tr")
+Name = "speed"
+Amount = Array[float]([2.0, 2.0, 0.5])
+Level = 0
+Cost = Array[int]([50, 250, 500])
+metadata/_custom_type_script = "uid://btxknbasomvh3"
+
+[resource]
+script = ExtResource("6_o45lx")
+ProjectileResource = SubResource("Resource_sfr1c")
+Name = "Mage Tower"
+Icon = ExtResource("1_0jr8w")
+TowerScn = ExtResource("5_nl126")
+Price = 10
+PlacementRange = 0.4
+Stats = Array[ExtResource("4_yu1tr")]([SubResource("Resource_wsvwy"), SubResource("Resource_sdif4"), SubResource("Resource_5amgi")])
+metadata/_custom_type_script = "uid://c8041o1437idf"
