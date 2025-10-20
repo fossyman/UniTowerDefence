@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://vck1yjpyatn8"]
+
+[ext_resource type="Script" uid="uid://c71lu8xohmhru" path="res://SCR_FlyingEnemy.gd" id="1_ybv72"]
+[ext_resource type="Script" uid="uid://dahitxda5ofvw" path="res://scripts/SCR_HealthComponent.gd" id="2_5qlp6"]
+[ext_resource type="Script" uid="uid://cjeyk8jbi2soa" path="res://scripts/SCR_HurtboxComponent.gd" id="3_qyv4h"]
+
+[sub_resource type="Gradient" id="Gradient_ybv72"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5qlp6"]
+gradient = SubResource("Gradient_ybv72")
+fill_from = Vector2(0, 0.41453)
+fill_to = Vector2(0, 0.487179)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybv72"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_5qlp6")
+proximity_fade_distance = 0.01
+distance_fade_min_distance = 1.0
+distance_fade_max_distance = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wswsg"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 10.0
+radial_segments = 4
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qlp6"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.423529)
+proximity_fade_distance = 10.7
+distance_fade_min_distance = 1.0
+distance_fade_max_distance = 6.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_5erwy"]
+size = Vector3(1, 1, 0.065)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e3vbg"]
+
+[node name="SCN_FlyingEnemy" type="PathFollow3D" node_paths=PackedStringArray("Pinpoint", "MeshParent", "HealthComp", "Hurtbox")]
+transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
+progress = 23.5245
+rotation_mode = 0
+tilt_enabled = false
+script = ExtResource("1_ybv72")
+Pinpoint = NodePath("Node3D/Pinpoint")
+TravelSpeed = 0.01
+MeshParent = NodePath("Node3D")
+HealthComp = NodePath("HEALTH")
+Hurtbox = NodePath("Hurtbox")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66612, 0)
+
+[node name="Pinpoint" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.42392, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Pinpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.50018, 0)
+material_override = SubResource("StandardMaterial3D_ybv72")
+mesh = SubResource("CylinderMesh_wswsg")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D/Pinpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.99982, 0)
+material_override = SubResource("StandardMaterial3D_5qlp6")
+mesh = SubResource("BoxMesh_5erwy")
+skeleton = NodePath("../../..")
+
+[node name="HEALTH" type="Node" parent="."]
+script = ExtResource("2_5qlp6")
+Health = 5
+HealthCap = 5
+
+[node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("3_qyv4h")
+HealthComponent = NodePath("../HEALTH")
+metadata/_custom_type_script = "uid://cjeyk8jbi2soa"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_e3vbg")
+
+[connection signal="Death" from="HEALTH" to="." method="Death"]

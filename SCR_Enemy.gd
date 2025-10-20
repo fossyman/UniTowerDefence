@@ -1,4 +1,5 @@
 extends PathFollow3D
+class_name Enemy
 
 @export var TravelSpeed:float = 1.0
 var dir:Vector3

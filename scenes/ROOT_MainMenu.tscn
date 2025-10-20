@@ -3,20 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://b5xum4j6febne" path="res://assets/Sprites/UI/Titlecard.png" id="1_gtgwm"]
 [ext_resource type="PackedScene" uid="uid://c47xlrv5yjad2" path="res://assets/Models/Props/Stage.glb" id="2_ls88k"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gtgwm"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0, 0, 0, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ls88k"]
 
-[sub_resource type="Sky" id="Sky_ls88k"]
-sky_material = SubResource("ProceduralSkyMaterial_gtgwm")
+[sub_resource type="Sky" id="Sky_4o1g0"]
+sky_material = SubResource("ProceduralSkyMaterial_ls88k")
 
 [sub_resource type="Environment" id="Environment_4o1g0"]
 background_mode = 2
-sky = SubResource("Sky_ls88k")
-ambient_light_source = 2
-ambient_light_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+sky = SubResource("Sky_4o1g0")
 
 [node name="ROOT_MAINMENU" type="Node"]
 

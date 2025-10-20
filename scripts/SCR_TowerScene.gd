@@ -32,9 +32,15 @@ func _process(delta: float) -> void:
 func Tick():
 	Target = Get_ClosestEnemy(true)
 	if Target:
-		SpawnProjectile()
 		if LookAtTarget:
-			rotation.y = (global_position - Target.global_position).normalized().z
+			var targetlerp = get_tree().create_tween().set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN_OUT)
+			var diff = (global_position - Target.global_position)
+			targetlerp.tween_property(LookAtNode,"rotation:y",atan2(diff.x,diff.z),0.5)
+			#LookAtNode.rotation.y = atan2(diff.x,diff.z)
+			await targetlerp.finished
+			
+			
+	SpawnProjectile()
 
 func SpawnProjectile():
 	if TowerResource is DamageTower:
