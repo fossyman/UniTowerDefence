@@ -7,6 +7,14 @@ class_name Stat
 @export var Level:int
 @export var Cost:Array[int]
 
+func Setup(_name:String,_icon:CompressedTexture2D,_amount:Array[float],_level:int,_cost:Array[int]) -> void:
+	Name = _name
+	Icon = _icon
+	Amount = _amount
+	Level = _level
+	Cost = _cost
+	pass
+
 func UpgradeLevel():
 	Level +=1
 

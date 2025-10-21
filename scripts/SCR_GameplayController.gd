@@ -17,6 +17,8 @@ static var instance:GameplayController
 
 @export var MapPath:Path3D
 
+@export_flags_3d_physics var ENEMY_COLLISION_LAYER:int
+
 enum MOUSESTATES{PLAYING,PLACING}
 
 var MouseState:MOUSESTATES = MOUSESTATES.PLAYING
@@ -27,8 +29,6 @@ var ValidPlacement:bool = false
 
 var SelectedTower:TowerScene
 
-@export var Enemies:Array[PackedScene]
-
 @export var SpawnTickrate:float
 var CurrentSpawnTickrate:float
 
@@ -36,6 +36,11 @@ var CurrentSpawnTickrate:float
 
 @export_flags_3d_physics var COLLISIONMASK:int
 
+@export var WaveIDX:int
+var WaveFinished:bool = false
+
+@export var WaveResources:Array[Wave]
+var EnemyCount:int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
@@ -45,19 +50,25 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	DEVTOOLS_PROCESS()
-	CurrentSpawnTickrate += delta
-	if CurrentSpawnTickrate >= SpawnTickrate:
-		SpawnEnemy()
-		CurrentSpawnTickrate = 0
+	if !WaveFinished:
+		CurrentSpawnTickrate += delta
+		if CurrentSpawnTickrate >= SpawnTickrate:
+			if EnemyCount < WaveResources[WaveIDX].EnemyCapacity:
+				SpawnEnemy(WaveResources[WaveIDX].GetNextEnemy())
+			CurrentSpawnTickrate = 0
 	
+	if Input.is_action_just_pressed("ui_accept"):
+		WaveIDX+=1
+		WaveIDX = wrap(WaveIDX,0,WaveResources.size())
+		EnemyCount = 0
+		WaveFinished = false
+		
 	
 	match(MouseState):
 		MOUSESTATES.PLAYING:
 			if Input.is_action_just_pressed("click"):
 				var result = RaycastToFloor()
 				if result:
-					print(result["normal"] == Vector3.UP)
-					print((result["collider"] as Area3D).get_parent().name)
 					match (result["collider"].collision_layer):
 						8: # UpgradeAreaCollision
 							SelectedTower = (result["collider"].get_parent() as TowerScene)
@@ -68,21 +79,22 @@ func _process(delta: float) -> void:
 			var result = RaycastToFloor()
 			if result && result["normal"] == Vector3.UP:
 				PlacementDecal.global_position = result["position"]
-				PlacementDecal.visible = !PlacementDecal.has_overlapping_areas()
 				ValidPlacement = true
 			else:
 				ValidPlacement = false
+			PlacementDecal.visible = ValidPlacement
 			if Input.is_action_just_pressed("click"):
 				if ValidPlacement:
 					var TowerScn = PlacingTower.TowerScn.instantiate() as TowerScene
-					TowerScn.TowerResource = PlacingTower
+					for i in TowerScn.TowerResource.Stats.size():
+						var stat = TowerScn.Stats[i] as Stat
+						#TowerScn.Stats.append( Stat.new(stat.Name,stat.Icon,stat.Amount,stat.Level,stat.Cost) )
 					add_child(TowerScn)
 					TowerScn.global_position = result["position"]
 					MouseState = MOUSESTATES.PLAYING
 					PlacementDecal.visible = false
 					pass
 			pass
-	print(ValidPlacement)
 	pass
 
 func RaycastToFloor() -> Dictionary:
@@ -94,12 +106,22 @@ func RaycastToFloor() -> Dictionary:
 	
 	return result
 
-func SpawnEnemy():
-	var Enemy = Enemies[0].instantiate()
+func BeginNewWave():
+	WaveIDX+=1
+	
 
-	MapPath.add_child(Enemy)
-	ActiveEnemies.append(Enemy)
-	Enemy.progress_ratio = 0
+func SpawnEnemy(_enemy:PackedScene):
+	var EnemyInst = _enemy.instantiate()
+	EnemyCount+=1
+	MapPath.add_child(EnemyInst)
+	ActiveEnemies.append(EnemyInst)
+	EnemyInst.progress_ratio = 0
+
+func CheckWaveCompletion():
+	if EnemyCount >= WaveResources[WaveIDX].EnemyCapacity and ActiveEnemies.is_empty():
+		WaveFinished = true
+		print("WAVE COMPLETED")
+	pass
 
 func DEVTOOLS_PROCESS():
 	if Input.is_action_just_pressed("DEV_SpeedTime"):

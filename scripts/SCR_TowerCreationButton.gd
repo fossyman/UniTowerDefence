@@ -17,6 +17,7 @@ func Btn_Pressed():
 	GameplayController.instance.MouseState = GameplayController.instance.MOUSESTATES.PLACING
 	var Size:Vector3 = Vector3.ONE * TowerRes.PlacementRange
 	GameplayController.instance.PlacementDecal.get_child(0).scale = Size
+	print(TowerRes.Stats.size())
 	GameplayController.instance.PlacementDecal.get_child(1).scale = Vector3.ONE * TowerRes.Stats[1].Amount[TowerRes.Stats[1].Level]
 	GameplayController.instance.PlacementDecal.get_child(2).shape.radius = TowerRes.PlacementRange
 	GameplayController.instance.TowerPurchaseScreen.ToggleMenu()

@@ -1,10 +1,12 @@
-[gd_scene load_steps=44 format=3 uid="uid://comrba122j0wy"]
+[gd_scene load_steps=47 format=3 uid="uid://comrba122j0wy"]
 
 [ext_resource type="Texture2D" uid="uid://o8kgut6vgqea" path="res://assets/Textures/Map/Paths/TowerDefence_Path1.png" id="1_y7bvw"]
 [ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_FlyingEnemyTest.tscn" id="2_7jkmi"]
 [ext_resource type="Texture2D" uid="uid://dkshua8pghrj1" path="res://assets/Textures/Third Party/Cardboard Textures/free_cardboard_texture_02_design_instruct.jpg" id="3_g4qo0"]
+[ext_resource type="Script" uid="uid://dnofd3ooi6rrv" path="res://scripts/Resources/SCR_WaveResource.gd" id="3_l812o"]
 [ext_resource type="Script" uid="uid://b631pkjuq0b4m" path="res://scripts/SCR_TowerCreationButton.gd" id="3_vivt6"]
 [ext_resource type="Texture2D" uid="uid://c0n04ntxbophy" path="res://assets/Textures/Third Party/Cardboard Textures/Cardboard_02_NORMAL.png" id="4_0o7aq"]
+[ext_resource type="Resource" uid="uid://e5s32eypq7dg" path="res://assets/Resources/Waves/ExampleWave.tres" id="4_fbscu"]
 [ext_resource type="Resource" uid="uid://ynliovj8lt5u" path="res://assets/Resources/Towers/RES_MageTower.tres" id="4_nsrc6"]
 [ext_resource type="Script" uid="uid://smrgjuau0c1f" path="res://scripts/SCR_GameplayController.gd" id="4_ub8nv"]
 [ext_resource type="Texture2D" uid="uid://ccusln60llum1" path="res://assets/Sprites/UI/SPR_Coins.png" id="6_5erwy"]
@@ -16,6 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://driu3bx8heggq" path="res://assets/Models/Props/MapBoards/MapBoard1.glb" id="13_g4qo0"]
 [ext_resource type="Resource" uid="uid://d0iiacyq4j0io" path="res://assets/Resources/Towers/RES_ArcherTower.tres" id="13_vigue"]
 [ext_resource type="Resource" uid="uid://13bt3od3b2o5" path="res://assets/Resources/Towers/RES_CannonTower.tres" id="14_7jkmi"]
+
+[sub_resource type="Resource" id="Resource_fbscu"]
+script = ExtResource("3_l812o")
+Enemies = Array[PackedScene]([ExtResource("2_7jkmi")])
+SpawnOrder = Array[int]([])
+EnemyCapacity = 5
+metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6tgx1"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -132,10 +141,11 @@ GoldText = NodePath("../Control/GoldAmount")
 UpgradeScreen = NodePath("../Control/UpgradeMenu")
 TowerPurchaseScreen = NodePath("../Control/TowerPurchaseArea")
 MapPath = NodePath("../Map/Path3D")
-Enemies = Array[PackedScene]([ExtResource("2_7jkmi")])
+ENEMY_COLLISION_LAYER = 49
 SpawnTickrate = 1.2
 Gold = 500
 COLLISIONMASK = 10
+WaveResources = Array[ExtResource("3_l812o")]([ExtResource("4_fbscu"), SubResource("Resource_fbscu")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ipg8x")

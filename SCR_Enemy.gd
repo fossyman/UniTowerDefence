@@ -8,7 +8,7 @@ var PosCache:Vector3
 @export var HealthComp:COMPONENT_HEALTH
 var IsDead:bool = false
 @export var Hurtbox:HurtboxComponent
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	if !IsDead:
 		PosCache = global_position
@@ -38,5 +38,6 @@ func Death():
 		Deathtween.tween_property(MeshParent,"position:y",-5,1)
 	await Deathtween.finished
 	GameplayController.instance.ActiveEnemies.erase(self)
+	GameplayController.instance.CheckWaveCompletion()
 	queue_free()
 	pass

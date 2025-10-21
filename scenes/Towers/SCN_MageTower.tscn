@@ -23,3 +23,5 @@ debug_color = Color(0.976219, 0, 0.4171, 0.596078)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00249, 0)
 
 [node name="WizardTower" parent="." instance=ExtResource("2_u4x05")]
+
+[editable path="WizardTower"]

@@ -18,9 +18,14 @@ var TowerModifiers:Array[TowerModifier]
 
 @export var LookAtNode:Node3D
 
+var TransparencyEnemy:Enemy
+
+var Stats:Array[Stat]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	refreshStats()
+	#refreshStats()
+	Stats = TowerResource.Stats
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
@@ -40,7 +45,7 @@ func Tick():
 			await targetlerp.finished
 			
 			
-	SpawnProjectile()
+		SpawnProjectile()
 
 func SpawnProjectile():
 	if TowerResource is DamageTower:

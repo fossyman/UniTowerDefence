@@ -19,19 +19,18 @@ func _process(delta: float) -> void:
 	pass
 
 func populateSettings(_scene:TowerScene):
-	var settings = _scene.TowerResource as Tower
-	TowerName.text = settings.Name
-	TowerIcon.texture = settings.Icon
+	TowerName.text = _scene.TowerResource.Name
+	TowerIcon.texture = _scene.TowerResource.Icon
 	for i in UpgradeButtonContainer.get_child_count():
 		UpgradeButtonContainer.get_child(i).queue_free()
 		
-	for i in settings.Stats.size():
+	for i in _scene.Stats.size():
 		var btn = ButtonPrefab.instantiate() as StatUpgradeButton
 		UpgradeButtonContainer.add_child(btn)
-		btn.Icon.texture = settings.Stats[i].Icon
-		btn.NameText.text = settings.Stats[i].Name
-		btn.PriceText.text = "$" + str(settings.Stats[i].GetCost())
-		btn.UpgradeStat = settings.Stats[i]
+		btn.Icon.texture = _scene.Stats[i].Icon
+		btn.NameText.text = _scene.Stats[i].Name
+		btn.PriceText.text = "$" + str(_scene.Stats[i].GetCost())
+		btn.UpgradeStat = _scene.Stats[i]
 		btn.UpgradingTower = _scene
 		btn.pressed.connect(btn.Pressed)
 	print("POPULATING")
