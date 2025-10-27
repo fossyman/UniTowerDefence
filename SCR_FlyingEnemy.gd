@@ -14,7 +14,7 @@ func Death():
 	var Deathtween = get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 	Hurtbox.set_deferred("monitorable",false)
 	Hurtbox.set_deferred("monitoring",false)
-	Deathtween.parallel().tween_property(MeshParent,"position:y",5,2)
+	Deathtween.parallel().tween_property(MeshParent,"position:y",15,3)
 	await Deathtween.finished
 	GameplayController.instance.ActiveEnemies.erase(self)
 	queue_free()

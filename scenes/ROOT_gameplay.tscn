@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://comrba122j0wy"]
+[gd_scene load_steps=48 format=3 uid="uid://comrba122j0wy"]
 
 [ext_resource type="Texture2D" uid="uid://o8kgut6vgqea" path="res://assets/Textures/Map/Paths/TowerDefence_Path1.png" id="1_y7bvw"]
 [ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_FlyingEnemyTest.tscn" id="2_7jkmi"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://e5s32eypq7dg" path="res://assets/Resources/Waves/ExampleWave.tres" id="4_fbscu"]
 [ext_resource type="Resource" uid="uid://ynliovj8lt5u" path="res://assets/Resources/Towers/RES_MageTower.tres" id="4_nsrc6"]
 [ext_resource type="Script" uid="uid://smrgjuau0c1f" path="res://scripts/SCR_GameplayController.gd" id="4_ub8nv"]
+[ext_resource type="Texture2D" uid="uid://cla68yfqx2qmd" path="res://assets/Skybox/HDRI.png" id="5_0aqm6"]
 [ext_resource type="Texture2D" uid="uid://ccusln60llum1" path="res://assets/Sprites/UI/SPR_Coins.png" id="6_5erwy"]
 [ext_resource type="Script" uid="uid://i2kdvk6gpc0p" path="res://scripts/SCR_UpgradeArea.gd" id="7_5erwy"]
 [ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="7_dfawl"]
@@ -26,24 +27,23 @@ SpawnOrder = Array[int]([])
 EnemyCapacity = 5
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6tgx1"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_y7bvw"]
-sky_material = SubResource("ProceduralSkyMaterial_6tgx1")
-
 [sub_resource type="Environment" id="Environment_ipg8x"]
 background_mode = 2
-sky = SubResource("Sky_y7bvw")
+sky_rotation = Vector3(1.5708, 0, 0)
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0aqm6"]
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_0aqm6")
+
+[sub_resource type="SphereMesh" id="SphereMesh_eoap7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o7aq"]
 albedo_texture = ExtResource("3_g4qo0")
@@ -149,6 +149,11 @@ WaveResources = Array[ExtResource("3_l812o")]([ExtResource("4_fbscu"), SubResour
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ipg8x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(500, 0, 0, 0, -2.18557e-05, 500, 0, -500, -2.18557e-05, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_0aqm6")
+mesh = SubResource("SphereMesh_eoap7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
