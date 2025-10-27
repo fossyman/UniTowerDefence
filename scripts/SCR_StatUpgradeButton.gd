@@ -16,7 +16,11 @@ func Pressed():
 		GameplayController.instance.SubtractGold(UpgradeStat.Cost[UpgradeStat.Level])
 		UpgradeStat.UpgradeLevel()
 		GameplayController.instance.SelectedTower.refreshStats()
+		SetValues()
 		pass
 	else:
 		print(str(UpgradeStat.Cost[UpgradeStat.Level]) + " needed. You have: " + str(GameplayController.instance.Gold))
 	pass
+	
+func SetValues():
+	PriceText.text = "$" + str(UpgradeStat.Cost[UpgradeStat.Level])

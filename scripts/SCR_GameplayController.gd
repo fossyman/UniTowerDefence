@@ -82,13 +82,20 @@ func _process(delta: float) -> void:
 				ValidPlacement = true
 			else:
 				ValidPlacement = false
+			if PlacementDecal.has_overlapping_areas():
+				ValidPlacement = false
+			
 			PlacementDecal.visible = ValidPlacement
 			if Input.is_action_just_pressed("click"):
 				if ValidPlacement:
 					var TowerScn = PlacingTower.TowerScn.instantiate() as TowerScene
-					for i in TowerScn.TowerResource.Stats.size():
-						var stat = TowerScn.Stats[i] as Stat
-						#TowerScn.Stats.append( Stat.new(stat.Name,stat.Icon,stat.Amount,stat.Level,stat.Cost) )
+					print(TowerScn)
+					for i in PlacingTower.Stats.size():
+						#PlacingTower.Stats[i] as
+						var stat:Stat = Stat.new()
+						stat._Setup(PlacingTower.Stats[i].Name,PlacingTower.Stats[i].Icon,PlacingTower.Stats[i].Amount,PlacingTower.Stats[i].Level,PlacingTower.Stats[i].Cost)
+						TowerScn.Stats.append(stat)
+					TowerScn.TowerResource = PlacingTower
 					add_child(TowerScn)
 					TowerScn.global_position = result["position"]
 					MouseState = MOUSESTATES.PLAYING

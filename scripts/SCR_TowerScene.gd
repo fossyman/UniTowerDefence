@@ -18,15 +18,10 @@ var TowerModifiers:Array[TowerModifier]
 
 @export var LookAtNode:Node3D
 
-var TransparencyEnemy:Enemy
+@export var TransparencyEnemy:Enemy
 
-var Stats:Array[Stat]
+@export var Stats:Array[Stat]
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	#refreshStats()
-	Stats = TowerResource.Stats
-	pass # Replace with function body.
 
 func _process(delta: float) -> void:
 	TickAmt += delta
@@ -48,10 +43,13 @@ func Tick():
 		SpawnProjectile()
 
 func SpawnProjectile():
+	if !Target:
+		return
+		
 	if TowerResource is DamageTower:
 		var inst = TowerResource.ProjectileResource.Scene.instantiate() as ProjectileScene
 		ProjectileSpawnPoint.add_child(inst)
-		inst._Setup(TowerResource.ProjectileResource.Speed,TowerResource.GetCurrentAttackDamage())
+		inst._Setup(TowerResource.ProjectileResource.Speed,GetCurrentAttackDamage())
 		
 		var dir = (Target.global_transform.origin - global_transform.origin)
 		dir.y = 0
@@ -70,7 +68,7 @@ func Get_ClosestEnemy(UseRadius:bool = false) -> Node3D:
 	for i in GameplayController.instance.ActiveEnemies.size():
 		var Distance:float = global_position.distance_to(GameplayController.instance.ActiveEnemies[i].global_position)
 		if UseRadius:
-			var RangeStatValue = TowerResource.GetCurrentAttackRange()
+			var RangeStatValue = GetCurrentAttackRange()
 			if Distance < RangeStatValue:
 				Closest = GameplayController.instance.ActiveEnemies[i]
 				break
@@ -82,5 +80,17 @@ func Get_ClosestEnemy(UseRadius:bool = false) -> Node3D:
 	return Closest
 
 func refreshStats():
-	Tickrate = TowerResource.GetCurrentAttackSpeed()
-	_damage = TowerResource.GetCurrentAttackDamage()
+	Tickrate = GetCurrentAttackSpeed()
+	_damage = GetCurrentAttackDamage()
+	
+
+
+func GetCurrentAttackDamage() -> int:
+	return Stats[0].GetAmount()
+	pass
+func GetCurrentAttackRange() -> float:
+	return Stats[1].GetAmount()
+	pass
+func GetCurrentAttackSpeed() -> float:
+	return Stats[2].GetAmount()
+	pass
