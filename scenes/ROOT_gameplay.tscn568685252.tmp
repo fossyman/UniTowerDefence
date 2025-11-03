@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://comrba122j0wy"]
+[gd_scene load_steps=50 format=3 uid="uid://comrba122j0wy"]
 
 [ext_resource type="Texture2D" uid="uid://o8kgut6vgqea" path="res://assets/Textures/Map/Paths/TowerDefence_Path1.png" id="1_y7bvw"]
 [ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_FlyingEnemyTest.tscn" id="2_7jkmi"]
@@ -15,8 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="7_dfawl"]
 [ext_resource type="Script" uid="uid://c6u8rwxmbywg0" path="res://scripts/SCR_TowerPurchaseMenu.gd" id="8_pqfbv"]
 [ext_resource type="PackedScene" uid="uid://dyromsm1ruyf" path="res://scenes/StatUpgradeButton.tscn" id="9_a8648"]
-[ext_resource type="PackedScene" uid="uid://4o6mr1t1om3y" path="res://assets/Models/CinematicModels/Bonebird.glb" id="9_eoap7"]
-[ext_resource type="Script" uid="uid://cfv3bt7kvvjmy" path="res://scripts/Bonebird.gd" id="10_xe1tv"]
 [ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="12_xflyc"]
 [ext_resource type="PackedScene" uid="uid://driu3bx8heggq" path="res://assets/Models/Props/MapBoards/MapBoard1.glb" id="13_g4qo0"]
 [ext_resource type="Resource" uid="uid://d0iiacyq4j0io" path="res://assets/Resources/Towers/RES_ArcherTower.tres" id="13_vigue"]
@@ -141,9 +139,9 @@ radius = 1.0
 
 [node name="ROOT_GAMEPLAY" type="Node"]
 
-[node name="MainController" type="Node" parent="." node_paths=PackedStringArray("MainCamera", "PlacementDecal", "GoldText", "UpgradeScreen", "TowerPurchaseScreen", "MapPath", "CinematicNode", "CinematicCameraNode")]
+[node name="MainController" type="Node" parent="." node_paths=PackedStringArray("MainCamera", "PlacementDecal", "GoldText", "UpgradeScreen", "TowerPurchaseScreen", "MapPath", "CinematicNode")]
 script = ExtResource("4_ub8nv")
-MainCamera = NodePath("../Map/CinematicNode/CamHolder/Camera3D")
+MainCamera = NodePath("../Map/Node3D/Camera3D")
 PlacementDecal = NodePath("../Area3D")
 GoldText = NodePath("../Control/GoldAmount")
 UpgradeScreen = NodePath("../Control/UpgradeMenu")
@@ -154,8 +152,7 @@ SpawnTickrate = 1.2
 Gold = 500
 COLLISIONMASK = 10
 WaveResources = Array[ExtResource("3_l812o")]([ExtResource("4_fbscu"), SubResource("Resource_fbscu")])
-CinematicNode = NodePath("../Map/CinematicNode")
-CinematicCameraNode = NodePath("../Map/CinematicNode/CamHolder")
+CinematicNode = NodePath("../Map/Node3D")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ipg8x")
@@ -334,24 +331,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5672
 shape = SubResource("BoxShape3D_l812o")
 debug_color = Color(0.658824, 0.513726, 0, 1)
 
-[node name="CinematicNode" type="Node3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Node3D" type="Node3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 0.829038, -0.559193, 0, 0.559193, 0.829038, 0, 0, 0)
 
-[node name="CamHolder" type="Node3D" parent="Map/CinematicNode"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Map/CinematicNode/CamHolder"]
-transform = Transform3D(0.999991, 0.00379029, -0.00212663, 0, 0.489315, 0.872107, 0.00434613, -0.872099, 0.48931, 0, 5.612, 4.582)
-
-[node name="FightScene" type="Node3D" parent="Map/CinematicNode"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.59, 3.449, 2.387)
-
-[node name="Node3D" type="Node3D" parent="Map/CinematicNode/FightScene"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.02, 0, 0)
-
-[node name="Bonebird" parent="Map/CinematicNode/FightScene/Node3D" instance=ExtResource("9_eoap7")]
-transform = Transform3D(1, -2.98023e-08, 0, -2.98023e-08, 1, 1.11759e-08, 3.72529e-09, 7.45058e-09, 1, 0, 0, 0)
-script = ExtResource("10_xe1tv")
+[node name="Camera3D" type="Camera3D" parent="Map/Node3D"]
+transform = Transform3D(0.999991, 0.00379029, -0.00212663, 0, 0.489315, 0.872107, 0.00434613, -0.872099, 0.489311, 0, 5.612, 4.582)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

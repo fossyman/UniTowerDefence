@@ -45,6 +45,6 @@ Name = "Cannon Tower"
 Icon = ExtResource("1_fs6ls")
 TowerScn = ExtResource("5_fs6ls")
 Price = 10
-PlacementRange = 3.0
+PlacementRange = 0.1
 Stats = Array[ExtResource("4_o0dei")]([SubResource("Resource_wsvwy"), SubResource("Resource_sdif4"), SubResource("Resource_5amgi")])
 metadata/_custom_type_script = "uid://c8041o1437idf"

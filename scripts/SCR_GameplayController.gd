@@ -41,15 +41,28 @@ var WaveFinished:bool = false
 
 @export var WaveResources:Array[Wave]
 var EnemyCount:int = 0
+
+@export var CinematicNode:Node3D
+@export var CinematicCameraNode:Node3D
+var CinematicMode:bool = false
+var CinematicSpeed:float = -0.001
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
+	await get_tree().create_timer(3.0).timeout
+	ToggleCinematicMode(true)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	DEVTOOLS_PROCESS()
+	
+	if CinematicMode:
+		CinematicNode.rotate_y(CinematicSpeed)
+	
+	
 	if !WaveFinished:
 		CurrentSpawnTickrate += delta
 		if CurrentSpawnTickrate >= SpawnTickrate:
@@ -83,7 +96,7 @@ func _process(delta: float) -> void:
 			else:
 				ValidPlacement = false
 			if PlacementDecal.has_overlapping_areas():
-				ValidPlacement = false
+				ValidPlacement = false 
 			
 			PlacementDecal.visible = ValidPlacement
 			if Input.is_action_just_pressed("click"):
@@ -148,4 +161,16 @@ func SubtractGold(_amount:int):
 func SetGold(_amount:int):
 	Gold = _amount
 	GoldText.text = str("%.2f" % Gold)
+	pass
+
+func ToggleCinematicMode(value:bool,Lerptime:float = 4.0):
+	CinematicMode = value
+	if CinematicMode:
+		var T = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
+		T.parallel().tween_property(CinematicCameraNode,"rotation_degrees:x",35,Lerptime)
+		T.parallel().tween_property(CinematicCameraNode,"position:y",3,Lerptime)
+	else:
+		var T = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
+		T.parallel().tween_property(CinematicCameraNode,"rotation_degrees:x",0,Lerptime)
+		T.parallel().tween_property(CinematicCameraNode,"position:y",0,Lerptime)
 	pass
