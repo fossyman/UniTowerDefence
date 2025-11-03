@@ -1,8 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://4aidqsbu2wy7"]
 
-[ext_resource type="Script" uid="uid://cpdhqs5q7lns1" path="res://SCR_Enemy.gd" id="1_7u1xr"]
-[ext_resource type="Texture2D" uid="uid://bq3k1xoswmbwk" path="res://assets/Sprites/Character art/Gobbo/Gobbo_1.png" id="2_b56g1"]
+[ext_resource type="Script" uid="uid://cpdhqs5q7lns1" path="res://scripts/SCR_Enemy.gd" id="1_7u1xr"]
+[ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="2_vkn23"]
 [ext_resource type="Script" uid="uid://dahitxda5ofvw" path="res://scripts/SCR_HealthComponent.gd" id="3_uffbq"]
+[ext_resource type="Material" uid="uid://ba76vr4p4ovns" path="res://assets/Materials/MAT_GoblinPaint.tres" id="3_vkn23"]
 [ext_resource type="Script" uid="uid://cjeyk8jbi2soa" path="res://scripts/SCR_HurtboxComponent.gd" id="4_dtyfk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7bvw"]
@@ -13,12 +14,6 @@ size = Vector3(0.045, 2.25, 0.05)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5erwy"]
 size = Vector3(1, 1, 0.065)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8648"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("2_b56g1")
 
 [sub_resource type="QuadMesh" id="QuadMesh_pqfbv"]
 
@@ -48,10 +43,11 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("BoxMesh_5erwy")
 skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_vkn23")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0649998)
-material_override = SubResource("StandardMaterial3D_a8648")
+material_override = ExtResource("3_vkn23")
 mesh = SubResource("QuadMesh_pqfbv")
 skeleton = NodePath("../..")
 

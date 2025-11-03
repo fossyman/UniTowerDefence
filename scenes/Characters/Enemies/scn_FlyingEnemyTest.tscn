@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://vck1yjpyatn8"]
 
-[ext_resource type="Script" uid="uid://c71lu8xohmhru" path="res://SCR_FlyingEnemy.gd" id="1_ybv72"]
+[ext_resource type="Script" uid="uid://c71lu8xohmhru" path="res://scripts/SCR_FlyingEnemy.gd" id="1_ybv72"]
 [ext_resource type="Script" uid="uid://dahitxda5ofvw" path="res://scripts/SCR_HealthComponent.gd" id="2_5qlp6"]
 [ext_resource type="Script" uid="uid://cjeyk8jbi2soa" path="res://scripts/SCR_HurtboxComponent.gd" id="3_qyv4h"]
 

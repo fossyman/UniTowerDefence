@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxb1k5u8c7njx"]
+
+[ext_resource type="Script" uid="uid://bwfsx06jy5cvm" path="res://scripts/SCR_Cacher.gd" id="1_ty55g"]
+[ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="2_g0d4c"]
+[ext_resource type="Material" uid="uid://cau3xgev35fhl" path="res://assets/Materials/MAT_Cellotape.tres" id="3_450oy"]
+[ext_resource type="Material" uid="uid://ba76vr4p4ovns" path="res://assets/Materials/MAT_GoblinPaint.tres" id="4_wcjcp"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_4r1xv"]
+
+[node name="ROOT_GAMEPLAY" type="Node"]
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("PreviewMesh")]
+script = ExtResource("1_ty55g")
+Materials = Array[Material]([ExtResource("2_g0d4c"), ExtResource("3_450oy"), ExtResource("4_wcjcp")])
+PreviewMesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("QuadMesh_4r1xv")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

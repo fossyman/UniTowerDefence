@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://comrba122j0wy" path="res://scenes/ROOT_gameplay.tscn" id="1_o5qli"]
 
-[node name="main" type="Node"]
+[node name="MAIN" type="Node"]
 
 [node name="ROOTCONTAINER" type="Node" parent="."]
 

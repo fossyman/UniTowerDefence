@@ -45,7 +45,7 @@ var EnemyCount:int = 0
 @export var CinematicNode:Node3D
 @export var CinematicCameraNode:Node3D
 var CinematicMode:bool = false
-var CinematicSpeed:float = -0.001
+var CinematicSpeed:float = -0.01
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
