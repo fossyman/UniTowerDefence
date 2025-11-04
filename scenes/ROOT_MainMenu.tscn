@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://m8v4ibhr58d5"]
+[gd_scene load_steps=7 format=3 uid="uid://m8v4ibhr58d5"]
 
 [ext_resource type="Texture2D" uid="uid://b5xum4j6febne" path="res://assets/Sprites/UI/Titlecard.png" id="1_gtgwm"]
 [ext_resource type="PackedScene" uid="uid://c47xlrv5yjad2" path="res://assets/Models/Props/Stage.glb" id="2_ls88k"]
+[ext_resource type="Script" uid="uid://bfubuaikkqujq" path="res://scripts/SCR_MainMenu.gd" id="3_4o1g0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ls88k"]
 
@@ -99,3 +100,8 @@ spot_angle = 32.23
 
 [node name="Stage" parent="." instance=ExtResource("2_ls88k")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, 0, -4.382, -9.631)
+
+[node name="MainMenuManager" type="Node" parent="."]
+script = ExtResource("3_4o1g0")
+
+[connection signal="pressed" from="Control/Button" to="MainMenuManager" method="Play_Pressed"]

@@ -63,7 +63,3 @@ DEV_SlowTime={
 3d_physics/layer_4="Upgrade"
 3d_physics/layer_5="Hitbox"
 3d_physics/layer_6="Hurtbox"
-
-[rendering]
-
-rendering_device/driver.windows="d3d12"

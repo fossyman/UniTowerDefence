@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=4 uid="uid://de3p37a5vmjcn"]
+[gd_resource type="Theme" load_steps=23 format=4 uid="uid://de3p37a5vmjcn"]
 
 [ext_resource type="FontFile" uid="uid://cy04rm86rj73q" path="res://assets/Fonts/comica/ComicaRegular.otf" id="1_uf6xr"]
 
@@ -893,22 +893,22 @@ cache/1/16/0/underline_thickness = 0.796875
 cache/1/16/0/scale = 1.0
 cache/1/16/0/textures/0/offsets = PackedInt32Array(51, 0, 205, 18)
 cache/1/16/0/textures/0/image = SubResource("Image_uf6xr")
-cache/1/16/0/glyphs/28/advance = Vector2(16.0406, 16.0938)
+cache/1/16/0/glyphs/28/advance = Vector2(16.9406, 16.0938)
 cache/1/16/0/glyphs/28/offset = Vector2(-1, -15)
 cache/1/16/0/glyphs/28/size = Vector2(12, 16)
 cache/1/16/0/glyphs/28/uv_rect = Rect2(1, 1, 12, 16)
 cache/1/16/0/glyphs/28/texture_idx = 0
-cache/1/16/0/glyphs/15/advance = Vector2(11.1813, 16.0938)
+cache/1/16/0/glyphs/15/advance = Vector2(12.0813, 16.0938)
 cache/1/16/0/glyphs/15/offset = Vector2(-1, -5)
 cache/1/16/0/glyphs/15/size = Vector2(7, 8)
 cache/1/16/0/glyphs/15/uv_rect = Rect2(15, 1, 7, 8)
 cache/1/16/0/glyphs/15/texture_idx = 0
-cache/1/16/0/glyphs/268435484/advance = Vector2(16.0406, 16.0938)
+cache/1/16/0/glyphs/268435484/advance = Vector2(16.9406, 16.0938)
 cache/1/16/0/glyphs/268435484/offset = Vector2(0, -15)
 cache/1/16/0/glyphs/268435484/size = Vector2(12, 16)
 cache/1/16/0/glyphs/268435484/uv_rect = Rect2(24, 1, 12, 16)
 cache/1/16/0/glyphs/268435484/texture_idx = 0
-cache/1/16/0/glyphs/134217756/advance = Vector2(16.0406, 16.0938)
+cache/1/16/0/glyphs/134217756/advance = Vector2(16.9406, 16.0938)
 cache/1/16/0/glyphs/134217756/offset = Vector2(-1, -15)
 cache/1/16/0/glyphs/134217756/size = Vector2(12, 16)
 cache/1/16/0/glyphs/134217756/uv_rect = Rect2(38, 1, 12, 16)
@@ -982,6 +982,36 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_026yt"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_migji"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
 [sub_resource type="FontVariation" id="FontVariation_nb4xd"]
 base_font = SubResource("FontFile_pympk")
@@ -1100,6 +1130,12 @@ Button/styles/focus = SubResource("StyleBoxFlat_njdi8")
 Button/styles/hover = SubResource("StyleBoxFlat_5gaqw")
 Button/styles/normal = SubResource("StyleBoxFlat_pympk")
 Button/styles/pressed = SubResource("StyleBoxFlat_nb4xd")
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 3
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/styles/background = SubResource("StyleBoxFlat_026yt")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_migji")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/colors/font_selected_color = Color(0, 0, 0, 0)

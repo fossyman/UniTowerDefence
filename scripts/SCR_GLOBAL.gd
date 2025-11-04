@@ -9,6 +9,18 @@ var ROOTCONTAINER:Node
 var CURRENTROOT:Node
 var CONSTANTS:Node
 
+var LOADING_HINTS:Array[String] = ["Make sure to use your Power-Ups when you are in a pickle.",
+									"Money is vital, spend it wisely.",
+									"Hope you are having a great day :).",
+									"Remember to stay hydrated",
+									"Look behind you.. I said look behind you.",
+									'"Heres a penny for ya" ~Old woman.',
+									'"FIREBALL" ~Burnt wizard.',
+									'"GRAAGH!" ~ Calm Goblin.',
+									"Upgrade your towers for maximum potential.",
+									"Watch out for the flying enemies.",
+									'"THEY FLY NOW?" - Dwarf seeing bats for the first time.']
+
 func _ready() -> void:
 	MAIN = get_tree().root.find_child("MAIN",true,false)
 	ROOTCONTAINER = MAIN.get_child(0)
@@ -16,8 +28,7 @@ func _ready() -> void:
 	CONSTANTS = MAIN.get_child(1)
 
 func ChangeRoot(Rootpath:PackedScene):
-	var NEWROOT = Rootpath
-	NEWROOT.instantiate()
+	var NEWROOT = Rootpath.instantiate()
 	ROOTCONTAINER.add_child(NEWROOT)
 	CURRENTROOT.queue_free()
 	CURRENTROOT = NEWROOT

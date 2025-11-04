@@ -50,8 +50,8 @@ var CinematicSpeed:float = -0.01
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
-	await get_tree().create_timer(3.0).timeout
-	ToggleCinematicMode(true)
+	#await get_tree().create_timer(3.0).timeout
+	#ToggleCinematicMode(true)
 	pass # Replace with function body.
 
 

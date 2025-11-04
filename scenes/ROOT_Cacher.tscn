@@ -1,21 +1,110 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxb1k5u8c7njx"]
+[gd_scene load_steps=12 format=3 uid="uid://dxb1k5u8c7njx"]
 
 [ext_resource type="Script" uid="uid://bwfsx06jy5cvm" path="res://scripts/SCR_Cacher.gd" id="1_ty55g"]
 [ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="2_g0d4c"]
+[ext_resource type="Material" uid="uid://pj856rms4hpg" path="res://assets/Materials/Characters/MAT_DarkLord.tres" id="2_wbno5"]
+[ext_resource type="Material" uid="uid://daqhlu7qcsvja" path="res://assets/Materials/Characters/MAT_KingAlden.tres" id="2_wcjcp"]
 [ext_resource type="Material" uid="uid://cau3xgev35fhl" path="res://assets/Materials/MAT_Cellotape.tres" id="3_450oy"]
 [ext_resource type="Material" uid="uid://ba76vr4p4ovns" path="res://assets/Materials/MAT_GoblinPaint.tres" id="4_wcjcp"]
+[ext_resource type="Script" uid="uid://fq6mxluv332n" path="res://scripts/SCR_LoadingScreenOverlay.gd" id="5_450oy"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_4r1xv"]
+[sub_resource type="QuadMesh" id="QuadMesh_g0d4c"]
+resource_local_to_scene = true
+material = ExtResource("2_g0d4c")
 
-[node name="ROOT_GAMEPLAY" type="Node"]
+[sub_resource type="Environment" id="Environment_g0d4c"]
 
-[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("PreviewMesh")]
+[sub_resource type="GDScript" id="GDScript_450oy"]
+script/source = "extends RichTextEffect
+
+var bbcode = \"wave\"
+"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wcjcp"]
+script = SubResource("GDScript_450oy")
+
+[node name="ROOT_CACHER" type="Node"]
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("PreviewMesh", "LoadingScreen")]
 script = ExtResource("1_ty55g")
-Materials = Array[Material]([ExtResource("2_g0d4c"), ExtResource("3_450oy"), ExtResource("4_wcjcp")])
+Materials = Array[Material]([ExtResource("2_wbno5"), ExtResource("2_wcjcp"), ExtResource("2_g0d4c"), ExtResource("3_450oy"), ExtResource("4_wcjcp")])
 PreviewMesh = NodePath("MeshInstance3D")
+LoadingScreen = NodePath("../Control")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
-mesh = SubResource("QuadMesh_4r1xv")
+mesh = SubResource("QuadMesh_g0d4c")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g0d4c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("LoadingTipText", "LoadingBar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_450oy")
+LoadingTipText = NodePath("RichTextLabel")
+LoadingBar = NodePath("ProgressBar")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 71
+bbcode_enabled = true
+text = "[wave]Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 44.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "asd"
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_wcjcp")]
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = 133.0
+offset_right = 190.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+value = 0.34
