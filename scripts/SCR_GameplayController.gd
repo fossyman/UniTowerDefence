@@ -45,13 +45,13 @@ var EnemyCount:int = 0
 @export var CinematicNode:Node3D
 @export var CinematicCameraNode:Node3D
 var CinematicMode:bool = false
-var CinematicSpeed:float = -0.01
+var CinematicSpeed:float = -0.003
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
-	#await get_tree().create_timer(3.0).timeout
-	#ToggleCinematicMode(true)
+	await get_tree().create_timer(3.0).timeout
+	ToggleCinematicMode(true)
 	pass # Replace with function body.
 
 
