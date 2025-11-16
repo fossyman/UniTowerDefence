@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2486xj28txba"
+path="res://.godot/imported/The Well Of Souls.wav-68af1b40e33f172ba7238e3f29d859ea.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Music/CANDLEMASS/The Well Of Souls.wav"
+dest_files=["res://.godot/imported/The Well Of Souls.wav-68af1b40e33f172ba7238e3f29d859ea.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

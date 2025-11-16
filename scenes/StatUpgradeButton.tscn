@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="1_i14dp"]
 
 [node name="StatUpgradeButton" type="Button" node_paths=PackedStringArray("Icon", "NameText", "PriceText")]
+offset_right = 200.0
+offset_bottom = 63.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_g6jnc")

@@ -5,6 +5,9 @@ extends Button
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("pressed",Btn_Pressed)
+	get_child(0).texture = TowerRes.Icon
+	get_child(1).text = TowerRes.Name
+	get_child(2).text = str(TowerRes.Price)
 	pass # Replace with function body.
 
 
@@ -13,6 +16,9 @@ func _process(delta: float) -> void:
 	pass
 
 func Btn_Pressed():
+	if GameplayController.instance.Gold < TowerRes.Price:
+		print("YOU ARE BROKE")
+		return
 	GameplayController.instance.PlacingTower = TowerRes
 	GameplayController.instance.MouseState = GameplayController.instance.MOUSESTATES.PLACING
 	var Size:Vector3 = Vector3.ONE * TowerRes.PlacementRange
@@ -21,4 +27,5 @@ func Btn_Pressed():
 	GameplayController.instance.PlacementDecal.get_child(1).scale = Vector3.ONE * TowerRes.Stats[1].Amount[TowerRes.Stats[1].Level]
 	GameplayController.instance.PlacementDecal.get_child(2).shape.radius = TowerRes.PlacementRange
 	GameplayController.instance.TowerPurchaseScreen.ToggleMenu()
+	GameplayController.instance.SubtractGold(TowerRes.Price)
 	pass

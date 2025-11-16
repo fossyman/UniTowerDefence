@@ -9,13 +9,7 @@ func _process(delta: float) -> void:
 	SinT += delta
 	Pinpoint.rotation_degrees = Vector3(sin(SinT * 5) * 1.5,cos(SinT * 2) * 5,cos(SinT * 2) * 1.5)
 
-func Death():
-	IsDead = true
-	var Deathtween = get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
-	Hurtbox.set_deferred("monitorable",false)
-	Hurtbox.set_deferred("monitoring",false)
+func DeathEffect():
+	Deathtween = get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 	Deathtween.parallel().tween_property(MeshParent,"position:y",15,3)
-	await Deathtween.finished
-	GameplayController.instance.ActiveEnemies.erase(self)
-	queue_free()
 	pass

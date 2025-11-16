@@ -1,5 +1,10 @@
-extends Node
+extends Control
 class_name UpgradeAreaManager
+
+@export var ClosedPosition:Vector3
+
+var IsOpen:bool = false
+var OpenTween:Tween
 
 @export var TowerName:RichTextLabel
 @export var TowerIcon:TextureRect
@@ -34,4 +39,21 @@ func populateSettings(_scene:TowerScene):
 		btn.UpgradingTower = _scene
 		btn.pressed.connect(btn.Pressed)
 	print("POPULATING")
+	ToggleMenu(true)
 	pass
+
+func ToggleMenu(_value:bool = false):
+	if _value == IsOpen:
+		return
+	if OpenTween:
+		OpenTween.kill()
+	OpenTween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	IsOpen = _value
+	if IsOpen:
+		OpenTween.tween_property(self,"position:x",0,1.0)
+	else:
+		OpenTween.tween_property(self,"position:x",ClosedPosition.x,1.0)
+	pass
+
+func CloseMenu():
+	ToggleMenu(false)

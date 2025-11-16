@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DamageTower" load_steps=11 format=3 uid="uid://13bt3od3b2o5"]
 
-[ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="1_fs6ls"]
+[ext_resource type="Texture2D" uid="uid://cqx7unbquca76" path="res://assets/Sprites/Icons/Towers/CannonTowerIcon.png" id="1_fs6ls"]
 [ext_resource type="PackedScene" uid="uid://472q2pjrqno4" path="res://scenes/Projectiles/SCN_ProjectileTest.tscn" id="2_37fv2"]
 [ext_resource type="Script" uid="uid://d1mwqxyusqdo4" path="res://scripts/Resources/SCR_ProjectileResource.gd" id="3_w7w2f"]
 [ext_resource type="Script" uid="uid://btxknbasomvh3" path="res://scripts/Resources/SCR_StatResource.gd" id="4_o0dei"]

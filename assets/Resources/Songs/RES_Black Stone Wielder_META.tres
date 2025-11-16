@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SongMetadata" load_steps=3 format=3 uid="uid://d2dgj1qgg35ek"]
+
+[ext_resource type="AudioStream" uid="uid://cd16miw0xl62k" path="res://assets/Audio/Music/CANDLEMASS/Black Stone Wielder.wav" id="1_7wxxu"]
+[ext_resource type="Script" uid="uid://bd7gygvad0jvw" path="res://scripts/Resources/SCR_SongMetadataResource.gd" id="2_gw23b"]
+
+[resource]
+script = ExtResource("2_gw23b")
+SongAsset = ExtResource("1_7wxxu")
+SongName = "Black Stone Wielder"
+SongArtist = "Candlemass"
+SongAlbum = "Epicus Doomicus Metallicus"
+SongYear = "1986"
+metadata/_custom_type_script = "uid://bd7gygvad0jvw"

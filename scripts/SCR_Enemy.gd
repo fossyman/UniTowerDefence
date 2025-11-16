@@ -9,20 +9,32 @@ var PosCache:Vector3
 var IsDead:bool = false
 @export var Hurtbox:HurtboxComponent
 
+var Deathtween:Tween
+
 func _process(delta: float) -> void:
-	if !IsDead:
+	if !IsDead && progress_ratio < 1.0:
 		PosCache = global_position
-		progress_ratio += TravelSpeed * delta
+		progress_ratio += TravelSpeed * GameplayController.instance.SpeedModifier * delta
 		dir = (PosCache - global_position).normalized()
-	if Input.is_action_just_pressed("ui_accept"):
-		Death()
+	if progress_ratio >= 0.92:
+		Death(false)
+		print("END REACHED")
 	pass
 
-func Death():
+func Death(_AddGold:bool = true):
+	if _AddGold:
+		GameplayController.instance.AddGold(1)
 	IsDead = true
-	var Deathtween = get_tree().create_tween()
+	DeathEffect()
 	Hurtbox.set_deferred("monitorable",false)
 	Hurtbox.set_deferred("monitoring",false)
+	await Deathtween.finished
+	GameplayController.instance.ActiveEnemies.erase(self)
+	GameplayController.instance.CheckWaveCompletion()
+	queue_free()
+	pass
+func DeathEffect():
+	Deathtween = get_tree().create_tween()
 	if dir.x > 0.9 || dir.x < -0.9:
 		#LEFT
 		Deathtween.parallel().tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
@@ -37,7 +49,3 @@ func Death():
 		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
 		Deathtween.tween_property(MeshParent,"position:y",-5,1)
 	await Deathtween.finished
-	GameplayController.instance.ActiveEnemies.erase(self)
-	GameplayController.instance.CheckWaveCompletion()
-	queue_free()
-	pass

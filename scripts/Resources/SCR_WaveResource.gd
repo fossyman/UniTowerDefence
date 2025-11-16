@@ -5,6 +5,7 @@ class_name Wave
 @export var SpawnOrder:Array[int]
 
 @export var EnemyCapacity = 10
+@export var SpawnSpeed:float = 1.5
 
 var NextEnemyIDX = 0
 var NextSpawnOrder = 0

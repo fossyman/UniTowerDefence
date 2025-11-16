@@ -36,22 +36,31 @@ var CurrentSpawnTickrate:float
 
 @export_flags_3d_physics var COLLISIONMASK:int
 
-@export var WaveIDX:int
+@export var CurrentMap:RES_Map
+
+@export var WaveIDX:int = -1
 var WaveFinished:bool = false
 
-@export var WaveResources:Array[Wave]
 var EnemyCount:int = 0
+
+var SpeedModifier:float = 1.0
+
+enum ROUNDSTATES{PREROUND,ONGOING}
+@export var Roundstate:ROUNDSTATES = ROUNDSTATES.PREROUND
 
 @export var CinematicNode:Node3D
 @export var CinematicCameraNode:Node3D
 var CinematicMode:bool = false
 var CinematicSpeed:float = -0.003
 
+@export var RoundControls:RoundControlOptions
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
-	await get_tree().create_timer(3.0).timeout
-	ToggleCinematicMode(true)
+	#await get_tree().create_timer(3.0).timeout
+	#ToggleCinematicMode(true)
+	GoldText.text = str("%.2f" % Gold)                                                                                                                                                                                                                                                           
 	pass # Replace with function body.
 
 
@@ -63,19 +72,13 @@ func _process(delta: float) -> void:
 		CinematicNode.rotate_y(CinematicSpeed)
 	
 	
-	if !WaveFinished:
-		CurrentSpawnTickrate += delta
-		if CurrentSpawnTickrate >= SpawnTickrate:
-			if EnemyCount < WaveResources[WaveIDX].EnemyCapacity:
-				SpawnEnemy(WaveResources[WaveIDX].GetNextEnemy())
+	if Roundstate == ROUNDSTATES.ONGOING && !WaveFinished:
+		CurrentSpawnTickrate += delta * SpeedModifier
+		if CurrentSpawnTickrate >= CurrentMap.WaveResources[WaveIDX].SpawnSpeed:
+			if EnemyCount < CurrentMap.WaveResources[WaveIDX].EnemyCapacity:
+				SpawnEnemy(CurrentMap.WaveResources[WaveIDX].GetNextEnemy())
+				print("SPAWNING ENEMY")
 			CurrentSpawnTickrate = 0
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		WaveIDX+=1
-		WaveIDX = wrap(WaveIDX,0,WaveResources.size())
-		EnemyCount = 0
-		WaveFinished = false
-		
 	
 	match(MouseState):
 		MOUSESTATES.PLAYING:
@@ -127,8 +130,11 @@ func RaycastToFloor() -> Dictionary:
 	return result
 
 func BeginNewWave():
+	print("STARTING NEW WAVE")
 	WaveIDX+=1
-	
+	EnemyCount = 0
+	WaveFinished = false
+	Roundstate = ROUNDSTATES.ONGOING
 
 func SpawnEnemy(_enemy:PackedScene):
 	var EnemyInst = _enemy.instantiate()
@@ -138,8 +144,10 @@ func SpawnEnemy(_enemy:PackedScene):
 	EnemyInst.progress_ratio = 0
 
 func CheckWaveCompletion():
-	if EnemyCount >= WaveResources[WaveIDX].EnemyCapacity and ActiveEnemies.is_empty():
+	if EnemyCount >= CurrentMap.WaveResources[WaveIDX].EnemyCapacity and ActiveEnemies.is_empty():
 		WaveFinished = true
+		Roundstate = ROUNDSTATES.PREROUND
+		RoundControls.ShowBeginRoundButton()
 		print("WAVE COMPLETED")
 	pass
 
@@ -174,3 +182,6 @@ func ToggleCinematicMode(value:bool,Lerptime:float = 4.0):
 		T.parallel().tween_property(CinematicCameraNode,"rotation_degrees:x",0,Lerptime)
 		T.parallel().tween_property(CinematicCameraNode,"position:y",0,Lerptime)
 	pass
+
+func SetSpeedModifier(_value:float):
+	SpeedModifier = _value

@@ -24,7 +24,7 @@ var TowerModifiers:Array[TowerModifier]
 
 
 func _process(delta: float) -> void:
-	TickAmt += delta
+	TickAmt += delta * GameplayController.instance.SpeedModifier
 	if TickAmt > Tickrate:
 		TickAmt = 0.0
 		Tick()

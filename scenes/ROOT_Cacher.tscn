@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxb1k5u8c7njx"]
+[gd_scene load_steps=13 format=3 uid="uid://dxb1k5u8c7njx"]
 
 [ext_resource type="Script" uid="uid://bwfsx06jy5cvm" path="res://scripts/SCR_Cacher.gd" id="1_ty55g"]
 [ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="2_g0d4c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://cau3xgev35fhl" path="res://assets/Materials/MAT_Cellotape.tres" id="3_450oy"]
 [ext_resource type="Material" uid="uid://ba76vr4p4ovns" path="res://assets/Materials/MAT_GoblinPaint.tres" id="4_wcjcp"]
 [ext_resource type="Script" uid="uid://fq6mxluv332n" path="res://scripts/SCR_LoadingScreenOverlay.gd" id="5_450oy"]
+[ext_resource type="Texture2D" uid="uid://dnkw6yhvv1ri4" path="res://assets/Textures/Scary.png" id="8_bo72a"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g0d4c"]
 resource_local_to_scene = true
@@ -42,7 +43,7 @@ environment = SubResource("Environment_g0d4c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("LoadingTipText", "LoadingBar")]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("LoadingTipText", "LoadingBar", "Scary")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +53,7 @@ grow_vertical = 2
 script = ExtResource("5_450oy")
 LoadingTipText = NodePath("RichTextLabel")
 LoadingBar = NodePath("ProgressBar")
+Scary = NodePath("ColorRect/TextureRect")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
@@ -61,6 +63,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Control/ColorRect"]
+visible = false
+modulate = Color(1, 1, 1, 0.407843)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_bo72a")
+expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
 layout_mode = 1

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DamageTower" load_steps=11 format=3 uid="uid://ynliovj8lt5u"]
 
-[ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="1_0jr8w"]
+[ext_resource type="Texture2D" uid="uid://sla2hb164bv" path="res://assets/Sprites/Icons/Towers/MageTowerIcon.png" id="1_0jr8w"]
 [ext_resource type="PackedScene" uid="uid://472q2pjrqno4" path="res://scenes/Projectiles/SCN_ProjectileTest.tscn" id="2_j2dy0"]
 [ext_resource type="Script" uid="uid://d1mwqxyusqdo4" path="res://scripts/Resources/SCR_ProjectileResource.gd" id="3_uxjmr"]
 [ext_resource type="Script" uid="uid://btxknbasomvh3" path="res://scripts/Resources/SCR_StatResource.gd" id="4_yu1tr"]
