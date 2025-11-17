@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 		PosCache = global_position
 		progress_ratio += TravelSpeed * GameplayController.instance.SpeedModifier * delta
 		dir = (PosCache - global_position).normalized()
-	if progress_ratio >= 0.92:
+	if progress_ratio >= 1.0:
 		Death(false)
 		print("END REACHED")
 	pass

@@ -17,6 +17,10 @@ static var instance:GameplayController
 
 @export var MapPath:Path3D
 
+@export var MapHolder:Node3D
+
+@export var TowerHolder:Node3D
+
 @export_flags_3d_physics var ENEMY_COLLISION_LAYER:int
 
 enum MOUSESTATES{PLAYING,PLACING}
@@ -55,6 +59,9 @@ var CinematicSpeed:float = -0.003
 
 @export var RoundControls:RoundControlOptions
 
+@export var DMAnimPlayer:AnimationPlayer
+@export var TableAnimPlayer:AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
@@ -67,7 +74,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	DEVTOOLS_PROCESS()
-	
+	if Input.is_action_just_pressed("ui_accept"):
+		SwapLevel(ResourceLoader.load(GLOBALS.MAPS[1]))
 	if CinematicMode:
 		CinematicNode.rotate_y(CinematicSpeed)
 	
@@ -112,10 +120,11 @@ func _process(delta: float) -> void:
 						stat._Setup(PlacingTower.Stats[i].Name,PlacingTower.Stats[i].Icon,PlacingTower.Stats[i].Amount,PlacingTower.Stats[i].Level,PlacingTower.Stats[i].Cost)
 						TowerScn.Stats.append(stat)
 					TowerScn.TowerResource = PlacingTower
-					add_child(TowerScn)
+					TowerHolder.add_child(TowerScn)
 					TowerScn.global_position = result["position"]
 					MouseState = MOUSESTATES.PLAYING
 					PlacementDecal.visible = false
+					GameplayController.instance.SubtractGold(PlacingTower.Price)
 					pass
 			pass
 	pass
@@ -185,3 +194,16 @@ func ToggleCinematicMode(value:bool,Lerptime:float = 4.0):
 
 func SetSpeedModifier(_value:float):
 	SpeedModifier = _value
+
+
+func SwapLevel(_NewLevel:RES_Map):
+	CurrentMap = _NewLevel
+	DMAnimPlayer.play("swap")
+	TableAnimPlayer.play("swap")
+	await get_tree().create_timer(2.0).timeout
+	for i in TowerHolder.get_child_count():
+		TowerHolder.get_child(i).queue_free()
+	var NewMap = _NewLevel.MapScene.instantiate()
+	MapHolder.get_child(0).queue_free()
+	MapHolder.add_child(NewMap)
+	MapPath = NewMap.find_child("PATH",true,false)

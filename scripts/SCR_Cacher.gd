@@ -5,8 +5,8 @@ var NextScene = GLOBALS.ROOT_GAMEPLAY
 @export var PreviewMesh:MeshInstance3D
 @export var LoadingScreen:LoadingOverlay
 
-var MaterialSwapTime:float = 0.5
-var CurrentSwapTime:float = 0.5
+var MaterialSwapTime:float = 0.1
+var CurrentSwapTime:float = 0.1
 
 var MatIDX = 0
 

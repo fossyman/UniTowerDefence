@@ -54,7 +54,7 @@ HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66612, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99809, 0)
 
 [node name="Pinpoint" type="Node3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.42392, 0)
@@ -77,6 +77,7 @@ Health = 5
 HealthCap = 5
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598628, 0)
 collision_layer = 16
 collision_mask = 32
 script = ExtResource("3_qyv4h")

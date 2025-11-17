@@ -27,5 +27,4 @@ func Btn_Pressed():
 	GameplayController.instance.PlacementDecal.get_child(1).scale = Vector3.ONE * TowerRes.Stats[1].Amount[TowerRes.Stats[1].Level]
 	GameplayController.instance.PlacementDecal.get_child(2).shape.radius = TowerRes.PlacementRange
 	GameplayController.instance.TowerPurchaseScreen.ToggleMenu()
-	GameplayController.instance.SubtractGold(TowerRes.Price)
 	pass
