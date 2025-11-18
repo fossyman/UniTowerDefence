@@ -11,7 +11,21 @@ var IsDead:bool = false
 
 var Deathtween:Tween
 
+@export var CurrentStatusEffect:StatusEffect
+var StatusVisual:Node3D
+var StatusTick = 1.0
+var CurrentStatusTick:float = 1.0
+var StatusLifetime = 1.0
 func _process(delta: float) -> void:
+	if CurrentStatusEffect:
+		CurrentStatusTick -= delta
+		StatusLifetime -= delta
+		if CurrentStatusTick <= 0:
+			CheckStatusEffects()
+			CurrentStatusTick = StatusTick
+		if StatusLifetime <= 0:
+			ClearStatusEffect()
+		
 	if !IsDead && progress_ratio < 1.0:
 		PosCache = global_position
 		progress_ratio += TravelSpeed * GameplayController.instance.SpeedModifier * delta
@@ -49,3 +63,21 @@ func DeathEffect():
 		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
 		Deathtween.tween_property(MeshParent,"position:y",-5,1)
 	await Deathtween.finished
+
+func CheckStatusEffects():
+	if CurrentStatusEffect.StatusType == StatusEffect.STATUSTYPE.DAMAGE:
+		HealthComp.Damage(CurrentStatusEffect.StatusPower)
+
+func ApplyStatusEffect(_effect:StatusEffect):
+	CurrentStatusEffect = _effect
+	StatusTick = _effect.TickTime
+	CurrentStatusTick = StatusTick
+	StatusLifetime = _effect.StatusLifetime
+	var vis = _effect.StatusVisual.instantiate()
+	add_child(vis)
+	StatusVisual = vis
+	pass
+func ClearStatusEffect():
+	CurrentStatusEffect = null
+	StatusVisual.queue_free()
+	pass

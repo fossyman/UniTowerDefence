@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bvlbmok8a3swx"]
+
+[ext_resource type="PackedScene" uid="uid://br3l20fpgd0ht" path="res://scenes/Effects/Particles/SCN_FireParticles.tscn" id="1_drkc8"]
+[ext_resource type="Script" uid="uid://dglqshf5u0wv0" path="res://scripts/Resources/SCR_StatusEffect.gd" id="1_lu2y5"]
+
+[resource]
+script = ExtResource("1_lu2y5")
+TickTime = 1.0
+StatusVisual = ExtResource("1_drkc8")
+StatusPower = 1
+StatusLifetime = 5.0
+metadata/_custom_type_script = "uid://dglqshf5u0wv0"

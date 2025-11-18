@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://comrba122j0wy"]
+[gd_scene load_steps=81 format=4 uid="uid://comrba122j0wy"]
 
 [ext_resource type="Resource" uid="uid://d0ley3n4jn2ba" path="res://assets/Resources/Maps/MAP_Forest.tres" id="2_mahky"]
 [ext_resource type="Script" uid="uid://b631pkjuq0b4m" path="res://scripts/SCR_TowerCreationButton.gd" id="3_vivt6"]
@@ -31,7 +31,10 @@
 [ext_resource type="Animation" uid="uid://djubawa7jeh7k" path="res://assets/Animations/FinalFight/King/KING_DEF4.res" id="16_vtxps"]
 [ext_resource type="Animation" uid="uid://cbxn4rltirero" path="res://assets/Animations/FinalFight/King/KING_IDLE.res" id="17_hjij1"]
 [ext_resource type="FontFile" uid="uid://cb5etgbmhbbk5" path="res://assets/Fonts/ds_digital/DS-DIGI.TTF" id="27_ugayw"]
+[ext_resource type="Texture2D" uid="uid://c80v4gr723dih" path="res://assets/Sprites/Icons/PowerUps/SPR_PWRUP_FIRE.png" id="30_t8sp8"]
+[ext_resource type="Script" uid="uid://cghgo1i1ektqp" path="res://scripts/SCR_PowerupButton.gd" id="31_t8sp8"]
 [ext_resource type="Texture2D" uid="uid://btagbdetn2v6" path="res://assets/Textures/UI/SideMenuTexture.png" id="32_go414"]
+[ext_resource type="Resource" uid="uid://bvlbmok8a3swx" path="res://assets/Resources/StatusEffects/STATEFT_Fire.tres" id="32_if1pt"]
 [ext_resource type="Script" uid="uid://dyy1yisuqfm70" path="res://scripts/SCR_PauseMenuManager.gd" id="33_ffyxx"]
 [ext_resource type="Script" uid="uid://d4l0842wv35vc" path="res://scripts/SCR_RoundControlManager.gd" id="33_rmdpc"]
 [ext_resource type="Texture2D" uid="uid://dekthqkwj4uha" path="res://assets/Textures/UI/Tab.png" id="33_ugayw"]
@@ -50,7 +53,6 @@
 [ext_resource type="Script" uid="uid://3c1dmoysccvx" path="res://scripts/SCR_MusicManager.gd" id="47_1a2je"]
 [ext_resource type="Animation" uid="uid://bpaw7j3cma08u" path="res://assets/Animations/DungeonMaster/DM_Idle.res" id="47_7epab"]
 [ext_resource type="Script" uid="uid://bd7gygvad0jvw" path="res://scripts/Resources/SCR_SongMetadataResource.gd" id="48_go414"]
-[ext_resource type="Resource" uid="uid://dq4qhqf06crf7" path="res://assets/Resources/Songs/RES_A Sorcerer's Pledge_META.tres" id="49_ugayw"]
 [ext_resource type="Resource" uid="uid://crtyhosufr6mg" path="res://assets/Resources/Songs/RES_Battlecry_META.tres" id="50_t8sp8"]
 [ext_resource type="Resource" uid="uid://d2dgj1qgg35ek" path="res://assets/Resources/Songs/RES_Black Stone Wielder_META.tres" id="51_if1pt"]
 [ext_resource type="Resource" uid="uid://b5xd7vyihqku8" path="res://assets/Resources/Songs/RES_The Well of Souls_META.tres" id="52_fs4jq"]
@@ -202,6 +204,18 @@ _data = {
 &"DM_Idle": ExtResource("47_7epab"),
 &"swap": ExtResource("46_go414")
 }
+
+[sub_resource type="Resource" id="Resource_go414"]
+metadata/__load_path__ = "res://assets/Audio/Music/CANDLEMASS/A Sorcerer's Pledge.wav"
+
+[sub_resource type="Resource" id="Resource_ugayw"]
+script = ExtResource("48_go414")
+SongAsset = SubResource("Resource_go414")
+SongName = "A Sorcerer's Pledge"
+SongArtist = "Candlemass"
+SongAlbum = "Epicus Doomicus Metallicus"
+SongYear = "1986"
+metadata/_custom_type_script = "uid://bd7gygvad0jvw"
 
 [node name="ROOT_GAMEPLAY" type="Node"]
 
@@ -409,6 +423,7 @@ grow_horizontal = 0
 text = "||"
 
 [node name="SONG SHOWCASE" type="Control" parent="Control/UpgradeMenu"]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 0
@@ -827,6 +842,21 @@ text = "Round 1"
 scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="Control/TowerPurchaseArea"]
+layout_mode = 0
+offset_left = -116.0
+offset_top = 162.0
+offset_right = -1.0
+offset_bottom = 277.0
+texture_normal = ExtResource("30_t8sp8")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("31_t8sp8")
+Effect = ExtResource("32_if1pt")
+OriginalColour = Color(1, 1, 1, 1)
+HoverColour = Color(0.366595, 0.366595, 0.366595, 1)
+HoverTransitionTime = 0.1
 
 [node name="RoundControlOptions" type="Control" parent="Control" node_paths=PackedStringArray("StartRoundButton", "RoundControls")]
 layout_mode = 1
@@ -1386,6 +1416,7 @@ texture_normal = ExtResource("37_w2vis")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67276, 0, 2.08862)
+visible = false
 collision_layer = 0
 collision_mask = 12
 
@@ -1658,7 +1689,7 @@ autoplay = "DM_Idle"
 [node name="MUSICMANAGER" type="Node" parent="." node_paths=PackedStringArray("MusicPlayer", "SongTitleText")]
 script = ExtResource("47_1a2je")
 MusicPlayer = NodePath("AudioStreamPlayer")
-SongList = Array[ExtResource("48_go414")]([ExtResource("49_ugayw"), ExtResource("50_t8sp8"), ExtResource("51_if1pt"), ExtResource("52_fs4jq")])
+SongList = Array[ExtResource("48_go414")]([SubResource("Resource_ugayw"), ExtResource("50_t8sp8"), ExtResource("51_if1pt"), ExtResource("52_fs4jq")])
 SongTitleText = NodePath("../Control/UpgradeMenu/SONG SHOWCASE/RichTextLabel")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MUSICMANAGER"]

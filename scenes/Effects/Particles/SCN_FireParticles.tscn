@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://br3l20fpgd0ht"]
+
+[ext_resource type="Material" uid="uid://u4mb4lrc5hqt" path="res://assets/Effects/Particles/PART_Fire.tres" id="1_wkjr6"]
+[ext_resource type="Texture2D" uid="uid://cos18grmqscd3" path="res://assets/Sprites/Particles/SPR_FireParticle.png" id="2_ncudp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3en85"]
+render_priority = 2
+transparency = 1
+no_depth_test = true
+albedo_texture = ExtResource("2_ncudp")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = ExtResource("2_ncudp")
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ncudp"]
+material = SubResource("StandardMaterial3D_3en85")
+
+[sub_resource type="Gradient" id="Gradient_ncudp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3en85"]
+gradient = SubResource("Gradient_ncudp")
+
+[sub_resource type="Curve" id="Curve_ncudp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.324219, 1), 0.0, 0.0, 0, 0, Vector2(0.820312, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3en85"]
+curve = SubResource("Curve_ncudp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pleys"]
+gravity = Vector3(0, 1, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_3en85")
+color = Color(0.435192, 0.435192, 0.435192, 1)
+color_ramp = SubResource("GradientTexture1D_3en85")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odk0o"]
+transparency = 1
+vertex_color_use_as_albedo = true
+texture_filter = 0
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_86ekr"]
+material = SubResource("StandardMaterial3D_odk0o")
+
+[node name="ScnFireParticles" type="GPUParticles3D"]
+amount = 4
+lifetime = 3.0
+process_material = ExtResource("1_wkjr6")
+draw_pass_1 = SubResource("QuadMesh_ncudp")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684347, 0)
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_pleys")
+draw_pass_1 = SubResource("QuadMesh_86ekr")
