@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cyxus3odmb2p2"
+path="res://.godot/imported/The Well Of Souls.ogg-3586152df3ce547179ad757f2f354f9c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/The Well Of Souls.ogg"
+dest_files=["res://.godot/imported/The Well Of Souls.ogg-3586152df3ce547179ad757f2f354f9c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

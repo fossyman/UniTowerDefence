@@ -1,21 +1,37 @@
-[gd_resource type="Resource" script_class="RES_Map" load_steps=7 format=3 uid="uid://d0ley3n4jn2ba"]
+[gd_resource type="Resource" script_class="RES_Map" load_steps=9 format=3 uid="uid://d0ley3n4jn2ba"]
 
 [ext_resource type="Script" uid="uid://dnofd3ooi6rrv" path="res://scripts/Resources/SCR_WaveResource.gd" id="1_aipf7"]
 [ext_resource type="PackedScene" uid="uid://doqw6o0360pim" path="res://scenes/Maps/SCN_Map1.tscn" id="1_wp8pv"]
 [ext_resource type="Script" uid="uid://cwq3mcch85ig4" path="res://scripts/Resources/SCR_MapResource.gd" id="2_aawub"]
 [ext_resource type="Resource" uid="uid://e5s32eypq7dg" path="res://assets/Resources/Waves/ExampleWave.tres" id="2_x26qt"]
-[ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_FlyingEnemyTest.tscn" id="3_wp8pv"]
+[ext_resource type="PackedScene" uid="uid://4aidqsbu2wy7" path="res://scenes/Characters/Enemies/scn_Enemy.tscn" id="4_wp8pv"]
 
-[sub_resource type="Resource" id="Resource_fbscu"]
+[sub_resource type="Resource" id="Resource_tk84n"]
 script = ExtResource("1_aipf7")
-Enemies = Array[PackedScene]([ExtResource("3_wp8pv")])
+Enemies = Array[PackedScene]([ExtResource("4_wp8pv")])
 SpawnOrder = Array[int]([])
-EnemyCapacity = 5
+EnemyCapacity = 10
+SpawnSpeed = 1.5
+metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
+
+[sub_resource type="Resource" id="Resource_yy4po"]
+script = ExtResource("1_aipf7")
+Enemies = Array[PackedScene]([ExtResource("4_wp8pv")])
+SpawnOrder = Array[int]([])
+EnemyCapacity = 10
+SpawnSpeed = 1.5
+metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
+
+[sub_resource type="Resource" id="Resource_uotvg"]
+script = ExtResource("1_aipf7")
+Enemies = Array[PackedScene]([ExtResource("4_wp8pv")])
+SpawnOrder = Array[int]([])
+EnemyCapacity = 20
 SpawnSpeed = 1.5
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [resource]
 script = ExtResource("2_aawub")
-WaveResources = Array[ExtResource("1_aipf7")]([ExtResource("2_x26qt"), SubResource("Resource_fbscu")])
+WaveResources = Array[ExtResource("1_aipf7")]([ExtResource("2_x26qt"), ExtResource("2_x26qt"), SubResource("Resource_tk84n"), SubResource("Resource_yy4po"), SubResource("Resource_yy4po"), SubResource("Resource_uotvg")])
 MapScene = ExtResource("1_wp8pv")
 metadata/_custom_type_script = "uid://cwq3mcch85ig4"

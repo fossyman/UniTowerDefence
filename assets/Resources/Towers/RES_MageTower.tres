@@ -17,25 +17,25 @@ metadata/_custom_type_script = "uid://d1mwqxyusqdo4"
 [sub_resource type="Resource" id="Resource_wsvwy"]
 script = ExtResource("4_yu1tr")
 Name = "Spell Damage"
-Amount = Array[float]([1.0, 100.0, 3.0])
+Amount = Array[float]([1.0, 5.0, 10.0])
 Level = 0
-Cost = Array[int]([1, 100, 500])
+Cost = Array[int]([200, 400, 600])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_sdif4"]
 script = ExtResource("4_yu1tr")
 Name = "Cast Range"
-Amount = Array[float]([2.0, 5.0, 10.0])
+Amount = Array[float]([2.0, 4.0, 6.0])
 Level = 0
-Cost = Array[int]([50, 250, 500])
+Cost = Array[int]([200, 400, 600])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_5amgi"]
 script = ExtResource("4_yu1tr")
 Name = "speed"
-Amount = Array[float]([2.0, 2.0, 0.5])
+Amount = Array[float]([2.0, 4.0, 6.0])
 Level = 0
-Cost = Array[int]([50, 250, 500])
+Cost = Array[int]([200, 400, 600])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [resource]
@@ -44,7 +44,7 @@ ProjectileResource = SubResource("Resource_sfr1c")
 Name = "Mage Tower"
 Icon = ExtResource("1_0jr8w")
 TowerScn = ExtResource("5_nl126")
-Price = 10
+Price = 400
 PlacementRange = 0.4
 Stats = Array[ExtResource("4_yu1tr")]([SubResource("Resource_wsvwy"), SubResource("Resource_sdif4"), SubResource("Resource_5amgi")])
 metadata/_custom_type_script = "uid://c8041o1437idf"

@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://m8v4ibhr58d5"]
+[gd_scene load_steps=10 format=3 uid="uid://m8v4ibhr58d5"]
 
 [ext_resource type="Texture2D" uid="uid://b5xum4j6febne" path="res://assets/Sprites/UI/Titlecard.png" id="1_gtgwm"]
 [ext_resource type="PackedScene" uid="uid://c47xlrv5yjad2" path="res://assets/Models/Props/Stage.glb" id="2_ls88k"]
 [ext_resource type="Script" uid="uid://bfubuaikkqujq" path="res://scripts/SCR_MainMenu.gd" id="3_4o1g0"]
+[ext_resource type="Script" uid="uid://cjetcyl13w1ll" path="res://scripts/SCR_BetterTextureButtons.gd" id="4_abcgi"]
+[ext_resource type="Texture2D" uid="uid://bep4uscf7txse" path="res://assets/Textures/Gifs/TopdownExample/TopDownGif-0000.jpg" id="4_f0jpb"]
+[ext_resource type="Texture2D" uid="uid://bq4cbwllaj0c4" path="res://assets/Textures/Gifs/PerspExample/PerspGif-0000.jpg" id="6_xf8ov"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ls88k"]
 
@@ -71,6 +74,19 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -25.0
+offset_right = 452.0
+grow_vertical = 0
+text = "CTRL+SHIFT+ALT+Z to delete save and restart"
+scroll_active = false
+
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
@@ -101,7 +117,162 @@ spot_angle = 32.23
 [node name="Stage" parent="." instance=ExtResource("2_ls88k")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, 0, -4.382, -9.631)
 
-[node name="MainMenuManager" type="Node" parent="."]
+[node name="MainMenuManager" type="Node" parent="." node_paths=PackedStringArray("FirstTimeSetupScreen")]
 script = ExtResource("3_4o1g0")
+FirstTimeSetupScreen = NodePath("../First Time Launch")
+
+[node name="First Time Launch" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="First Time Launch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.921569)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="First Time Launch"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 165.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 126
+text = "First time setup"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="First Time Launch"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_top = 101.0
+offset_right = 641.0
+offset_bottom = 237.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Choose Perspective
+This can be changed later in the options menu"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BetterTextureButton" type="TextureButton" parent="First Time Launch"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -124.0
+offset_right = 540.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_f0jpb")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_abcgi")
+OriginalColour = Color(1, 1, 1, 1)
+HoverColour = Color(0.386719, 0.386719, 0.386719, 1)
+HoverTransitionTime = 0.1
+metadata/_custom_type_script = "uid://cjetcyl13w1ll"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="First Time Launch/BetterTextureButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 56
+text = "Top-Down"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="First Time Launch/BetterTextureButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 58.0
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 27
+text = "An alternative view that provides a better view of the ground"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BetterTextureButton2" type="TextureButton" parent="First Time Launch"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -124.0
+offset_right = -40.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_xf8ov")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_abcgi")
+OriginalColour = Color(1, 1, 1, 1)
+HoverColour = Color(0.386719, 0.386719, 0.386719, 1)
+HoverTransitionTime = 0.1
+metadata/_custom_type_script = "uid://cjetcyl13w1ll"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="First Time Launch/BetterTextureButton2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 56
+text = "Perspective"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="First Time Launch/BetterTextureButton2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 58.0
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 27
+text = "The Default view"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Control/Button" to="MainMenuManager" method="Play_Pressed"]
+[connection signal="pressed" from="First Time Launch/BetterTextureButton" to="MainMenuManager" method="DecideStartingPerspective" binds= [1]]
+[connection signal="pressed" from="First Time Launch/BetterTextureButton2" to="MainMenuManager" method="DecideStartingPerspective" binds= [0]]

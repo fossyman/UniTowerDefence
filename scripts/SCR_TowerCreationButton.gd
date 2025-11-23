@@ -19,6 +19,7 @@ func Btn_Pressed():
 	if GameplayController.instance.Gold < TowerRes.Price:
 		print("YOU ARE BROKE")
 		return
+	GameplayController.instance.CurrentCollisionMask = GameplayController.instance.PLACEMENTCOLLISIONMASK
 	GameplayController.instance.PlacingTower = TowerRes
 	GameplayController.instance.MouseState = GameplayController.instance.MOUSESTATES.PLACING
 	var Size:Vector3 = Vector3.ONE * TowerRes.PlacementRange

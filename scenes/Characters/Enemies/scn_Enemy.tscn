@@ -1,10 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://4aidqsbu2wy7"]
+[gd_scene load_steps=16 format=3 uid="uid://4aidqsbu2wy7"]
 
 [ext_resource type="Script" uid="uid://cpdhqs5q7lns1" path="res://scripts/SCR_Enemy.gd" id="1_7u1xr"]
+[ext_resource type="AudioStream" uid="uid://dkck45qa51crx" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-01.ogg" id="2_uhqpp"]
 [ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="2_vkn23"]
+[ext_resource type="AudioStream" uid="uid://biym0fpcpmr03" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-02.ogg" id="3_mepdu"]
 [ext_resource type="Script" uid="uid://dahitxda5ofvw" path="res://scripts/SCR_HealthComponent.gd" id="3_uffbq"]
 [ext_resource type="Material" uid="uid://ba76vr4p4ovns" path="res://assets/Materials/MAT_GoblinPaint.tres" id="3_vkn23"]
 [ext_resource type="Script" uid="uid://cjeyk8jbi2soa" path="res://scripts/SCR_HurtboxComponent.gd" id="4_dtyfk"]
+[ext_resource type="AudioStream" uid="uid://dttyj8h47o150" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-03.ogg" id="4_v4i8c"]
+[ext_resource type="AudioStream" uid="uid://d4c104v3g7p80" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-04.ogg" id="5_7d1xq"]
+[ext_resource type="AudioStream" uid="uid://cqe2gksxwrhtt" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-05.ogg" id="6_0n8y1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7bvw"]
 albedo_color = Color(1, 0, 0, 1)
@@ -17,7 +22,7 @@ size = Vector3(1, 1, 0.065)
 
 [sub_resource type="QuadMesh" id="QuadMesh_pqfbv"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_e3vbg"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkn23"]
 
 [node name="SCN_Enemy" type="PathFollow3D" node_paths=PackedStringArray("MeshParent", "HealthComp", "Hurtbox")]
 transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
@@ -30,6 +35,7 @@ TravelSpeed = 0.02
 MeshParent = NodePath("Node3D")
 HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
+SpawnSFX = Array[AudioStream]([ExtResource("2_uhqpp"), ExtResource("3_mepdu"), ExtResource("4_v4i8c"), ExtResource("5_7d1xq"), ExtResource("6_0n8y1")])
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305368, 0)
@@ -54,8 +60,8 @@ skeleton = NodePath("../..")
 
 [node name="HEALTH" type="Node" parent="."]
 script = ExtResource("3_uffbq")
-Health = 5
-HealthCap = 5
+Health = 4
+HealthCap = 4
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99994, 0)
@@ -66,6 +72,7 @@ HealthComponent = NodePath("../HEALTH")
 metadata/_custom_type_script = "uid://cjeyk8jbi2soa"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
-shape = SubResource("SphereShape3D_e3vbg")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.161554, 0)
+shape = SubResource("CapsuleShape3D_vkn23")
 
 [connection signal="Death" from="HEALTH" to="." method="Death"]

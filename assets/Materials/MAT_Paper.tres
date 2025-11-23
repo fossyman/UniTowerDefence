@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://ohrux0cdbfhc"]
+
+[sub_resource type="Gradient" id="Gradient_qqcpw"]
+colors = PackedColorArray(0.226563, 0.226563, 0.226563, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bmpsj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pitsd"]
+width = 64
+height = 100
+seamless = true
+color_ramp = SubResource("Gradient_qqcpw")
+noise = SubResource("FastNoiseLite_bmpsj")
+
+[resource]
+cull_mode = 2
+albedo_texture = SubResource("NoiseTexture2D_pitsd")
+normal_enabled = true
+texture_filter = 0

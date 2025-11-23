@@ -7,10 +7,15 @@ class_name Wave
 @export var EnemyCapacity = 10
 @export var SpawnSpeed:float = 1.5
 
+@export var RandomSpawning:bool = false
+
 var NextEnemyIDX = 0
 var NextSpawnOrder = 0
 
 func GetNextEnemy() -> PackedScene:
+	if RandomSpawning:
+		return Enemies.pick_random()
+		
 	if SpawnOrder.is_empty():
 		var enemy = Enemies[NextEnemyIDX]
 		NextEnemyIDX+=1
@@ -18,4 +23,5 @@ func GetNextEnemy() -> PackedScene:
 		return enemy
 	var enemy = Enemies[SpawnOrder[NextSpawnOrder]]
 	NextSpawnOrder+=1
+	NextSpawnOrder = wrap(NextSpawnOrder,0,SpawnOrder.size())
 	return enemy

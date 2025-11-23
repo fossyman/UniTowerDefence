@@ -38,9 +38,15 @@ var CurrentSpawnTickrate:float
 
 @export var Gold:int = 0
 
-@export_flags_3d_physics var COLLISIONMASK:int
+@export var Health:int = 100
 
+@export_flags_3d_physics var GAMEPLAYCOLLISIONMASK:int
+@export_flags_3d_physics var PLACEMENTCOLLISIONMASK:int
+@onready var CurrentCollisionMask = GAMEPLAYCOLLISIONMASK
+
+@export var MAPS:Array[RES_Map]
 @export var CurrentMap:RES_Map
+var MapIDX = 0
 
 @export var WaveIDX:int = -1
 var WaveFinished:bool = false
@@ -49,7 +55,7 @@ var EnemyCount:int = 0
 
 var SpeedModifier:float = 1.0
 
-enum ROUNDSTATES{PREROUND,ONGOING}
+enum ROUNDSTATES{PREROUND,ONGOING,END}
 @export var Roundstate:ROUNDSTATES = ROUNDSTATES.PREROUND
 
 @export var CinematicNode:Node3D
@@ -62,20 +68,34 @@ var CinematicSpeed:float = -0.003
 @export var DMAnimPlayer:AnimationPlayer
 @export var TableAnimPlayer:AnimationPlayer
 
+@export var VictoryScreen:Control
+@export var VictoryStatsText:RichTextLabel
+
+@export var FailScreen:Control
+
+var TimeTick:float = 1.0
+var STATS_Time:int = 0
+var STATS_GoldSpent:int = 0
+var STATS_Kills:int = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
 	#await get_tree().create_timer(3.0).timeout
 	#ToggleCinematicMode(true)
-	GoldText.text = str("%.2f" % Gold)                                                                                                                                                                                                                                                           
+	GoldText.text = str("%.2f" % Gold)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	TimeTick -= delta
+	if TimeTick <= 0:
+		TimeTick = 1.0
+		STATS_Time += 1
+	
 	DEVTOOLS_PROCESS()
-	if Input.is_action_just_pressed("ui_accept"):
-		SwapLevel(ResourceLoader.load(GLOBALS.MAPS[1]))
 	if CinematicMode:
 		CinematicNode.rotate_y(CinematicSpeed)
 	
@@ -97,7 +117,7 @@ func _process(delta: float) -> void:
 						8: # UpgradeAreaCollision
 							SelectedTower = (result["collider"].get_parent() as TowerScene)
 							UpgradeScreen.populateSettings(SelectedTower)
-							
+							AUDIOMANAGER.PlaySFX(AUDIOMANAGER.SLIDE_SFX)
 							pass
 		MOUSESTATES.PLACING:
 			var result = RaycastToFloor()
@@ -125,6 +145,8 @@ func _process(delta: float) -> void:
 					MouseState = MOUSESTATES.PLAYING
 					PlacementDecal.visible = false
 					GameplayController.instance.SubtractGold(PlacingTower.Price)
+					AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
+					CurrentCollisionMask = GAMEPLAYCOLLISIONMASK
 					pass
 			pass
 	pass
@@ -132,7 +154,7 @@ func _process(delta: float) -> void:
 func RaycastToFloor() -> Dictionary:
 	#Raycasting learned by Godot Docs
 	var space_state = get_tree().root.world_3d.direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(MainCamera.global_position, MainCamera.project_position(get_viewport().get_mouse_position(),999),COLLISIONMASK)
+	var query = PhysicsRayQueryParameters3D.create(MainCamera.global_position, MainCamera.project_position(get_viewport().get_mouse_position(),999),CurrentCollisionMask)
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
 	
@@ -144,6 +166,7 @@ func BeginNewWave():
 	EnemyCount = 0
 	WaveFinished = false
 	Roundstate = ROUNDSTATES.ONGOING
+	MUSICMANAGER.PickNewSong()
 
 func SpawnEnemy(_enemy:PackedScene):
 	var EnemyInst = _enemy.instantiate()
@@ -157,6 +180,10 @@ func CheckWaveCompletion():
 		WaveFinished = true
 		Roundstate = ROUNDSTATES.PREROUND
 		RoundControls.ShowBeginRoundButton()
+		if WaveIDX == CurrentMap.WaveResources.size() - 1:
+			DisplayVictoryScreen()
+			Roundstate = ROUNDSTATES.END
+			print("STOP HERE")
 		print("WAVE COMPLETED")
 	pass
 
@@ -165,6 +192,10 @@ func DEVTOOLS_PROCESS():
 		Engine.time_scale+=1
 	elif Input.is_action_just_pressed("DEV_SlowTime"):
 		Engine.time_scale-=1
+	if Input.is_action_just_pressed("ui_accept"):
+		MapIDX += 1
+		MapIDX = wrap(MapIDX,0,GLOBALS.MAPS.size())
+		SwapLevel(ResourceLoader.load(GLOBALS.MAPS[MapIDX]))
 	pass
 
 func AddGold(_amount:int):
@@ -174,11 +205,20 @@ func AddGold(_amount:int):
 func SubtractGold(_amount:int):
 	Gold -= _amount
 	GoldText.text = str("%.2f" % Gold)
+	STATS_GoldSpent += _amount
 	pass
 func SetGold(_amount:int):
 	Gold = _amount
 	GoldText.text = str("%.2f" % Gold)
 	pass
+
+func SubtractHealth(_value:int):
+	Health -= _value
+
+func CheckIfDead():
+	if Health <= 0:
+		DisplayFailScreen()
+		pass
 
 func ToggleCinematicMode(value:bool,Lerptime:float = 4.0):
 	CinematicMode = value
@@ -207,3 +247,26 @@ func SwapLevel(_NewLevel:RES_Map):
 	MapHolder.get_child(0).queue_free()
 	MapHolder.add_child(NewMap)
 	MapPath = NewMap.find_child("PATH",true,false)
+	WaveIDX = -1
+	Health = 100
+	for i in ActiveEnemies.size():
+		ActiveEnemies[i].queue_free()
+	ActiveEnemies.clear()
+
+func DisplayVictoryScreen():
+	VictoryScreen.show()
+	VictoryStatsText.text = "Time spent\n %s\nGold spent\n%s\nEnemies killed\n%s" % [STATS_Time, STATS_GoldSpent,STATS_Kills]
+	pass
+	
+func SelectNextLevel():
+	VictoryScreen.hide()
+	MapIDX+=1
+	SwapLevel(MAPS[MapIDX])
+	
+func DisplayFailScreen():
+	FailScreen.show()
+	pass
+	
+func RestartLevel():
+	FailScreen.hide()
+	SwapLevel(MAPS[MapIDX])

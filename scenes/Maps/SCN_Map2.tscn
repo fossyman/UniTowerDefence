@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b01f0v771kqv2"]
+[gd_scene load_steps=21 format=3 uid="uid://b01f0v771kqv2"]
 
 [ext_resource type="Material" uid="uid://dme7dyuevb755" path="res://assets/Materials/Maps/MAT_Map2Texture.tres" id="1_42wc5"]
 
@@ -32,9 +32,6 @@ size = Vector3(0.23938, 1, 2.4276)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_et6dn"]
 size = Vector3(0.242126, 1, 0.85989)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_p0t3j"]
-size = Vector3(3.18, 1, 9.945)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u5r52"]
 size = Vector3(0.541992, 1, 1.07833)
@@ -169,30 +166,6 @@ debug_fill = false
 [node name="CollisionShape3D11" type="CollisionShape3D" parent="CantPlaceArea"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.79743, -0.454314, 4.65079)
 shape = SubResource("BoxShape3D_jv5mw")
-debug_color = Color(1, 0, 0, 1)
-debug_fill = false
-
-[node name="CollisionShape3D13" type="CollisionShape3D" parent="CantPlaceArea"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6.50964, 0, 0)
-shape = SubResource("BoxShape3D_p0t3j")
-debug_color = Color(1, 0, 0, 1)
-debug_fill = false
-
-[node name="CollisionShape3D14" type="CollisionShape3D" parent="CantPlaceArea"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.5061, 0, 0)
-shape = SubResource("BoxShape3D_p0t3j")
-debug_color = Color(1, 0, 0, 1)
-debug_fill = false
-
-[node name="CollisionShape3D15" type="CollisionShape3D" parent="CantPlaceArea"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.0282211, 0, 6.53786)
-shape = SubResource("BoxShape3D_p0t3j")
-debug_color = Color(1, 0, 0, 1)
-debug_fill = false
-
-[node name="CollisionShape3D16" type="CollisionShape3D" parent="CantPlaceArea"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.0282211, 0, -6.56785)
-shape = SubResource("BoxShape3D_p0t3j")
 debug_color = Color(1, 0, 0, 1)
 debug_fill = false
 

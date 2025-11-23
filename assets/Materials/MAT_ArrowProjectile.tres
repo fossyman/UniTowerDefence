@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://uolm4ly51ky0"]
+
+[ext_resource type="Texture2D" uid="uid://djl0twpj6tljn" path="res://assets/Textures/Projectiles/SPR_Arrow.png" id="1_afkmg"]
+
+[resource]
+albedo_texture = ExtResource("1_afkmg")
+texture_filter = 0

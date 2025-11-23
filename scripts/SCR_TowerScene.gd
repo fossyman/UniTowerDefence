@@ -34,7 +34,7 @@ func Tick():
 	if Target:
 		if LookAtTarget:
 			var targetlerp = get_tree().create_tween().set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN_OUT)
-			var diff = (global_position - Target.global_position)
+			var diff = (Target.global_position - global_position)
 			targetlerp.tween_property(LookAtNode,"rotation:y",atan2(diff.x,diff.z),0.5)
 			#LookAtNode.rotation.y = atan2(diff.x,diff.z)
 			await targetlerp.finished

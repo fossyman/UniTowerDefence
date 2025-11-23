@@ -1,0 +1,85 @@
+[gd_scene load_steps=17 format=3 uid="uid://bfeos5dpg1ogh"]
+
+[ext_resource type="Script" uid="uid://cpdhqs5q7lns1" path="res://scripts/SCR_Enemy.gd" id="1_baj6c"]
+[ext_resource type="AudioStream" uid="uid://dkck45qa51crx" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-01.ogg" id="2_8u0im"]
+[ext_resource type="AudioStream" uid="uid://biym0fpcpmr03" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-02.ogg" id="3_n44db"]
+[ext_resource type="AudioStream" uid="uid://dttyj8h47o150" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-03.ogg" id="4_uytil"]
+[ext_resource type="AudioStream" uid="uid://d4c104v3g7p80" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-04.ogg" id="5_o6nwn"]
+[ext_resource type="AudioStream" uid="uid://cqe2gksxwrhtt" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-05.ogg" id="6_xt4u6"]
+[ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="7_eoipj"]
+[ext_resource type="Texture2D" uid="uid://bq3k1xoswmbwk" path="res://assets/Sprites/Character art/Gobbo/Gobbo_1.png" id="8_baj6c"]
+[ext_resource type="Script" uid="uid://dahitxda5ofvw" path="res://scripts/SCR_HealthComponent.gd" id="9_mmexc"]
+[ext_resource type="Script" uid="uid://cjeyk8jbi2soa" path="res://scripts/SCR_HurtboxComponent.gd" id="10_nm13h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7bvw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ipg8x"]
+size = Vector3(0.045, 2.25, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5erwy"]
+size = Vector3(1, 1, 0.065)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u0im"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("8_baj6c")
+normal_enabled = true
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_pqfbv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkn23"]
+
+[node name="SCN_Enemy" type="PathFollow3D" node_paths=PackedStringArray("MeshParent", "HealthComp", "Hurtbox")]
+transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
+progress = 23.5245
+rotation_mode = 0
+loop = false
+tilt_enabled = false
+script = ExtResource("1_baj6c")
+TravelSpeed = 0.02
+MeshParent = NodePath("Node3D")
+HealthComp = NodePath("HEALTH")
+Hurtbox = NodePath("Hurtbox")
+SpawnSFX = Array[AudioStream]([ExtResource("2_8u0im"), ExtResource("3_n44db"), ExtResource("4_uytil"), ExtResource("5_o6nwn"), ExtResource("6_xt4u6")])
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305368, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_y7bvw")
+mesh = SubResource("BoxMesh_ipg8x")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_5erwy")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_eoipj")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0649998)
+material_override = SubResource("StandardMaterial3D_8u0im")
+mesh = SubResource("QuadMesh_pqfbv")
+skeleton = NodePath("../..")
+
+[node name="HEALTH" type="Node" parent="."]
+script = ExtResource("9_mmexc")
+Health = 10
+HealthCap = 10
+
+[node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99994, 0)
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("10_nm13h")
+HealthComponent = NodePath("../HEALTH")
+metadata/_custom_type_script = "uid://cjeyk8jbi2soa"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.161554, 0)
+shape = SubResource("CapsuleShape3D_vkn23")
+
+[connection signal="Death" from="HEALTH" to="." method="Death"]

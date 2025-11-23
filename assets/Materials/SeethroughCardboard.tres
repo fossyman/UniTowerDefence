@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bxyfnhklnq0i8"]
+
+[ext_resource type="Texture2D" uid="uid://bjxxctjtkyo3j" path="res://assets/Textures/Third Party/Cardboard Textures/free_cardboard_texture_01_design_instruct.jpg" id="1_inl3d"]
+
+[resource]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.901961)
+albedo_texture = ExtResource("1_inl3d")
+normal_enabled = true
+texture_filter = 0

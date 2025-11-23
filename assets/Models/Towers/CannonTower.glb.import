@@ -32,6 +32,29 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Cardboard": {
+"use_external/enabled": true,
+"use_external/path": "uid://v24kx8rvt6nx"
+},
+"Cardboard Edge": {
+"use_external/enabled": true,
+"use_external/path": "uid://v24kx8rvt6nx"
+},
+"Cellotape": {
+"use_external/enabled": true,
+"use_external/path": "uid://cau3xgev35fhl"
+},
+"Paper": {
+"use_external/enabled": true,
+"use_external/path": "uid://ohrux0cdbfhc"
+},
+"Pin": {
+"use_external/enabled": true,
+"use_external/path": "uid://d3qbjudtweb1m"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

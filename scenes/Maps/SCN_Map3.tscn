@@ -1,0 +1,236 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0c67x4jgpw8b"]
+
+[ext_resource type="Material" uid="uid://dn42nyq5qooiy" path="res://assets/Materials/Maps/MAT_Map3Texture.tres" id="1_14xho"]
+
+[sub_resource type="Curve3D" id="Curve3D_14xho"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.271066, 0, 0.213405, 0, 0, 0, 0, 0, 0, 0.25684, 0, 0.753965, 0, 0, 0, 0, 0, 0, 1.025, 0, 1.49368, 0, 0, 0, 0, 0, 0, 1.85007, 0, 1.49368, 0, 0, 0, 0, 0, 0, 2.40486, 0, 1.57903, 0, 0, 0, 0, 0, 0, 3.2726, 0, 1.55058, 0, 0, 0, 0, 0, 0, 4.8516, 0, 1.66438, 0, 0, 0, 0, 0, 0, 5.8616, 0, 1.72128, 0, 0, 0, 0, 0, 0, 6.69244, 0, 2.20841, 0, 0, 0, 0, 0, 0, 6.99582, 0, 3.24458, 0, 0, 0, 0, 0, 0, 7.21535, 0, 3.80559, 0, 0, 0, 0, 0, 0, 7.46184, 0, 6.51676, 0, 0, 0, 0, 0, 0, 7.46184, 0, 8.26077, 0, 0, 0, 0, 0, 0, 7.35208, 0, 9.59012, 0, 0, 0, 0, 0, 0, 6.90083, 0, 9.98038, 0, 0, 0, 0, 0, 0, 6.1203, 0, 9.9316, 0, 0, 0, 0, 0, 0, 5.82759, 0, 9.50475, 0.171144, 0, 0.74009, -0.236394, 0, -1.02226, 5.84073, 0, 7.71262, 0.239595, 0, 0.86677, -0.414659, 0, -1.50009, 5.17748, 0, 6.00739, 3.4556, 0, -0.119159, -1.7684, 0, 0.0609794, 1.10405, 0, 2.7267, 0.227906, 0, -0.315664, 0, 0, 0, -0.72151, 0, 3.5302, -0.0330431, 0, -0.469856, 0.0330431, 0, 0.469856, -0.593025, 0, 5.09224, -0.177752, 0, -0.867847, 0.206099, 0, 1.00625, -0.530289, 0, 6.86976, -0.376557, 0, -0.043147, 2.00755, 0, 0.230031, 0.755798, 0, 8.11402, -0.00845107, 0, 0.321142, 0.0209119, 0, -0.794655, 3.73576, 0, 7.57031, 0.267464, 0, -0.0170722, -2.94859, 0, 0.188208, 2.78426, 0, 6.57699, 0.0731916, 0, 0.62736, 0, 0, 0, 0.138894, 0, 5.15497, -1.4642, 0, -0.657027, 2.39521, 0, 1.1227, 1.77964, 0, 4.1665, -0.342378, 0, -0.560584, 0.0731754, 0, 1.97573, 4.66624, 0, 6.86564, 2.25781, 0, -0.255014, -0.631369, 0, 0.103455, 2.90756, 0, 9.75538, 0.738483, 0, -0.0307503, -0.627454, 0, -0.0307503, 1.02549, 0, 9.97496, 0.310139, 0, -0.0115776, -0.933841, 0, 0.110381, -0.0828495, 0, 9.94359, 0, 0, 0, 0, 0, 0, -1.81854, 0, 10.09),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 33
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ouclt"]
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ouclt"]
+size = Vector3(10.2687, 1, 11.5078)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14xho"]
+size = Vector3(0.30957, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vcm5m"]
+size = Vector3(0.30957, 1, 5.49658)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfvdv"]
+size = Vector3(0.30957, 1, 1.18307)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_25jnh"]
+size = Vector3(0.30957, 1, 3.38268)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjli6"]
+size = Vector3(0.30957, 1, 1.32696)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2effn"]
+size = Vector3(0.30957, 1, 2.33571)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wldgv"]
+size = Vector3(0.30957, 1, 2.05701)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uufg4"]
+size = Vector3(0.30957, 1, 2.05701)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PATH" type="Path3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 3.17, 0, 5.338)
+curve = SubResource("Curve3D_14xho")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0.003, 0)
+material_override = ExtResource("1_14xho")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ouclt")
+
+[node name="PlacingArea" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+visible = false
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlacingArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0193571, -0.454314, 0.211551)
+shape = SubResource("BoxShape3D_ouclt")
+debug_color = Color(1, 0, 0, 0.662745)
+
+[node name="CantPlaceArea" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.969445, 0, 0.245307, 0, 1, 0, -0.245307, 0, 0.969445, -2.88643, -0.454314, -4.65885)
+shape = SubResource("BoxShape3D_14xho")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.0705226, 0, 0.99751, 0, 1, 0, -0.99751, 0, 0.0705226, 0.119367, -0.448984, -3.7929)
+shape = SubResource("BoxShape3D_vcm5m")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.729196, 0, 0.684305, 0, 1, 0, -0.684305, 0, 0.729196, 3.37417, -0.448984, -3.11406)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.965423, 0, 0.26069, 0, 1, 0, -0.26069, 0, 0.965423, 3.87754, -0.448984, -2.11052)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.996956, 0, 0.0779717, 0, 1, 0, -0.0779717, 0, 0.996956, 4.15083, -0.448984, -0.781056)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.999715, 0, 0.0238737, 0, 1, 0, -0.0238737, 0, 0.999715, 4.24942, -0.448984, 0.582735)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.999768, 0, -0.0215359, 0, 1, 0, 0.0215359, 0, 0.999768, 4.29769, -0.448984, 2.11317)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.994988, 0, -0.0999972, 0, 1, 0, 0.0999972, 0, 0.994988, 4.2049, -0.448984, 3.67898)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.054811, 0, 0.998497, 0, 1, 0, -0.998497, 0, 0.054811, 3.39929, -0.448984, 4.60922)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.998998, 0, -0.0447529, 0, 1, 0, 0.0447529, 0, 0.998998, 2.6928, -0.448984, 3.58212)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.984307, 0, 0.176466, 0, 1, 0, -0.176466, 0, 0.984307, 2.5966, -0.448995, 2.06286)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.950032, 0, 0.312152, 0, 1, 0, -0.312152, 0, 0.950032, 2.0041, -0.448995, 0.593869)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.93262, 0, 0.360859, 0, 1, 0, -0.360859, 0, 0.93262, 1.48301, -0.448995, -0.919927)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.499789, 0, 0.866147, 0, 1, 0, -0.866147, 0, 0.499789, 0.427535, -0.448995, -1.98497)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.0785637, 0, 0.996909, 0, 1, 0, -0.996909, 0, 0.0785637, -1.08835, -0.448995, -2.48476)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.131149, 0, 0.991363, 0, 1, 0, -0.991363, 0, -0.131149, -2.72803, -0.448995, -2.51838)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.899718, 0, 0.436472, 0, 1, 0, -0.436472, 0, -0.899718, -3.75018, -0.449018, -2.01511)
+shape = SubResource("BoxShape3D_wfvdv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.996329, 0, -0.0856081, 0, 1, 0, 0.0856081, 0, -0.996329, -3.70291, -0.449018, 0.568207)
+shape = SubResource("BoxShape3D_25jnh")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(0.0198605, 0, -0.999803, 0, 1, 0, 0.999803, 0, 0.0198605, -1.31635, -0.449018, 2.68526)
+shape = SubResource("BoxShape3D_25jnh")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.967299, 0, -0.25364, 0, 1, 0, 0.25364, 0, -0.967299, 0.470478, -0.449018, 1.86802)
+shape = SubResource("BoxShape3D_hjli6")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D21" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.0897114, 0, -0.995968, 0, 1, 0, 0.995968, 0, -0.0897114, -1.44307, -0.449018, 1.21038)
+shape = SubResource("BoxShape3D_2effn")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.999843, 0, 0.0176968, 0, 1, 0, -0.0176968, 0, -0.999843, -2.93129, -0.449018, -0.155526)
+shape = SubResource("BoxShape3D_wldgv")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D23" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.516085, 0, -0.856537, 0, 1, 0, 0.856537, 0, -0.516085, -0.818646, -0.449018, -0.793575)
+shape = SubResource("BoxShape3D_uufg4")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D24" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.831334, 0, -0.555773, 0, 1, 0, 0.555773, 0, -0.831334, 1.00008, -0.449018, 0.692748)
+shape = SubResource("BoxShape3D_uufg4")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D25" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.998821, 0, 0.0485361, 0, 1, 0, -0.0485361, 0, -0.998821, 1.49317, -0.449018, 3.00994)
+shape = SubResource("BoxShape3D_uufg4")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D26" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.211632, 0, 0.977349, 0, 1, 0, -0.977349, 0, -0.211632, -0.0656595, -0.449018, 4.37851)
+shape = SubResource("BoxShape3D_uufg4")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D27" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.0443865, 0, 0.999014, 0, 1, 0, -0.999014, 0, -0.0443865, -2.60909, -0.449018, 4.63791)
+shape = SubResource("BoxShape3D_uufg4")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D28" type="CollisionShape3D" parent="CantPlaceArea"]
+transform = Transform3D(-0.0443865, 0, 0.999014, 0, 1, 0, -0.999014, 0, -0.0443865, -4.99262, -0.449018, 4.72592)
+shape = SubResource("BoxShape3D_uufg4")
+debug_color = Color(1, 0, 0, 1)
+debug_fill = false

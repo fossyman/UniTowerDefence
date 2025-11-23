@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cws56as1qqyui"]
+
+[ext_resource type="Script" uid="uid://dy7rphjuwqt2c" path="res://scripts/SCR_Projectile.gd" id="1_500mn"]
+[ext_resource type="PackedScene" uid="uid://c3dnag8h5mipj" path="res://assets/Models/Projectiles/Arrow.glb" id="2_500mn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_htbna"]
+radius = 0.209483
+
+[node name="ScnProjectileTest" type="Node3D"]
+script = ExtResource("1_500mn")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_htbna")
+
+[node name="Arrow" parent="." instance=ExtResource("2_500mn")]
+transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 0, 0, 0)
+
+[connection signal="area_entered" from="Area3D" to="." method="HitboxEntered"]

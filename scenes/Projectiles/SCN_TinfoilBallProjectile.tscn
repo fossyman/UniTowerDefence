@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4kqldt885t83"]
+
+[ext_resource type="Script" uid="uid://dy7rphjuwqt2c" path="res://scripts/SCR_Projectile.gd" id="1_dk722"]
+[ext_resource type="Material" uid="uid://b44r6ogaskyrq" path="res://assets/Materials/CannonProjectile.tres" id="2_2ly2g"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8qmvb"]
+radius = 0.2
+height = 0.4
+radial_segments = 7
+rings = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_htbna"]
+radius = 0.209483
+
+[node name="ScnProjectileTest" type="Node3D"]
+script = ExtResource("1_dk722")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_8qmvb")
+surface_material_override/0 = ExtResource("2_2ly2g")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_htbna")
+
+[connection signal="area_entered" from="Area3D" to="." method="HitboxEntered"]

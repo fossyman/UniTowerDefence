@@ -9,7 +9,9 @@ var ROOTCONTAINER:Node
 var CURRENTROOT:Node
 var CONSTANTS:Node
 
-var MAPS:Array[String] = ["res://assets/Resources/Maps/MAP_Forest.tres","res://assets/Resources/Maps/MAP_Mountains.tres"]
+var MAPS:Array[String] = ["res://assets/Resources/Maps/MAP_Forest.tres","res://assets/Resources/Maps/MAP_Mountains.tres","res://assets/Resources/Maps/MAP_Castle.tres"]
+
+var PERSPECTIVE:int = 0
 
 var LOADING_HINTS:Array[String] = ["Make sure to use your Power-Ups when you are in a pickle.",
 									"Money is vital, spend it wisely.",

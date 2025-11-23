@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SongMetadata" load_steps=3 format=3 uid="uid://b5xd7vyihqku8"]
 
-[ext_resource type="AudioStream" uid="uid://d2486xj28txba" path="res://assets/Audio/Music/CANDLEMASS/The Well Of Souls.wav" id="1_rfuq2"]
+[ext_resource type="AudioStream" uid="uid://d0synp8vtntq0" path="res://assets/Audio/Music/CANDLEMASS/The Well Of Souls.ogg" id="1_rfuq2"]
 [ext_resource type="Script" uid="uid://bd7gygvad0jvw" path="res://scripts/Resources/SCR_SongMetadataResource.gd" id="2_70je1"]
 
 [resource]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d0synp8vtntq0"
+path="res://.godot/imported/The Well Of Souls.ogg-adafeddda0c0f3981412319446a0887e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/Music/CANDLEMASS/The Well Of Souls.ogg"
+dest_files=["res://.godot/imported/The Well Of Souls.ogg-adafeddda0c0f3981412319446a0887e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=115.0
+beat_count=0
+bar_beats=4

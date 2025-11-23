@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 func ToggleMenu():
 	IsMenuOpen = !IsMenuOpen
-	
+	AUDIOMANAGER.PlaySFX(AUDIOMANAGER.SLIDE_SFX)
 	if OpenTween:
 		OpenTween.kill()
 	OpenTween = get_tree().create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)

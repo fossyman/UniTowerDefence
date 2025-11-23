@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://es5iwgh4xv5q"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://es5iwgh4xv5q"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
@@ -7,6 +7,17 @@ damping = 0.21
 spread = 0.41
 hipass = 0.44
 wet = 0.45
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
+resource_name = "EQ10"
+band_db/31_hz = -60.0
+band_db/62_hz = -60.0
+band_db/125_hz = -60.0
+band_db/250_hz = -60.0
+band_db/500_hz = -60.0
+band_db/4000_hz = -60.0
+band_db/8000_hz = -60.0
+band_db/16000_hz = -60.0
 
 [resource]
 bus/1/name = &"Reverb"
@@ -21,5 +32,19 @@ bus/2/name = &"Music"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -80.0
 bus/2/send = &"Reverb"
+bus/3/name = &"SFX"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/4/name = &"RadioSFX"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"SFX"
+bus/4/effect/0/effect = SubResource("AudioEffectEQ10_j3pel")
+bus/4/effect/0/enabled = true

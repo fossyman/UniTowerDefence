@@ -1,12 +1,20 @@
-[gd_resource type="Resource" script_class="RES_Map" load_steps=7 format=3 uid="uid://dkord1odhw1d2"]
+[gd_resource type="Resource" script_class="RES_Map" load_steps=10 format=3 uid="uid://dkord1odhw1d2"]
 
 [ext_resource type="PackedScene" uid="uid://b01f0v771kqv2" path="res://scenes/Maps/SCN_Map2.tscn" id="1_qw3r4"]
 [ext_resource type="Script" uid="uid://dnofd3ooi6rrv" path="res://scripts/Resources/SCR_WaveResource.gd" id="2_1t716"]
-[ext_resource type="Resource" uid="uid://e5s32eypq7dg" path="res://assets/Resources/Waves/ExampleWave.tres" id="3_irocw"]
+[ext_resource type="PackedScene" uid="uid://4aidqsbu2wy7" path="res://scenes/Characters/Enemies/scn_Enemy.tscn" id="3_qw3r4"]
 [ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_FlyingEnemyTest.tscn" id="4_l7fa8"]
 [ext_resource type="Script" uid="uid://cwq3mcch85ig4" path="res://scripts/Resources/SCR_MapResource.gd" id="5_nembc"]
 
-[sub_resource type="Resource" id="Resource_fbscu"]
+[sub_resource type="Resource" id="Resource_1t716"]
+script = ExtResource("2_1t716")
+Enemies = Array[PackedScene]([ExtResource("3_qw3r4"), ExtResource("4_l7fa8")])
+SpawnOrder = Array[int]([0, 0, 1, 1, 1])
+EnemyCapacity = 5
+SpawnSpeed = 1.5
+metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
+
+[sub_resource type="Resource" id="Resource_irocw"]
 script = ExtResource("2_1t716")
 Enemies = Array[PackedScene]([ExtResource("4_l7fa8")])
 SpawnOrder = Array[int]([])
@@ -14,8 +22,24 @@ EnemyCapacity = 5
 SpawnSpeed = 1.5
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
+[sub_resource type="Resource" id="Resource_l7fa8"]
+script = ExtResource("2_1t716")
+Enemies = Array[PackedScene]([ExtResource("4_l7fa8")])
+SpawnOrder = Array[int]([])
+EnemyCapacity = 10
+SpawnSpeed = 1.5
+metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
+
+[sub_resource type="Resource" id="Resource_nembc"]
+script = ExtResource("2_1t716")
+Enemies = Array[PackedScene]([ExtResource("3_qw3r4"), ExtResource("4_l7fa8")])
+SpawnOrder = Array[int]([0, 1, 1, 0, 1, 1, 0, 1, 1, 1])
+EnemyCapacity = 15
+SpawnSpeed = 1.5
+metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
+
 [resource]
 script = ExtResource("5_nembc")
-WaveResources = Array[ExtResource("2_1t716")]([ExtResource("3_irocw"), SubResource("Resource_fbscu")])
+WaveResources = Array[ExtResource("2_1t716")]([SubResource("Resource_1t716"), SubResource("Resource_1t716"), SubResource("Resource_irocw"), SubResource("Resource_irocw"), SubResource("Resource_l7fa8"), SubResource("Resource_nembc")])
 MapScene = ExtResource("1_qw3r4")
 metadata/_custom_type_script = "uid://cwq3mcch85ig4"

@@ -11,16 +11,23 @@ class_name StatUpgradeButton
 func Pressed():
 	if !UpgradeStat:
 		return
-		
+	
 	if GameplayController.instance.Gold >= UpgradeStat.Cost[UpgradeStat.Level]:
 		GameplayController.instance.SubtractGold(UpgradeStat.Cost[UpgradeStat.Level])
 		UpgradeStat.UpgradeLevel()
 		GameplayController.instance.SelectedTower.refreshStats()
 		SetValues()
 		pass
+		AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
 	else:
 		print(str(UpgradeStat.Cost[UpgradeStat.Level]) + " needed. You have: " + str(GameplayController.instance.Gold))
 	pass
 	
 func SetValues():
-	PriceText.text = "$" + str(UpgradeStat.Cost[UpgradeStat.Level])
+	if UpgradeStat.Level != UpgradeStat.Cost.size()-1:
+		PriceText.text = "$" + str(UpgradeStat.Cost[UpgradeStat.Level])
+		disabled = false
+	else:
+		PriceText.text = "Maxed out"
+		disabled = true
+		

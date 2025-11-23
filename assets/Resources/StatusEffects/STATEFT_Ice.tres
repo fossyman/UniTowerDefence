@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=2 format=3 uid="uid://dmymi8aqa0mtn"]
+
+[ext_resource type="Script" uid="uid://dglqshf5u0wv0" path="res://scripts/Resources/SCR_StatusEffect.gd" id="2_vqeev"]
+
+[resource]
+script = ExtResource("2_vqeev")
+TickTime = 1.0
+StatusType = 2
+StatusPower = 1
+StatusLifetime = 5.0
+metadata/_custom_type_script = "uid://dglqshf5u0wv0"
