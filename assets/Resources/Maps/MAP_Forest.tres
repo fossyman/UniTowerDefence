@@ -12,6 +12,7 @@ Enemies = Array[PackedScene]([ExtResource("4_wp8pv")])
 SpawnOrder = Array[int]([])
 EnemyCapacity = 10
 SpawnSpeed = 1.5
+RandomSpawning = false
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="Resource" id="Resource_yy4po"]
@@ -20,6 +21,7 @@ Enemies = Array[PackedScene]([ExtResource("4_wp8pv")])
 SpawnOrder = Array[int]([])
 EnemyCapacity = 10
 SpawnSpeed = 1.5
+RandomSpawning = false
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="Resource" id="Resource_uotvg"]
@@ -28,6 +30,7 @@ Enemies = Array[PackedScene]([ExtResource("4_wp8pv")])
 SpawnOrder = Array[int]([])
 EnemyCapacity = 20
 SpawnSpeed = 1.5
+RandomSpawning = false
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [resource]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://driu3bx8heggq"
-path="res://.godot/imported/MapBoard1.glb-bd8a2b9a1c0cf1c8bd16a087a1d2958c.scn"
+uid="uid://b30ufcn5iyuf8"
+path="res://.godot/imported/MM_Anim.glb-d81f15a6bcbf91db50f820fa8fda98f2.scn"
 
 [deps]
 
-source_file="res://DONT_EXPORT/Models/MapBoards/MapBoard1.glb"
-dest_files=["res://.godot/imported/MapBoard1.glb-bd8a2b9a1c0cf1c8bd16a087a1d2958c.scn"]
+source_file="res://DONT_EXPORT/Animations/MM_Anim.glb"
+dest_files=["res://.godot/imported/MM_Anim.glb-d81f15a6bcbf91db50f820fa8fda98f2.scn"]
 
 [params]
 

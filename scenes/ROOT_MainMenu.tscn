@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://m8v4ibhr58d5"]
+[gd_scene load_steps=17 format=3 uid="uid://m8v4ibhr58d5"]
 
 [ext_resource type="Texture2D" uid="uid://b5xum4j6febne" path="res://assets/Sprites/UI/Titlecard.png" id="1_gtgwm"]
 [ext_resource type="PackedScene" uid="uid://c47xlrv5yjad2" path="res://assets/Models/Props/Stage.glb" id="2_ls88k"]
@@ -6,8 +6,15 @@
 [ext_resource type="Script" uid="uid://cjetcyl13w1ll" path="res://scripts/SCR_BetterTextureButtons.gd" id="4_abcgi"]
 [ext_resource type="Texture2D" uid="uid://bep4uscf7txse" path="res://assets/Textures/Gifs/TopdownExample/TopDownGif-0000.jpg" id="4_f0jpb"]
 [ext_resource type="Texture2D" uid="uid://bq4cbwllaj0c4" path="res://assets/Textures/Gifs/PerspExample/PerspGif-0000.jpg" id="6_xf8ov"]
+[ext_resource type="PackedScene" uid="uid://dvmboswiq8kbk" path="res://assets/Models/Towers/WizardTower.glb" id="7_7afoc"]
+[ext_resource type="PackedScene" uid="uid://4aidqsbu2wy7" path="res://scenes/Characters/Enemies/scn_Enemy.tscn" id="8_yllv4"]
+[ext_resource type="PackedScene" uid="uid://cag6uvcndxasq" path="res://assets/Animations/MM_Anim.glb" id="9_yllv4"]
+[ext_resource type="Script" uid="uid://b6iq4tomapchb" path="res://scripts/SCR_MM_ANIM_MANAGER.gd" id="10_p210v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ls88k"]
+sky_top_color = Color(0.55, 0.482969, 0.385, 1)
+sky_horizon_color = Color(0.6708, 0.653191, 0.6463, 1)
+ground_bottom_color = Color(0.109375, 0.0919291, 0.077474, 1)
 
 [sub_resource type="Sky" id="Sky_4o1g0"]
 sky_material = SubResource("ProceduralSkyMaterial_ls88k")
@@ -15,6 +22,15 @@ sky_material = SubResource("ProceduralSkyMaterial_ls88k")
 [sub_resource type="Environment" id="Environment_4o1g0"]
 background_mode = 2
 sky = SubResource("Sky_4o1g0")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p210v"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ffmoq"]
+noise = SubResource("FastNoiseLite_p210v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1128u"]
+albedo_color = Color(0.549479, 0.429281, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_ffmoq")
 
 [node name="ROOT_MAINMENU" type="Node"]
 
@@ -106,6 +122,24 @@ spot_range = 4.995
 spot_attenuation = -0.99
 spot_angle = 32.23
 
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(0.904396, -0.147113, -0.400532, 7.45058e-09, 0.938686, -0.344774, 0.426695, 0.311812, 0.848943, -5.51956, -2.15764, -1.6521)
+light_color = Color(1, 0.878662, 0.815104, 1)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+spot_range = 17.166
+spot_attenuation = -0.56
+spot_angle = 30.4417
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(0.904083, 0.147566, 0.401072, 0, 0.938493, -0.345298, -0.427358, 0.312178, 0.848475, 5.52, -2.158, -1.652)
+light_color = Color(1, 0.878662, 0.815104, 1)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+spot_range = 17.166
+spot_attenuation = -0.56
+spot_angle = 27.7274
+
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
 transform = Transform3D(0.904083, 0.222021, 0.36516, 0, 0.854459, -0.519519, -0.427358, 0.469688, 0.772501, 2, 0, -5)
 light_indirect_energy = 0.0
@@ -116,6 +150,9 @@ spot_angle = 32.23
 
 [node name="Stage" parent="." instance=ExtResource("2_ls88k")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, 0, -4.382, -9.631)
+
+[node name="Cube" parent="Stage" index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_1128u")
 
 [node name="MainMenuManager" type="Node" parent="." node_paths=PackedStringArray("FirstTimeSetupScreen")]
 script = ExtResource("3_4o1g0")
@@ -273,6 +310,43 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="WizardTower" parent="." instance=ExtResource("7_7afoc")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4.13815, -2.47026, -11.1339)
+
+[node name="SCN_Enemy" parent="." instance=ExtResource("8_yllv4")]
+process_mode = 4
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.52723, -2.46114, -11.8126)
+script = null
+
+[node name="SCN_Enemy2" parent="." instance=ExtResource("8_yllv4")]
+process_mode = 4
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.54698, -2.46114, -11.8126)
+script = null
+
+[node name="SCN_Enemy3" parent="." instance=ExtResource("8_yllv4")]
+process_mode = 4
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.967144, -2.19165, -11.8126)
+script = null
+
+[node name="MM_Anim" parent="." node_paths=PackedStringArray("AnimPlayer") instance=ExtResource("9_yllv4")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.551, -0.286667, -9.5)
+script = ExtResource("10_p210v")
+AnimPlayer = NodePath("AnimationPlayer")
+StartAnim = "MM_ANIM"
+
+[node name="Skeleton3D" parent="MM_Anim/Armature" index="0"]
+bones/1/rotation = Quaternion(0, 0, 0.999861, 0.0166617)
+bones/4/position = Vector3(1.44286, 0.942859, 0.0257855)
+bones/9/rotation = Quaternion(0.00705199, -0.00265601, -0.352452, 0.935799)
+bones/10/position = Vector3(0.909402, 0.0165339, 1.44387)
+bones/10/rotation = Quaternion(-0.503931, -0.496038, -0.496037, 0.503931)
+
+[node name="AnimationPlayer" parent="MM_Anim" index="1"]
+autoplay = "MM_ANIM"
+
 [connection signal="pressed" from="Control/Button" to="MainMenuManager" method="Play_Pressed"]
 [connection signal="pressed" from="First Time Launch/BetterTextureButton" to="MainMenuManager" method="DecideStartingPerspective" binds= [1]]
 [connection signal="pressed" from="First Time Launch/BetterTextureButton2" to="MainMenuManager" method="DecideStartingPerspective" binds= [0]]
+
+[editable path="Stage"]
+[editable path="MM_Anim"]

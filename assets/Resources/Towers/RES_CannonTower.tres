@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://d1mwqxyusqdo4"
 [sub_resource type="Resource" id="Resource_wsvwy"]
 script = ExtResource("4_o0dei")
 Name = "Launch Force"
-Amount = Array[float]([10.0, 25.0, 50.0])
+Amount = Array[float]([1.0, 2.0, 4.0])
 Level = 0
 Cost = Array[int]([200, 400, 1000])
 metadata/_custom_type_script = "uid://btxknbasomvh3"

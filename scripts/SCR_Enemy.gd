@@ -20,6 +20,8 @@ var StatusLifetime = 1.0
 
 @export var SpawnSFX:Array[AudioStream]
 
+@export var DeathReward:int = 1
+
 func _ready() -> void:
 	CurrentTravelSpeed = TravelSpeed
 	if !SpawnSFX.is_empty():
@@ -48,7 +50,7 @@ func _process(delta: float) -> void:
 
 func Death(_AddGold:bool = true, AtEnd:bool = false):
 	if _AddGold:
-		GameplayController.instance.AddGold(1)
+		GameplayController.instance.AddGold(randi_range(DeathReward,DeathReward+5))
 	if !AtEnd:
 		GameplayController.instance.STATS_Kills += 1
 	else:

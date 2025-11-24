@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://comrba122j0wy"]
+[gd_scene load_steps=80 format=4 uid="uid://comrba122j0wy"]
 
 [ext_resource type="Resource" uid="uid://d0ley3n4jn2ba" path="res://assets/Resources/Maps/MAP_Forest.tres" id="2_mahky"]
 [ext_resource type="Script" uid="uid://cwq3mcch85ig4" path="res://scripts/Resources/SCR_MapResource.gd" id="2_w0fjt"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dc3t65my183v3" path="res://assets/Models/Characters/KingAlden/King HIRES.glb" id="12_sawya"]
 [ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="12_xflyc"]
 [ext_resource type="Animation" uid="uid://biva2fkmyg1ux" path="res://assets/Animations/FinalFight/King/KING_DEF1.res" id="13_5jvbh"]
-[ext_resource type="PackedScene" uid="uid://driu3bx8heggq" path="res://DONT_EXPORT/Models/MapBoards/MapBoard1.glb" id="13_g4qo0"]
+[ext_resource type="PackedScene" uid="uid://driu3bx8heggq" path="res://assets/Models/Props/MapBoards/MapBoard1.glb" id="13_g4qo0"]
 [ext_resource type="Animation" uid="uid://bu5xhabcupp5c" path="res://assets/Animations/FinalFight/DarkLord/DL_ATT2.res" id="13_lptwh"]
 [ext_resource type="Resource" uid="uid://d0iiacyq4j0io" path="res://assets/Resources/Towers/RES_ArcherTower.tres" id="13_vigue"]
 [ext_resource type="Animation" uid="uid://drebuhti612sy" path="res://assets/Animations/FinalFight/King/KING_DEF2.res" id="14_6p46k"]
@@ -200,19 +200,6 @@ fill_to = Vector2(0, 0)
 [sub_resource type="SphereShape3D" id="SphereShape3D_dfawl"]
 radius = 1.0
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ugd7"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_owunt"]
-noise = SubResource("FastNoiseLite_2ugd7")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1efm"]
-albedo_color = Color(0.25, 0.222168, 0.15625, 1)
-albedo_texture = SubResource("NoiseTexture2D_owunt")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ugd7"]
-albedo_color = Color(0.792969, 0.741472, 0.619507, 1)
-albedo_texture = SubResource("NoiseTexture2D_owunt")
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t8sp8"]
 _data = {
 &"swap": ExtResource("44_ugayw")
@@ -238,14 +225,14 @@ MapHolder = NodePath("../Map/MapHolder/MAP")
 TowerHolder = NodePath("../Map/MapHolder/TowerHolder")
 ENEMY_COLLISION_LAYER = 32
 SpawnTickrate = 1.0
-Gold = 800
+Gold = 500
 GAMEPLAYCOLLISIONMASK = 8
 PLACEMENTCOLLISIONMASK = 6
 MAPS = Array[ExtResource("2_w0fjt")]([ExtResource("2_mahky"), ExtResource("4_3ouqv"), ExtResource("5_3ouqv")])
 CurrentMap = ExtResource("2_mahky")
 RoundControls = NodePath("../Control/RoundControlOptions")
 DMAnimPlayer = NodePath("../DungeonMaster/DM_AnimPlayer")
-TableAnimPlayer = NodePath("../MapBoard1/AnimationPlayer")
+TableAnimPlayer = NodePath("../MapBoard1/BoardAnimPlayer")
 VictoryScreen = NodePath("../Control/VictoryScreen")
 VictoryStatsText = NodePath("../Control/VictoryScreen/RichTextLabel")
 FailScreen = NodePath("../Control/DeathScreen")
@@ -259,6 +246,9 @@ transform = Transform3D(500, 0, 0, 0, -2.18557e-05, 500, 0, -500, -2.18557e-05, 
 material_override = SubResource("StandardMaterial3D_0aqm6")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_eoap7")
+
+[node name="MapBoard1_Board Rig_Skeleton3D#BoneAttachment3D" type="BoneAttachment3D" parent="."]
+bone_name = "MapBoard"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -338,7 +328,7 @@ libraries = {
 }
 
 [node name="MapHolder" type="Node3D" parent="Map"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.999999, 0, 1.50995e-07, 0, 0.999995, 0, -1.50996e-07, 0, -0.999995, 0, 0, 0)
 
 [node name="MAP" type="Node3D" parent="Map/MapHolder"]
 
@@ -1857,21 +1847,18 @@ debug_color = Color(0.272703, 0.632412, 1.92523e-07, 0.42)
 [node name="MapBoard1" parent="." instance=ExtResource("13_g4qo0")]
 transform = Transform3D(-5.6, 0, 8.45576e-07, 0, 5.6, 0, -8.45576e-07, 0, -5.6, 0, 0, 0)
 
-[node name="Cube" parent="MapBoard1/Board Rig/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_d1efm")
-
-[node name="Cube_001" parent="MapBoard1/Board Rig/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_2ugd7")
-
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="MapBoard1/Board Rig/Skeleton3D" index="2"]
 bone_name = "MapBoard"
 bone_idx = 1
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="MapBoard1/Board Rig/Skeleton3D/BoneAttachment3D"]
-remote_path = NodePath("../../../../../Map/MapHolder")
+[node name="Rotation" type="Node3D" parent="MapBoard1/Board Rig/Skeleton3D/BoneAttachment3D"]
+
+[node name="MapBoard1_Board Rig_Skeleton3D_BoneAttachment3D#RemoteTransform3D" type="RemoteTransform3D" parent="MapBoard1/Board Rig/Skeleton3D/BoneAttachment3D/Rotation"]
+transform = Transform3D(0.178571, 0, 1.13523e-08, 0, 0.178571, 0, -1.13523e-08, 0, 0.178571, 0, 0, 0)
+remote_path = NodePath("../../../../../../Map/MapHolder")
 update_scale = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MapBoard1"]
+[node name="BoardAnimPlayer" type="AnimationPlayer" parent="MapBoard1"]
 libraries = {
 &"": SubResource("AnimationLibrary_t8sp8")
 }

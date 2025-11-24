@@ -56,6 +56,7 @@ TravelSpeed = 0.02
 MeshParent = NodePath("Node3D")
 HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
+DeathReward = 70
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99809, 0)
@@ -82,8 +83,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3hdu3")
 
 [node name="HEALTH" type="Node" parent="."]
 script = ExtResource("2_5qlp6")
-Health = 6
-HealthCap = 6
+Health = 10
+HealthCap = 10
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598628, 0)

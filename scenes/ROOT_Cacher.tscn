@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxb1k5u8c7njx"]
+[gd_scene load_steps=25 format=3 uid="uid://dxb1k5u8c7njx"]
 
 [ext_resource type="Script" uid="uid://bwfsx06jy5cvm" path="res://scripts/SCR_Cacher.gd" id="1_ty55g"]
 [ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="2_g0d4c"]
@@ -9,12 +9,17 @@
 [ext_resource type="Script" uid="uid://fq6mxluv332n" path="res://scripts/SCR_LoadingScreenOverlay.gd" id="5_450oy"]
 [ext_resource type="Material" uid="uid://cqi6ijfcxnnj5" path="res://assets/Materials/Maps/MAT_Map1Texture.tres" id="7_w8qp6"]
 [ext_resource type="Texture2D" uid="uid://dnkw6yhvv1ri4" path="res://assets/Textures/Scary.png" id="8_bo72a"]
+[ext_resource type="Material" uid="uid://bf657f8rwfihx" path="res://assets/Materials/MAT_MapBoardBase.tres" id="8_lgaor"]
 [ext_resource type="Material" uid="uid://dn42nyq5qooiy" path="res://assets/Materials/Maps/MAT_Map3Texture.tres" id="8_psilh"]
 [ext_resource type="Material" uid="uid://ohrux0cdbfhc" path="res://assets/Materials/MAT_Paper.tres" id="9_10v2u"]
+[ext_resource type="Material" uid="uid://ddrfeodj3saqk" path="res://assets/Materials/MAT_MapBoardLayer.tres" id="9_rp0sn"]
 [ext_resource type="Material" uid="uid://bpnrt2qyya566" path="res://assets/Materials/MAT_CocktailStick.tres" id="10_1jy7l"]
 [ext_resource type="Material" uid="uid://d3qbjudtweb1m" path="res://assets/Materials/MAT_Pushpin.tres" id="11_1jy7l"]
+[ext_resource type="Material" uid="uid://bxyfnhklnq0i8" path="res://assets/Materials/SeethroughCardboard.tres" id="12_jlxtr"]
 [ext_resource type="Material" uid="uid://b44r6ogaskyrq" path="res://assets/Materials/CannonProjectile.tres" id="12_lvm1l"]
 [ext_resource type="Material" uid="uid://uolm4ly51ky0" path="res://assets/Materials/MAT_ArrowProjectile.tres" id="13_3dkme"]
+[ext_resource type="Material" uid="uid://dme7dyuevb755" path="res://assets/Materials/Maps/MAT_Map2Texture.tres" id="14_ty8sc"]
+[ext_resource type="Material" uid="uid://uqpowxa2ebfy" path="res://assets/Materials/Characters/MAT_DM.tres" id="17_ntj2o"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g0d4c"]
 resource_local_to_scene = true
@@ -35,7 +40,7 @@ script = SubResource("GDScript_450oy")
 
 [node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("PreviewMesh", "LoadingScreen")]
 script = ExtResource("1_ty55g")
-Materials = Array[Material]([ExtResource("2_wbno5"), ExtResource("2_wcjcp"), ExtResource("2_g0d4c"), ExtResource("3_450oy"), ExtResource("4_wcjcp"), ExtResource("7_w8qp6"), ExtResource("8_psilh"), ExtResource("9_10v2u"), ExtResource("10_1jy7l"), ExtResource("11_1jy7l"), ExtResource("12_lvm1l"), ExtResource("13_3dkme")])
+Materials = Array[Material]([ExtResource("12_lvm1l"), ExtResource("13_3dkme"), ExtResource("2_g0d4c"), ExtResource("3_450oy"), ExtResource("10_1jy7l"), ExtResource("4_wcjcp"), ExtResource("8_lgaor"), ExtResource("9_rp0sn"), ExtResource("9_10v2u"), ExtResource("11_1jy7l"), ExtResource("12_jlxtr"), ExtResource("7_w8qp6"), ExtResource("14_ty8sc"), ExtResource("8_psilh"), ExtResource("2_wbno5"), ExtResource("17_ntj2o"), ExtResource("2_wcjcp")])
 PreviewMesh = NodePath("MeshInstance3D")
 LoadingScreen = NodePath("../Control")
 
