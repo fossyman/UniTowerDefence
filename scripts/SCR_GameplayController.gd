@@ -115,8 +115,11 @@ func _process(delta: float) -> void:
 				if result:
 					match (result["collider"].collision_layer):
 						8: # UpgradeAreaCollision
+							if SelectedTower:
+								SelectedTower.HideRangeDecal()
 							SelectedTower = (result["collider"].get_parent() as TowerScene)
 							UpgradeScreen.populateSettings(SelectedTower)
+							SelectedTower.ShowRangeDecal()
 							AUDIOMANAGER.PlaySFX(AUDIOMANAGER.SLIDE_SFX)
 							pass
 		MOUSESTATES.PLACING:

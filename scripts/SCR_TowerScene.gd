@@ -22,6 +22,8 @@ var TowerModifiers:Array[TowerModifier]
 
 @export var Stats:Array[Stat]
 
+@export var RangeDecal:Decal
+
 
 func _process(delta: float) -> void:
 	TickAmt += delta * GameplayController.instance.SpeedModifier
@@ -82,7 +84,13 @@ func Get_ClosestEnemy(UseRadius:bool = false) -> Node3D:
 func refreshStats():
 	Tickrate = GetCurrentAttackSpeed()
 	_damage = GetCurrentAttackDamage()
+
+func ShowRangeDecal():
+	RangeDecal.show()
+	RangeDecal.scale = Vector3.ONE * GetCurrentAttackRange()
 	
+func HideRangeDecal():
+	RangeDecal.hide()
 
 
 func GetCurrentAttackDamage() -> int:

@@ -17,8 +17,8 @@ func Pressed():
 		UpgradeStat.UpgradeLevel()
 		GameplayController.instance.SelectedTower.refreshStats()
 		SetValues()
-		pass
 		AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
+		GameplayController.instance.SelectedTower.ShowRangeDecal()
 	else:
 		print(str(UpgradeStat.Cost[UpgradeStat.Level]) + " needed. You have: " + str(GameplayController.instance.Gold))
 	pass

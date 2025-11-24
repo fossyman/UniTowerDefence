@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://tdsxlydol4qx"]
+[gd_scene load_steps=5 format=3 uid="uid://tdsxlydol4qx"]
 
 [ext_resource type="Script" uid="uid://d0o2gje0lnfdg" path="res://scripts/SCR_TowerScene.gd" id="1_andnk"]
 [ext_resource type="PackedScene" uid="uid://3s2k4702n0sd" path="res://assets/Models/Towers/CannonTower.glb" id="2_andnk"]
+[ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="3_lt215"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
 radius = 0.422864
 height = 1.40848
 
-[node name="ScnCannonTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint", "LookAtNode")]
+[node name="ScnCannonTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint", "LookAtNode", "RangeDecal")]
 script = ExtResource("1_andnk")
 ProjectileSpawnPoint = NodePath("ProjectileSpawn")
 LookAtTarget = true
 LookAtNode = NodePath("CannonTower")
+RangeDecal = NodePath("RangeDecal")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
@@ -26,5 +28,10 @@ debug_color = Color(0.976219, 0, 0.4171, 0.596078)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317971, 0)
 
 [node name="CannonTower" parent="." instance=ExtResource("2_andnk")]
+
+[node name="RangeDecal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00158691, 0)
+size = Vector3(2, 0.048584, 2)
+texture_albedo = ExtResource("3_lt215")
 
 [editable path="CannonTower"]

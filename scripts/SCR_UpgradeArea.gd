@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 	pass
 
 func populateSettings(_scene:TowerScene):
+	
 	TowerName.text = _scene.TowerResource.Name
 	TowerIcon.texture = _scene.TowerResource.Icon
 	for i in UpgradeButtonContainer.get_child_count():
@@ -42,7 +43,7 @@ func populateSettings(_scene:TowerScene):
 	ToggleMenu(true)
 	pass
 
-func ToggleMenu(_value:bool = false):
+func ToggleMenu(_value:bool = false,Speed:float = 1.0):
 	if _value == IsOpen:
 		return
 	if OpenTween:
@@ -50,10 +51,11 @@ func ToggleMenu(_value:bool = false):
 	OpenTween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	IsOpen = _value
 	if IsOpen:
-		OpenTween.tween_property(self,"position:x",0,1.0)
+		OpenTween.tween_property(self,"position:x",0,Speed)
 	else:
-		OpenTween.tween_property(self,"position:x",ClosedPosition.x,1.0)
+		OpenTween.tween_property(self,"position:x",ClosedPosition.x,Speed)
 	pass
 
 func CloseMenu():
 	ToggleMenu(false)
+	GameplayController.instance.SelectedTower.HideRangeDecal()
