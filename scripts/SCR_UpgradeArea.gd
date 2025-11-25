@@ -1,7 +1,7 @@
 extends Control
 class_name UpgradeAreaManager
 
-@export var ClosedPosition:Vector3
+@export var ClosedPosition:Vector2
 
 var IsOpen:bool = false
 var OpenTween:Tween
@@ -13,6 +13,7 @@ var OpenTween:Tween
 @export var ButtonPrefab:PackedScene
 
 var SelectedTower:Tower
+var SelectedTowerScene:TowerScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,7 +25,9 @@ func _process(delta: float) -> void:
 	pass
 
 func populateSettings(_scene:TowerScene):
-	
+	SelectedTower = _scene.TowerResource
+	SelectedTowerScene = _scene
+	SelectedTowerScene.ShowRangeDecal()
 	TowerName.text = _scene.TowerResource.Name
 	TowerIcon.texture = _scene.TowerResource.Icon
 	for i in UpgradeButtonContainer.get_child_count():
@@ -54,8 +57,18 @@ func ToggleMenu(_value:bool = false,Speed:float = 1.0):
 		OpenTween.tween_property(self,"position:x",0,Speed)
 	else:
 		OpenTween.tween_property(self,"position:x",ClosedPosition.x,Speed)
+	AUDIOMANAGER.PlaySFX(AUDIOMANAGER.SLIDE_SFX)
 	pass
 
-func CloseMenu():
-	ToggleMenu(false)
-	GameplayController.instance.SelectedTower.HideRangeDecal()
+func CloseMenu(_time:float = 1.0):
+	ToggleMenu(false,_time)
+	SelectedTowerScene.HideRangeDecal()
+
+func SellSelectedTower() -> void:
+	CloseMenu(0.5)
+	GameplayController.instance.AddGold(SelectedTower.Price)
+	AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
+	SelectedTowerScene.queue_free()
+	SelectedTowerScene = null
+	SelectedTower = null
+	pass # Replace with function body.

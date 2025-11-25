@@ -20,8 +20,8 @@ mesh = SubResource("SphereMesh_8qmvb")
 surface_material_override/0 = ExtResource("2_2ly2g")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 16
-collision_mask = 32
+collision_layer = 32
+collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_htbna")

@@ -15,10 +15,10 @@ func Pressed():
 	if GameplayController.instance.Gold >= UpgradeStat.Cost[UpgradeStat.Level]:
 		GameplayController.instance.SubtractGold(UpgradeStat.Cost[UpgradeStat.Level])
 		UpgradeStat.UpgradeLevel()
-		GameplayController.instance.SelectedTower.refreshStats()
+		GameplayController.instance.UpgradeScreen.SelectedTowerScene.refreshStats()
 		SetValues()
 		AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
-		GameplayController.instance.SelectedTower.ShowRangeDecal()
+		GameplayController.instance.UpgradeScreen.SelectedTowerScene.ShowRangeDecal()
 	else:
 		print(str(UpgradeStat.Cost[UpgradeStat.Level]) + " needed. You have: " + str(GameplayController.instance.Gold))
 	pass

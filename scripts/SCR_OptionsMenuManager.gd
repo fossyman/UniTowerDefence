@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name OptionsMenuManager
 
 @export var MasterVolumeSlider:HSlider
 @export var MusicVolumeSlider:HSlider
@@ -10,6 +11,13 @@ extends CanvasLayer
 
 @export var TopdownPosition:Vector3 = Vector3(0.0,10.0,0.0)
 @export var TopdownRotation:Vector3 = Vector3(-90,0.0,0.0)
+
+static var instance:OptionsMenuManager
+
+
+func _enter_tree() -> void:
+	instance = self
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PerspectiveDropdown.connect("item_selected",ChangePerspective)

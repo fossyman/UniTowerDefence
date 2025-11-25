@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://doqw6o0360pim" path="res://scenes/Maps/SCN_Map1.tscn" id="4_mahky"]
 [ext_resource type="Resource" uid="uid://ynliovj8lt5u" path="res://assets/Resources/Towers/RES_MageTower.tres" id="4_nsrc6"]
 [ext_resource type="Script" uid="uid://smrgjuau0c1f" path="res://scripts/SCR_GameplayController.gd" id="4_ub8nv"]
-[ext_resource type="Texture2D" uid="uid://cla68yfqx2qmd" path="res://assets/Skybox/HDRI.png" id="5_0aqm6"]
 [ext_resource type="Resource" uid="uid://bifh1ow5xn0wl" path="res://assets/Resources/Maps/MAP_Castle.tres" id="5_3ouqv"]
 [ext_resource type="Texture2D" uid="uid://ccusln60llum1" path="res://assets/Sprites/UI/SPR_Coins.png" id="6_5erwy"]
+[ext_resource type="Texture2D" uid="uid://bcvf2yfdxwd7o" path="res://assets/Skybox/HDRI2.png" id="6_fs4jq"]
 [ext_resource type="Script" uid="uid://i2kdvk6gpc0p" path="res://scripts/SCR_UpgradeArea.gd" id="7_5erwy"]
 [ext_resource type="Texture2D" uid="uid://c2cs4xe62y5qy" path="res://icon.svg" id="7_dfawl"]
 [ext_resource type="Script" uid="uid://c6u8rwxmbywg0" path="res://scripts/SCR_TowerPurchaseMenu.gd" id="8_pqfbv"]
@@ -78,7 +78,8 @@ adjustment_saturation = 1.48
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_2ugd7"]
 dof_blur_far_enabled = true
-dof_blur_far_distance = 10.16
+dof_blur_far_distance = 0.01
+dof_blur_far_transition = 422.48
 dof_blur_near_enabled = true
 dof_blur_near_distance = 6.79
 dof_blur_near_transition = 10.0
@@ -86,7 +87,8 @@ dof_blur_near_transition = 10.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0aqm6"]
 cull_mode = 1
 shading_mode = 0
-albedo_texture = ExtResource("5_0aqm6")
+albedo_texture = ExtResource("6_fs4jq")
+uv1_scale = Vector3(-1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_eoap7"]
 
@@ -213,10 +215,12 @@ _data = {
 
 [node name="ROOT_GAMEPLAY" type="Node"]
 
-[node name="GAME CONTROLLER" type="Node" parent="." node_paths=PackedStringArray("MainCamera", "PlacementDecal", "GoldText", "UpgradeScreen", "TowerPurchaseScreen", "MapPath", "MapHolder", "TowerHolder", "RoundControls", "DMAnimPlayer", "TableAnimPlayer", "VictoryScreen", "VictoryStatsText", "FailScreen")]
+[node name="GAME CONTROLLER" type="Node" parent="." node_paths=PackedStringArray("MainCamera", "PlacementArea", "PlacementDecal", "PlacementRangeDecal", "GoldText", "UpgradeScreen", "TowerPurchaseScreen", "MapPath", "MapHolder", "TowerHolder", "HealthLabel", "RoundLabel", "RoundControls", "DMAnimPlayer", "TableAnimPlayer", "VictoryScreen", "VictoryStatsText", "FailScreen")]
 script = ExtResource("4_ub8nv")
 MainCamera = NodePath("../Map/CinematicNode/CamHolder/Camera3D")
-PlacementDecal = NodePath("../Area3D")
+PlacementArea = NodePath("../Map/MapHolder/MAP/MeshInstance3D2/PlacingArea")
+PlacementDecal = NodePath("../Area3D/PlacementDecal")
+PlacementRangeDecal = NodePath("../Area3D/RangeDecal")
 GoldText = NodePath("../Control/TowerPurchaseArea/GoldAmount")
 UpgradeScreen = NodePath("../Control/UpgradeMenu")
 TowerPurchaseScreen = NodePath("../Control/TowerPurchaseArea")
@@ -226,10 +230,12 @@ TowerHolder = NodePath("../Map/MapHolder/TowerHolder")
 ENEMY_COLLISION_LAYER = 32
 SpawnTickrate = 1.0
 Gold = 1000
+HealthLabel = NodePath("../Control/TowerPurchaseArea/HPLabel")
 GAMEPLAYCOLLISIONMASK = 8
 PLACEMENTCOLLISIONMASK = 6
 MAPS = Array[ExtResource("2_w0fjt")]([ExtResource("2_mahky"), ExtResource("4_3ouqv"), ExtResource("5_3ouqv")])
 CurrentMap = ExtResource("2_mahky")
+RoundLabel = NodePath("../Control/TowerPurchaseArea/RoundLabel")
 RoundControls = NodePath("../Control/RoundControlOptions")
 DMAnimPlayer = NodePath("../DungeonMaster/DM_AnimPlayer")
 TableAnimPlayer = NodePath("../MapBoard1/BoardAnimPlayer")
@@ -241,8 +247,8 @@ FailScreen = NodePath("../Control/DeathScreen")
 environment = SubResource("Environment_ipg8x")
 camera_attributes = SubResource("CameraAttributesPractical_2ugd7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(500, 0, 0, 0, -2.18557e-05, 500, 0, -500, -2.18557e-05, 0, 0, 0)
+[node name="SKYBOX" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(461.94, -191.342, -8.36381e-06, 0, -2.18557e-05, 500, -191.342, -461.94, -2.0192e-05, 0, 20, 0)
 material_override = SubResource("StandardMaterial3D_0aqm6")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_eoap7")
@@ -349,7 +355,7 @@ anchors_preset = 0
 offset_left = -336.0
 offset_bottom = 720.0
 script = ExtResource("7_5erwy")
-ClosedPosition = Vector3(-336, 0, 0)
+ClosedPosition = Vector2(-336, 0)
 TowerName = NodePath("TowerTitle")
 TowerIcon = NodePath("TowerIcon")
 UpgradeButtonContainer = NodePath("AspectRatioContainer/GridContainer")
@@ -427,12 +433,28 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -199.0
+offset_left = -151.0
 offset_top = -115.0
 offset_right = -73.0
+offset_bottom = -44.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "X"
+
+[node name="Sell TowerButton" type="Button" parent="Control/UpgradeMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -309.0
+offset_top = -115.0
+offset_right = -161.0
+offset_bottom = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Sell tower"
 
 [node name="PauseButton" type="Button" parent="Control/UpgradeMenu"]
 layout_mode = 1
@@ -847,7 +869,7 @@ text = "99,999"
 scroll_active = false
 vertical_alignment = 1
 
-[node name="GoldAmount2" type="RichTextLabel" parent="Control/TowerPurchaseArea"]
+[node name="RoundLabel" type="RichTextLabel" parent="Control/TowerPurchaseArea"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
@@ -868,9 +890,9 @@ vertical_alignment = 1
 [node name="FirePwrUp" type="TextureButton" parent="Control/TowerPurchaseArea" node_paths=PackedStringArray("PriceText")]
 layout_mode = 0
 offset_left = -116.0
-offset_top = 162.0
+offset_top = 334.0
 offset_right = -1.0
-offset_bottom = 277.0
+offset_bottom = 449.0
 tooltip_text = "Lights the first enemy on fire"
 texture_normal = ExtResource("30_t8sp8")
 ignore_texture_size = true
@@ -903,9 +925,9 @@ scroll_active = false
 [node name="IcePwrUp" type="TextureButton" parent="Control/TowerPurchaseArea" node_paths=PackedStringArray("PriceText")]
 layout_mode = 0
 offset_left = -116.0
-offset_top = 302.84
+offset_top = 466.0
 offset_right = -1.0
-offset_bottom = 417.84
+offset_bottom = 581.0
 tooltip_text = "Freezes every enemy for a short time"
 texture_normal = ExtResource("33_n3ad2")
 ignore_texture_size = true
@@ -935,6 +957,26 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[img=50%]res://assets/Sprites/UI/SPR_Coins.png[/img]999"
 scroll_active = false
+
+[node name="HPLabel" type="RichTextLabel" parent="Control/TowerPurchaseArea"]
+texture_filter = 1
+clip_contents = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -673.0
+offset_top = 162.0
+offset_right = -455.0
+offset_bottom = 219.0
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "100 HP"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="RoundControlOptions" type="Control" parent="Control" node_paths=PackedStringArray("StartRoundButton", "RoundControls")]
 layout_mode = 1
@@ -1354,11 +1396,14 @@ vertical_alignment = 1
 [node name="OptionsLayer" type="CanvasLayer" parent="Control/PauseMenu" node_paths=PackedStringArray("MasterVolumeSlider", "MusicVolumeSlider", "SFXVolumeSlider", "PerspectiveDropdown")]
 visible = false
 script = ExtResource("44_ji5ju")
+PerspectivePosition = Vector3(0, 5.29739, 7.08203)
+PerspectiveRotation = null
+TopdownPosition = null
+TopdownRotation = null
 MasterVolumeSlider = NodePath("NinePatchRect/Control/MasterSlider")
 MusicVolumeSlider = NodePath("NinePatchRect/Control/MusicSlider")
 SFXVolumeSlider = NodePath("NinePatchRect/Control/SFXSlider")
 PerspectiveDropdown = NodePath("NinePatchRect/OptionButton")
-PerspectivePosition = Vector3(0, 5.29739, 7.08203)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control/PauseMenu/OptionsLayer"]
 anchors_preset = 8
@@ -1876,6 +1921,7 @@ libraries = {
 autoplay = "DM_Idle"
 
 [connection signal="pressed" from="Control/UpgradeMenu/CloseButton" to="Control/UpgradeMenu" method="CloseMenu"]
+[connection signal="pressed" from="Control/UpgradeMenu/Sell TowerButton" to="Control/UpgradeMenu" method="SellSelectedTower"]
 [connection signal="pressed" from="Control/UpgradeMenu/PauseButton" to="Control/PauseMenu" method="TogglePauseMenu"]
 [connection signal="pressed" from="Control/TowerPurchaseArea/Button" to="Control/TowerPurchaseArea" method="ToggleMenu"]
 [connection signal="pressed" from="Control/RoundControlOptions/StartRoundButton/StartRoundButton" to="Control/RoundControlOptions" method="BeginRoundButtonPressed"]

@@ -43,7 +43,7 @@ MeshParent = NodePath("Node3D")
 HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
 SpawnSFX = Array[AudioStream]([ExtResource("2_8u0im"), ExtResource("3_n44db"), ExtResource("4_uytil"), ExtResource("5_o6nwn"), ExtResource("6_xt4u6")])
-DeathReward = 200
+DeathReward = 10
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305368, 0)

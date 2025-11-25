@@ -5,7 +5,10 @@ static var instance:GameplayController
 
 @export var MainCamera:Camera3D
 
-@export var PlacementDecal:Area3D
+@export var PlacementArea:Area3D
+@export var PlacementDecal:Decal
+@export var PlacementRangeDecal:Decal
+@export var PlacementCollisionChecker:CollisionShape3D
 
 @export var GoldText:RichTextLabel
 
@@ -31,14 +34,13 @@ var PlacingTower:Tower
 
 var ValidPlacement:bool = false
 
-var SelectedTower:TowerScene
-
 @export var SpawnTickrate:float
 var CurrentSpawnTickrate:float
 
 @export var Gold:int = 0
 
 @export var Health:int = 100
+@export var HealthLabel:RichTextLabel
 
 @export_flags_3d_physics var GAMEPLAYCOLLISIONMASK:int
 @export_flags_3d_physics var PLACEMENTCOLLISIONMASK:int
@@ -57,6 +59,7 @@ var SpeedModifier:float = 1.0
 
 enum ROUNDSTATES{PREROUND,ONGOING,END}
 @export var Roundstate:ROUNDSTATES = ROUNDSTATES.PREROUND
+@export var RoundLabel:RichTextLabel
 
 @export var CinematicNode:Node3D
 @export var CinematicCameraNode:Node3D
@@ -85,6 +88,7 @@ func _ready() -> void:
 	#await get_tree().create_timer(3.0).timeout
 	#ToggleCinematicMode(true)
 	GoldText.text = str("%.2f" % Gold)
+	RoundLabel.text = "Round 1" + "/" + str(CurrentMap.WaveResources.size())
 	pass # Replace with function body.
 
 
@@ -99,6 +103,8 @@ func _process(delta: float) -> void:
 	if CinematicMode:
 		CinematicNode.rotate_y(CinematicSpeed)
 	
+	if Input.is_action_just_pressed("SwitchPerspective"):
+		SwitchPerspective()
 	
 	if Roundstate == ROUNDSTATES.ONGOING && !WaveFinished:
 		CurrentSpawnTickrate += delta * SpeedModifier
@@ -112,27 +118,37 @@ func _process(delta: float) -> void:
 		MOUSESTATES.PLAYING:
 			if Input.is_action_just_pressed("click"):
 				var result = RaycastToFloor()
+				print("RAYCASTING")
 				if result:
 					match (result["collider"].collision_layer):
 						8: # UpgradeAreaCollision
-							if SelectedTower:
-								SelectedTower.HideRangeDecal()
-							SelectedTower = (result["collider"].get_parent() as TowerScene)
-							UpgradeScreen.populateSettings(SelectedTower)
-							SelectedTower.ShowRangeDecal()
-							AUDIOMANAGER.PlaySFX(AUDIOMANAGER.SLIDE_SFX)
-							pass
+							print("UPGRADER HIT")
+							var SelectedTower = (result["collider"].get_parent() as TowerScene)
+							if !UpgradeScreen.SelectedTower:
+								if UpgradeScreen.SelectedTower:
+									UpgradeScreen.CloseMenu(0.1)
+									if UpgradeScreen.OpenTween:
+										await UpgradeScreen.OpenTween.finished
+								print(UpgradeScreen.OpenTween)
+								UpgradeScreen.populateSettings(SelectedTower)
+							else:
+								UpgradeScreen.CloseMenu(0.5)
+								UpgradeScreen.SelectedTower = null
 		MOUSESTATES.PLACING:
 			var result = RaycastToFloor()
 			if result && result["normal"] == Vector3.UP:
-				PlacementDecal.global_position = result["position"]
+				PlacementArea.global_position = result["position"]
 				ValidPlacement = true
 			else:
 				ValidPlacement = false
-			if PlacementDecal.has_overlapping_areas():
+			if PlacementArea.has_overlapping_areas():
 				ValidPlacement = false 
-			
-			PlacementDecal.visible = ValidPlacement
+				
+			if ValidPlacement:
+				PlacementDecal.modulate = Color.WHITE
+			else:
+				PlacementDecal.modulate = Color.RED
+				
 			if Input.is_action_just_pressed("click"):
 				if ValidPlacement:
 					var TowerScn = PlacingTower.TowerScn.instantiate() as TowerScene
@@ -146,7 +162,7 @@ func _process(delta: float) -> void:
 					TowerHolder.add_child(TowerScn)
 					TowerScn.global_position = result["position"]
 					MouseState = MOUSESTATES.PLAYING
-					PlacementDecal.visible = false
+					PlacementArea.visible = false
 					GameplayController.instance.SubtractGold(PlacingTower.Price)
 					AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
 					CurrentCollisionMask = GAMEPLAYCOLLISIONMASK
@@ -169,6 +185,7 @@ func BeginNewWave():
 	EnemyCount = 0
 	WaveFinished = false
 	Roundstate = ROUNDSTATES.ONGOING
+	RoundLabel.text = "Round " + str(WaveIDX+1) + "/" + str(CurrentMap.WaveResources.size())
 	MUSICMANAGER.PickNewSong()
 
 func SpawnEnemy(_enemy:PackedScene):
@@ -215,8 +232,31 @@ func SetGold(_amount:int):
 	GoldText.text = str("%.2f" % Gold)
 	pass
 
+func AddHealth(_value:int):
+	Health += _value
+	HealthLabel.text = str(Health) + " HP"
+	UpdateHealthVisuals()
+	
 func SubtractHealth(_value:int):
 	Health -= _value
+	HealthLabel.text = str(Health) + " HP"
+	UpdateHealthVisuals()
+	
+func SetHealth(_value:int):
+	Health += _value
+	HealthLabel.text = str(Health) + " HP"
+	UpdateHealthVisuals()
+	
+func UpdateHealthVisuals():
+	if Health > 70:
+		HealthLabel.modulate = Color.WHITE
+	elif Health > 50:
+		HealthLabel.modulate = Color.ORANGE
+		HealthLabel.text = "[shake level=10]" + str(Health) + " HP"
+	elif Health < 30:
+		HealthLabel.modulate = Color.RED
+		HealthLabel.text = "[shake level=20]" + str(Health) + " HP"
+	pass
 
 func CheckIfDead():
 	if Health <= 0:
@@ -252,6 +292,7 @@ func SwapLevel(_NewLevel:RES_Map):
 	MapPath = NewMap.find_child("PATH",true,false)
 	WaveIDX = -1
 	Health = 100
+	RoundLabel.text = "Round 1" + "/" + str(CurrentMap.WaveResources.size())
 	for i in ActiveEnemies.size():
 		ActiveEnemies[i].queue_free()
 	ActiveEnemies.clear()
@@ -264,6 +305,7 @@ func DisplayVictoryScreen():
 func SelectNextLevel():
 	VictoryScreen.hide()
 	MapIDX+=1
+	CheckForGoldSoftlock()
 	SwapLevel(MAPS[MapIDX])
 	
 func DisplayFailScreen():
@@ -273,3 +315,20 @@ func DisplayFailScreen():
 func RestartLevel():
 	FailScreen.hide()
 	SwapLevel(MAPS[MapIDX])
+	
+func CheckForGoldSoftlock():
+	var Towers:Array[TowerScene] = []
+	var RefundMoney:int = 0
+	for i in TowerHolder.get_child_count():
+		Towers.append(TowerHolder.get_child(i))
+	for i in Towers.size():
+		RefundMoney += Towers[i].TowerResource.Price
+	if RefundMoney < 500:
+		AddGold(800)
+	else:
+		SetGold(RefundMoney)
+	pass
+
+func SwitchPerspective():
+	var NextPersp = 1 if GLOBALS.PERSPECTIVE == 0 else 0
+	OptionsMenuManager.instance.ChangePerspective(NextPersp)

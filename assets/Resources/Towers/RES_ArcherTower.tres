@@ -32,8 +32,8 @@ metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_5amgi"]
 script = ExtResource("4_cbfm6")
-Name = "Archer Dexterity"
-Amount = Array[float]([2.0, 4.0, 6.0])
+Name = "Archer Speed"
+Amount = Array[float]([1.0, 0.7, 0.3])
 Level = 0
 Cost = Array[int]([100, 400, 800])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
