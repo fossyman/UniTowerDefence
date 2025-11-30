@@ -22,10 +22,14 @@ var StatusLifetime = 1.0
 
 @export var DeathReward:int = 1
 
+@export var RealworldRep:Node3D
+
 func _ready() -> void:
 	CurrentTravelSpeed = TravelSpeed
+	CheckIfRealWorld()
+	
 	if !SpawnSFX.is_empty():
-		AUDIOMANAGER.PlaySFX(SpawnSFX.pick_random(),0.1,&"RadioSFX")
+		AUDIOMANAGER.PlaySFX(SpawnSFX.pick_random(),0.1,0.0,&"RadioSFX")
 
 func _process(delta: float) -> void:
 	if IsDead:
@@ -43,6 +47,8 @@ func _process(delta: float) -> void:
 		PosCache = global_position
 		progress_ratio += CurrentTravelSpeed * GameplayController.instance.SpeedModifier * delta
 		dir = (PosCache - global_position).normalized()
+		if RealworldRep and dir != Vector3.ZERO:
+			RealworldRep.rotation.y = atan2(dir.x,dir.z)
 	if progress_ratio >= 1.0:
 		Death(false,true)
 		print("END REACHED")
@@ -108,3 +114,13 @@ func ClearStatusEffect():
 	if StatusVisual:
 		StatusVisual.queue_free()
 	pass
+
+func CheckIfRealWorld():
+	if GameplayController.instance.FullFantasy:
+		if RealworldRep:
+			RealworldRep.visible = true
+			MeshParent.visible = false
+	else:
+		if RealworldRep:
+			RealworldRep.visible = false
+		MeshParent.visible = true

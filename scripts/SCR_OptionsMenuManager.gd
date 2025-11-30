@@ -41,15 +41,16 @@ func _process(delta: float) -> void:
 
 func ChangePerspective(_value:int = 0):
 	GLOBALS.PERSPECTIVE = _value
-	match _value:
-		0: # Default
-			GameplayController.instance.MainCamera.global_position = PerspectivePosition
-			GameplayController.instance.MainCamera.global_rotation_degrees = PerspectiveRotation
-			pass
-		1:	#Topdown
-			GameplayController.instance.MainCamera.global_position = TopdownPosition
-			GameplayController.instance.MainCamera.global_rotation_degrees = TopdownRotation
-			pass
+	if GLOBALS.CURRENTROOT ==GLOBALS.ROOT_GAMEPLAY:
+		match _value:
+			0: # Default
+				GameplayController.instance.MainCamera.global_position = PerspectivePosition
+				GameplayController.instance.MainCamera.global_rotation_degrees = PerspectiveRotation
+				pass
+			1:	#Topdown
+				GameplayController.instance.MainCamera.global_position = TopdownPosition
+				GameplayController.instance.MainCamera.global_rotation_degrees = TopdownRotation
+				pass
 	SAVELOADMANAGER.SaveConfig()
 	
 func UpdateAudioSliderValues():
@@ -67,4 +68,9 @@ func SetAudioValue(_val:float,_value:float,_busName:StringName):
 	pass
 
 func SaveConfig(_val:bool):
+	SAVELOADMANAGER.SaveConfig()
 	pass
+
+
+func OptionsPressed() -> void:
+	pass # Replace with function body.

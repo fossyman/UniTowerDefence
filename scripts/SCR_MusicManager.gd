@@ -30,13 +30,16 @@ func _ready() -> void:
 		#SongTitleText.position.x = 0
 	#pass
 
-func PickNewSong():
-	SongIDX +=1
-	SongIDX = wrap(SongIDX,0,SongList.size())
-	print(SongIDX)
-	var Song = SongList[SongIDX]
+func PickNewSong(_SpecificSong:AudioStream = null):
+	var Song
+	if !_SpecificSong:
+		SongIDX +=1
+		SongIDX = wrap(SongIDX,0,SongList.size())
+		print(SongIDX)
+		Song = SongList[SongIDX].SongAsset
+	Song = _SpecificSong
 	
-	MusicPlayer.stream = Song.SongAsset
+	MusicPlayer.stream = Song
 	MusicPlayer.play()
 	#CurrentSongString = Song.SongName + " - " + Song.SongArtist + " - " + Song.SongAlbum + " - " + Song.SongYear + " - "
 	#SongTitleText.text = CurrentSongString + CurrentSongString

@@ -1,10 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://vck1yjpyatn8"]
+[gd_scene load_steps=32 format=3 uid="uid://vck1yjpyatn8"]
 
 [ext_resource type="Script" uid="uid://c71lu8xohmhru" path="res://scripts/SCR_FlyingEnemy.gd" id="1_ybv72"]
 [ext_resource type="Script" uid="uid://dahitxda5ofvw" path="res://scripts/SCR_HealthComponent.gd" id="2_5qlp6"]
 [ext_resource type="Material" uid="uid://bxyfnhklnq0i8" path="res://assets/Materials/SeethroughCardboard.tres" id="2_qyv4h"]
+[ext_resource type="AudioStream" uid="uid://cpgv7861vhxki" path="res://assets/Audio/SFX/EnemySFX/Flying Skull/SND_FlyingSkullSpawnSFX_01.ogg" id="2_rc0vh"]
 [ext_resource type="Script" uid="uid://cjeyk8jbi2soa" path="res://scripts/SCR_HurtboxComponent.gd" id="3_qyv4h"]
+[ext_resource type="AudioStream" uid="uid://cy88yj2ufiv2w" path="res://assets/Audio/SFX/EnemySFX/Flying Skull/SND_FlyingSkullSpawnSFX_02.ogg" id="3_vngxj"]
 [ext_resource type="Texture2D" uid="uid://7tbu76ntslhe" path="res://assets/Sprites/Character art/Flying Head.png" id="3_wgy47"]
+[ext_resource type="AudioStream" uid="uid://dtfyjr8lowxny" path="res://assets/Audio/SFX/EnemySFX/Flying Skull/SND_FlyingSkullSpawnSFX_03.ogg" id="4_pcx51"]
+[ext_resource type="AudioStream" uid="uid://pkcnpt08ifga" path="res://assets/Audio/SFX/EnemySFX/Flying Skull/SND_FlyingSkullSpawnSFX_04.ogg" id="5_y0w5c"]
+[ext_resource type="AudioStream" uid="uid://cg4qosjkt8w8v" path="res://assets/Audio/SFX/EnemySFX/Flying Skull/SND_FlyingSkullSpawnSFX_05.ogg" id="6_qp87b"]
+[ext_resource type="AudioStream" uid="uid://ckxgm7i2bjx7y" path="res://assets/Audio/SFX/EnemySFX/Flying Skull/SND_FlyingSkullSpawnSFX_06.ogg" id="7_i4v11"]
+[ext_resource type="PackedScene" uid="uid://l5b5fo4i7s7f" path="res://assets/Models/Characters/Enemies/Skull/Skull3D.glb" id="12_vngxj"]
+[ext_resource type="Material" uid="uid://bck1wfw8hf8vm" path="res://assets/Materials/Characters/MAT_Skull_EYES.tres" id="13_pcx51"]
 
 [sub_resource type="Gradient" id="Gradient_ybv72"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
@@ -44,7 +52,55 @@ albedo_texture = ExtResource("3_wgy47")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ybv72"]
 height = 3.23247
 
-[node name="SCN_FlyingEnemy" type="PathFollow3D" node_paths=PackedStringArray("Pinpoint", "MeshParent", "HealthComp", "Hurtbox")]
+[sub_resource type="QuadMesh" id="QuadMesh_vngxj"]
+
+[sub_resource type="Curve" id="Curve_pcx51"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.142857, 1), 0.0, 0.0, 0, 0, Vector2(0.726191, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_pcx51"]
+curve = SubResource("Curve_pcx51")
+
+[sub_resource type="Curve" id="Curve_qp87b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.520928), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0w5c"]
+curve = SubResource("Curve_qp87b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pcx51"]
+gravity = Vector3(-0.45, 0.605, 0)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_y0w5c")
+color = Color(0, 1, 0.484375, 1)
+alpha_curve = SubResource("CurveTexture_pcx51")
+
+[sub_resource type="Gradient" id="Gradient_qp87b"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qp87b"]
+gradient = SubResource("Gradient_qp87b")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.508547)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4v11"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_qp87b")
+emission_enabled = true
+emission = Color(0, 1, 0.625, 1)
+emission_energy_multiplier = 0.3
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_iuhgu"]
+material = SubResource("StandardMaterial3D_i4v11")
+
+[node name="SCN_FlyingEnemy" type="PathFollow3D" node_paths=PackedStringArray("Pinpoint", "MeshParent", "HealthComp", "Hurtbox", "RealworldRep")]
 transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
 progress = 23.5245
 rotation_mode = 0
@@ -56,10 +112,13 @@ TravelSpeed = 0.02
 MeshParent = NodePath("Node3D")
 HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
+SpawnSFX = Array[AudioStream]([ExtResource("2_rc0vh"), ExtResource("3_vngxj"), ExtResource("4_pcx51"), ExtResource("5_y0w5c"), ExtResource("6_qp87b"), ExtResource("7_i4v11")])
 DeathReward = 10
+RealworldRep = NodePath("Skull3D")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99809, 0)
+visible = false
 
 [node name="Pinpoint" type="Node3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.42392, 0)
@@ -98,4 +157,45 @@ metadata/_custom_type_script = "uid://cjeyk8jbi2soa"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.473153, 0)
 shape = SubResource("CapsuleShape3D_ybv72")
 
+[node name="Skull3D" parent="." instance=ExtResource("12_vngxj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.55896, 0)
+
+[node name="Skeleton3D" parent="Skull3D/Armature" index="0"]
+bones/0/position = Vector3(0.000171979, 0.03, 0.05599)
+bones/0/rotation = Quaternion(0.0868373, 0.0355412, 0.00194943, 0.995586)
+bones/1/position = Vector3(0.00601806, -0.566449, 0.06105)
+bones/1/rotation = Quaternion(-0.426897, -0.0241515, -0.061515, 0.901882)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Skull3D/Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.997466, 0.00229096, 0.0711073, 0.0100543, 0.984911, -0.17277, -0.0704301, 0.173047, 0.982392, 0.000171979, 0.03, 0.05599)
+bone_name = "Root"
+bone_idx = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Skull3D/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(-0.105, 0, 1.58546e-08, 0, 0.105, 0, -1.58546e-08, 0, -0.105, -0.114483, -0.05469, -0.198594)
+mesh = SubResource("QuadMesh_vngxj")
+surface_material_override/0 = ExtResource("13_pcx51")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Skull3D/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(-0.105, 0, 1.58546e-08, 0, 0.105, 0, -1.58546e-08, 0, -0.105, 0.109302, -0.05469, -0.198594)
+mesh = SubResource("QuadMesh_vngxj")
+surface_material_override/0 = ExtResource("13_pcx51")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Skull3D/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(0.085417, 0.996345, 0, -0.982681, 0.0842455, 0.165048, 0.164444, -0.0140979, 0.986286, 0.1, -0.06, -0.25)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pcx51")
+draw_pass_1 = SubResource("QuadMesh_iuhgu")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Skull3D/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(0.914254, -0.405142, 0, 0.405142, 0.914254, 0, 0, 0, 1, -0.1, -0.06, -0.25)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pcx51")
+draw_pass_1 = SubResource("QuadMesh_iuhgu")
+
+[node name="AnimationPlayer" parent="Skull3D" index="1"]
+autoplay = "Idle"
+
 [connection signal="Death" from="HEALTH" to="." method="Death"]
+
+[editable path="Skull3D"]

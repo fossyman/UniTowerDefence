@@ -17,6 +17,7 @@ func _ready() -> void:
 	pass
 
 func OnPressed():
+	
 	if HoverTween:
 		HoverTween.kill()
 	HoverTween = get_tree().create_tween()
@@ -24,23 +25,23 @@ func OnPressed():
 	pass
 
 func OnReleased():
-	if HoverTween:
-		HoverTween.kill()
-	HoverTween = get_tree().create_tween()
-	HoverTween.tween_property(self,"self_modulate",OriginalColour,HoverTransitionTime)
+	if !toggle_mode:
+		FadeToColor(OriginalColour)
 	pass
 
 func OnHover():
-	print("Hover")
-	if HoverTween:
-		HoverTween.kill()
-	HoverTween = get_tree().create_tween()
-	HoverTween.tween_property(self,"self_modulate",HoverColour,HoverTransitionTime)
+	if !toggle_mode:
+		FadeToColor(HoverColour)
 	pass
 	
 func OnHoverExit():
+	if !toggle_mode:
+		FadeToColor(OriginalColour)
+	pass
+
+func FadeToColor(_to:Color,_time:float = HoverTransitionTime):
 	if HoverTween:
 		HoverTween.kill()
 	HoverTween = get_tree().create_tween()
-	HoverTween.tween_property(self,"self_modulate",OriginalColour,HoverTransitionTime)
+	HoverTween.tween_property(self,"self_modulate",_to,_time)
 	pass

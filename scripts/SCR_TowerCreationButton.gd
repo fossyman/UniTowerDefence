@@ -26,6 +26,7 @@ func Btn_Pressed():
 	GameplayController.instance.PlacementArea.get_child(0).scale = Size
 	print(str(TowerRes.Name) + " OR " + str(GameplayController.instance.PlacingTower.Stats.size()))
 	GameplayController.instance.PlacementRangeDecal.scale = Vector3.ONE * TowerRes.Stats[1].Amount[TowerRes.Stats[1].Level]
-	GameplayController.instance.PlacementArea.get_child(2).shape.radius = TowerRes.PlacementRange
+	GameplayController.instance.PlacementCollisionChecker.shape.radius = TowerRes.PlacementRange
 	GameplayController.instance.TowerPurchaseScreen.ToggleMenu()
+	GameplayController.instance.PlacementArea.visible = true
 	pass

@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bm156u573aqqa"]
+
+[ext_resource type="Texture2D" uid="uid://dpsqto4wmo0rl" path="res://assets/Textures/Map/Bricks/BRUSH_BRICKS_specular (2).png" id="1_cki5g"]
+[ext_resource type="Texture2D" uid="uid://bunym7xdih0ed" path="res://assets/Textures/Map/Bricks/BRUSH_BRICKS.png" id="2_ykik1"]
+[ext_resource type="Texture2D" uid="uid://baqlkvop6s7b5" path="res://assets/Textures/Map/Bricks/BRUSH_BRICKS_specular (3).png" id="3_68mp4"]
+
+[resource]
+albedo_color = Color(0.452362, 0.501704, 0.632813, 1)
+albedo_texture = ExtResource("1_cki5g")
+roughness_texture = ExtResource("3_68mp4")
+roughness_texture_channel = 2
+normal_enabled = true
+normal_texture = ExtResource("2_ykik1")
+ao_texture = ExtResource("3_68mp4")
+ao_texture_channel = 4

@@ -62,7 +62,8 @@ func ToggleMenu(_value:bool = false,Speed:float = 1.0):
 
 func CloseMenu(_time:float = 1.0):
 	ToggleMenu(false,_time)
-	SelectedTowerScene.HideRangeDecal()
+	if SelectedTowerScene:
+		SelectedTowerScene.HideRangeDecal()
 
 func SellSelectedTower() -> void:
 	CloseMenu(0.5)

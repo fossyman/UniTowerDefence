@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpgv7861vhxki"
+path="res://.godot/imported/SND_FlyingSkullSpawnSFX_01.ogg-2b641191e6d84c556ba3bf96c5abc22d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/EnemySFX/Flying Skull/SND_FlyingSkullSpawnSFX_01.ogg"
+dest_files=["res://.godot/imported/SND_FlyingSkullSpawnSFX_01.ogg-2b641191e6d84c556ba3bf96c5abc22d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

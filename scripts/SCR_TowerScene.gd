@@ -16,7 +16,7 @@ var TowerModifiers:Array[TowerModifier]
 
 @export var LookAtTarget:bool = false
 
-@export var LookAtNode:Node3D
+@export var LookAtNodes:Array[Node3D]
 
 @export var TransparencyEnemy:Enemy
 
@@ -24,6 +24,12 @@ var TowerModifiers:Array[TowerModifier]
 
 @export var RangeDecal:Decal
 
+@export var MeshParent:Node3D
+
+@export var RealworldRep:Node3D
+
+func _ready() -> void:
+	CheckIfRealWorld()
 
 func _process(delta: float) -> void:
 	TickAmt += delta * GameplayController.instance.SpeedModifier
@@ -37,7 +43,8 @@ func Tick():
 		if LookAtTarget:
 			var targetlerp = get_tree().create_tween().set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN_OUT)
 			var diff = (Target.global_position - global_position)
-			targetlerp.tween_property(LookAtNode,"rotation:y",atan2(diff.x,diff.z),0.5)
+			for i in LookAtNodes.size():
+				targetlerp.tween_property(LookAtNodes[i],"rotation:y",atan2(diff.x,diff.z),0.5)
 			#LookAtNode.rotation.y = atan2(diff.x,diff.z)
 			await targetlerp.finished
 			
@@ -102,3 +109,15 @@ func GetCurrentAttackRange() -> float:
 func GetCurrentAttackSpeed() -> float:
 	return Stats[2].GetAmount()
 	pass
+
+
+
+func CheckIfRealWorld():
+	if GameplayController.instance.FullFantasy:
+		if RealworldRep:
+			RealworldRep.visible = true
+			MeshParent.visible = false
+	else:
+		if RealworldRep:
+			RealworldRep.visible = false
+		MeshParent.visible = true

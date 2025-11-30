@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://4aidqsbu2wy7"]
+[gd_scene load_steps=18 format=3 uid="uid://4aidqsbu2wy7"]
 
 [ext_resource type="Script" uid="uid://cpdhqs5q7lns1" path="res://scripts/SCR_Enemy.gd" id="1_7u1xr"]
 [ext_resource type="AudioStream" uid="uid://dkck45qa51crx" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-01.ogg" id="2_uhqpp"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://dttyj8h47o150" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-03.ogg" id="4_v4i8c"]
 [ext_resource type="AudioStream" uid="uid://d4c104v3g7p80" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-04.ogg" id="5_7d1xq"]
 [ext_resource type="AudioStream" uid="uid://cqe2gksxwrhtt" path="res://assets/Audio/SFX/EnemySFX/Goblin/SND_GoblinSpawnSFX_-05.ogg" id="6_0n8y1"]
+[ext_resource type="PackedScene" uid="uid://mq7lhbldmevf" path="res://assets/Models/Characters/Enemies/Gobbo/Gobbo3d.glb" id="11_mepdu"]
+[ext_resource type="Material" uid="uid://dyyv286d5rjcd" path="res://assets/Materials/Characters/MAT_Gobbo.tres" id="12_v4i8c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7bvw"]
 albedo_color = Color(1, 0, 0, 1)
@@ -24,7 +26,7 @@ size = Vector3(1, 1, 0.065)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkn23"]
 
-[node name="SCN_Enemy" type="PathFollow3D" node_paths=PackedStringArray("MeshParent", "HealthComp", "Hurtbox")]
+[node name="SCN_Enemy" type="PathFollow3D" node_paths=PackedStringArray("MeshParent", "HealthComp", "Hurtbox", "RealworldRep")]
 transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
 progress = 23.5245
 rotation_mode = 0
@@ -37,6 +39,7 @@ HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
 SpawnSFX = Array[AudioStream]([ExtResource("2_uhqpp"), ExtResource("3_mepdu"), ExtResource("4_v4i8c"), ExtResource("5_7d1xq"), ExtResource("6_0n8y1")])
 DeathReward = 10
+RealworldRep = NodePath("Gobbo3d")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305368, 0)
@@ -76,4 +79,48 @@ metadata/_custom_type_script = "uid://cjeyk8jbi2soa"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.161554, 0)
 shape = SubResource("CapsuleShape3D_vkn23")
 
+[node name="Gobbo3d" parent="." instance=ExtResource("11_mepdu")]
+transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 0, 0, 0)
+visible = false
+
+[node name="Skeleton3D" parent="Gobbo3d/Armature" index="0"]
+bones/0/position = Vector3(0.00621047, -0.158489, -0.345666)
+bones/0/rotation = Quaternion(-0.0203032, 0.707269, 0.706361, 0.0203032)
+bones/1/rotation = Quaternion(-0.0518943, 0.662668, 0.74649, -0.0305085)
+bones/2/rotation = Quaternion(-0.215349, 0.00934091, 0.0607848, 0.974599)
+bones/4/rotation = Quaternion(0.2497, -0.0196955, -0.00970975, 0.968074)
+bones/6/rotation = Quaternion(-0.231338, -0.0499946, -0.4493, 0.86146)
+bones/7/rotation = Quaternion(-0.702846, 0.000127406, 0.0618582, 0.708647)
+bones/8/rotation = Quaternion(-0.0459306, 0.352515, 0.0138992, 0.934575)
+bones/10/rotation = Quaternion(-0.656694, -0.106393, 0.21807, 0.714058)
+bones/11/rotation = Quaternion(-0.628078, -0.000139535, -0.0552779, 0.776185)
+bones/12/rotation = Quaternion(-0.170368, -0.469218, 0.453953, 0.738063)
+bones/14/rotation = Quaternion(-0.248359, 0.0477867, 0.178754, 0.950832)
+bones/15/rotation = Quaternion(-0.0432563, -0.0017208, -0.416976, 0.907886)
+bones/16/rotation = Quaternion(-0.00159238, -0.0390377, 0.242747, 0.969303)
+bones/18/rotation = Quaternion(-0.198549, -0.156244, -0.319115, 0.913418)
+bones/19/rotation = Quaternion(-0.0725081, 0.00134854, 0.698954, 0.711481)
+bones/20/rotation = Quaternion(0.067305, 0.0292171, -0.263719, 0.961805)
+bones/21/position = Vector3(0.465454, -2.52, -0.161412)
+bones/21/rotation = Quaternion(0.711992, 0.000321517, 0.702188, 0.000194714)
+bones/22/position = Vector3(-0.409589, -2.11526, -0.216171)
+bones/22/rotation = Quaternion(-0.700607, 0.126629, 0.698022, -0.0766873)
+bones/23/position = Vector3(0.534503, -1.54632, -2.68784)
+bones/24/position = Vector3(-0.569558, -1.56968, -2.68538)
+bones/25/position = Vector3(1.71832, -0.0695201, -1.39173)
+bones/25/rotation = Quaternion(0.0274004, 0.597407, -0.801469, -0.00116181)
+bones/26/position = Vector3(-1.2368, 0.476468, -2.13092)
+bones/26/rotation = Quaternion(0.385822, 0.547111, -0.508767, 0.541264)
+bones/27/position = Vector3(-2.66306, 0.926705, 3.67896)
+bones/28/position = Vector3(2.7896, 0.812422, 3.72726)
+bones/28/rotation = Quaternion(-0.496712, 0.503267, 0.503267, -0.496712)
+
+[node name="Cube_002" parent="Gobbo3d/Armature/Skeleton3D" index="0"]
+material_override = ExtResource("12_v4i8c")
+
+[node name="AnimationPlayer" parent="Gobbo3d" index="1"]
+autoplay = "Walk"
+
 [connection signal="Death" from="HEALTH" to="." method="Death"]
+
+[editable path="Gobbo3d"]

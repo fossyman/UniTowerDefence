@@ -4,7 +4,7 @@ class_name GameplayController
 static var instance:GameplayController
 
 @export var MainCamera:Camera3D
-
+var CameraFocusPoint:Node3D
 @export var PlacementArea:Area3D
 @export var PlacementDecal:Decal
 @export var PlacementRangeDecal:Decal
@@ -61,7 +61,7 @@ enum ROUNDSTATES{PREROUND,ONGOING,END}
 @export var Roundstate:ROUNDSTATES = ROUNDSTATES.PREROUND
 @export var RoundLabel:RichTextLabel
 
-@export var CinematicNode:Node3D
+@export var CinematicNode:CinematicManager
 @export var CinematicCameraNode:Node3D
 var CinematicMode:bool = false
 var CinematicSpeed:float = -0.003
@@ -81,10 +81,49 @@ var STATS_Time:int = 0
 var STATS_GoldSpent:int = 0
 var STATS_Kills:int = 0
 
+var FullFantasy:bool = true
+@export var FullFantasyBoard:Node3D
+@export var DefaultMapBoard:Node3D
 
-# Called when the node enters the scene tree for the first time.
+@export var FinalFightSong:AudioStream
+@export var FinalFightSongTransitionPoint:float = 2.0
+@export var LightningSFX:AudioStream
+@export var RainSFX:AudioStreamPlayer
+
+func StartFantasyTransition():
+	MUSICMANAGER.PickNewSong(FinalFightSong)
+	await get_tree().create_timer(FinalFightSongTransitionPoint).timeout
+	FadeManager.instance.FlashFade(8.0,Color.WHITE)
+	SwapFantasyMode(true)
+	AUDIOMANAGER.PlaySFX(LightningSFX,0,-10)
+
+func SwapFantasyMode(_Fantasy:bool = true):
+	if _Fantasy:
+		FullFantasyBoard.visible = true
+		FullFantasyBoard.process_mode = Node.PROCESS_MODE_INHERIT
+		DefaultMapBoard.visible = false
+		DefaultMapBoard.process_mode = Node.PROCESS_MODE_DISABLED
+		RainSFX.play()
+		FullFantasy = true
+	else:
+		FullFantasyBoard.visible = false
+		FullFantasyBoard.process_mode = Node.PROCESS_MODE_DISABLED
+		DefaultMapBoard.visible = true
+		DefaultMapBoard.process_mode = Node.PROCESS_MODE_INHERIT
+		RainSFX.stop()
+		FullFantasy = false
+		
+	for i in ActiveEnemies.size():
+		ActiveEnemies[i].CheckIfRealWorld()
+	for i in TowerHolder.get_child_count():
+		TowerHolder.get_child(i).CheckIfRealWorld()
+
+
+
+
 func _ready() -> void:
 	instance = self
+	SwapFantasyMode(false)
 	#await get_tree().create_timer(3.0).timeout
 	#ToggleCinematicMode(true)
 	GoldText.text = str("%.2f" % Gold)
@@ -98,6 +137,9 @@ func _process(delta: float) -> void:
 	if TimeTick <= 0:
 		TimeTick = 1.0
 		STATS_Time += 1
+	
+	if CameraFocusPoint:
+		MainCamera.look_at(CameraFocusPoint.global_position)
 	
 	DEVTOOLS_PROCESS()
 	if CinematicMode:
@@ -132,12 +174,22 @@ func _process(delta: float) -> void:
 								print(UpgradeScreen.OpenTween)
 								UpgradeScreen.populateSettings(SelectedTower)
 							else:
-								UpgradeScreen.CloseMenu(0.5)
-								UpgradeScreen.SelectedTower = null
+								if UpgradeScreen.SelectedTowerScene == SelectedTower:
+									UpgradeScreen.CloseMenu(0.5)
+									UpgradeScreen.SelectedTower = null
+								else:
+									UpgradeScreen.CloseMenu(0.1)
+									if UpgradeScreen.OpenTween:
+										await UpgradeScreen.OpenTween.finished
+									print(UpgradeScreen.OpenTween)
+									UpgradeScreen.populateSettings(SelectedTower)
 		MOUSESTATES.PLACING:
 			var result = RaycastToFloor()
-			if result && result["normal"] == Vector3.UP:
+			
+			if result:
 				PlacementArea.global_position = result["position"]
+
+			if result && result["normal"] == Vector3.UP:
 				ValidPlacement = true
 			else:
 				ValidPlacement = false
@@ -154,7 +206,6 @@ func _process(delta: float) -> void:
 					var TowerScn = PlacingTower.TowerScn.instantiate() as TowerScene
 					print(TowerScn)
 					for i in PlacingTower.Stats.size():
-						#PlacingTower.Stats[i] as
 						var stat:Stat = Stat.new()
 						stat._Setup(PlacingTower.Stats[i].Name,PlacingTower.Stats[i].Icon,PlacingTower.Stats[i].Amount,PlacingTower.Stats[i].Level,PlacingTower.Stats[i].Cost)
 						TowerScn.Stats.append(stat)
@@ -186,7 +237,6 @@ func BeginNewWave():
 	WaveFinished = false
 	Roundstate = ROUNDSTATES.ONGOING
 	RoundLabel.text = "Round " + str(WaveIDX+1) + "/" + str(CurrentMap.WaveResources.size())
-	MUSICMANAGER.PickNewSong()
 
 func SpawnEnemy(_enemy:PackedScene):
 	var EnemyInst = _enemy.instantiate()
@@ -198,6 +248,11 @@ func SpawnEnemy(_enemy:PackedScene):
 func CheckWaveCompletion():
 	if EnemyCount >= CurrentMap.WaveResources[WaveIDX].EnemyCapacity and ActiveEnemies.is_empty():
 		WaveFinished = true
+		if MapIDX >=2 and WaveIDX == CurrentMap.WaveResources.size() - 1:
+			CinematicNode.PlayKillAnim()
+			GLOBALS.GAMECOMPLETED = true
+			SAVELOADMANAGER.SaveConfig()
+			return
 		Roundstate = ROUNDSTATES.PREROUND
 		RoundControls.ShowBeginRoundButton()
 		if WaveIDX == CurrentMap.WaveResources.size() - 1:
@@ -209,9 +264,9 @@ func CheckWaveCompletion():
 
 func DEVTOOLS_PROCESS():
 	if Input.is_action_just_pressed("DEV_SpeedTime"):
-		Engine.time_scale+=1
+		Engine.time_scale+=10
 	elif Input.is_action_just_pressed("DEV_SlowTime"):
-		Engine.time_scale-=1
+		Engine.time_scale-=10
 	if Input.is_action_just_pressed("ui_accept"):
 		MapIDX += 1
 		MapIDX = wrap(MapIDX,0,GLOBALS.MAPS.size())
@@ -220,16 +275,25 @@ func DEVTOOLS_PROCESS():
 
 func AddGold(_amount:int):
 	Gold += _amount
-	GoldText.text = str("%.2f" % Gold)
+	if Gold >= 1000:
+		GoldText.text = str("%.2f" % Gold)
+	else:
+		GoldText.text = str(Gold)
 	pass
 func SubtractGold(_amount:int):
 	Gold -= _amount
-	GoldText.text = str("%.2f" % Gold)
+	if Gold >= 1000:
+		GoldText.text = str("%.2f" % Gold)
+	else:
+		GoldText.text = str(Gold)
 	STATS_GoldSpent += _amount
 	pass
 func SetGold(_amount:int):
 	Gold = _amount
-	GoldText.text = str("%.2f" % Gold)
+	if Gold >= 1000:
+		GoldText.text = str("%.2f" % Gold)
+	else:
+		GoldText.text = str(Gold)
 	pass
 
 func AddHealth(_value:int):
@@ -243,7 +307,7 @@ func SubtractHealth(_value:int):
 	UpdateHealthVisuals()
 	
 func SetHealth(_value:int):
-	Health += _value
+	Health = _value
 	HealthLabel.text = str(Health) + " HP"
 	UpdateHealthVisuals()
 	
@@ -267,8 +331,8 @@ func ToggleCinematicMode(value:bool,Lerptime:float = 4.0):
 	CinematicMode = value
 	if CinematicMode:
 		var T = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
-		T.parallel().tween_property(CinematicCameraNode,"rotation_degrees:x",35,Lerptime)
-		T.parallel().tween_property(CinematicCameraNode,"position:y",3,Lerptime)
+		T.parallel().tween_property(CinematicCameraNode,"rotation_degrees:x",10,Lerptime)
+		T.parallel().tween_property(CinematicCameraNode,"position",Vector3(0,10,10),Lerptime)
 	else:
 		var T = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
 		T.parallel().tween_property(CinematicCameraNode,"rotation_degrees:x",0,Lerptime)
@@ -291,7 +355,7 @@ func SwapLevel(_NewLevel:RES_Map):
 	MapHolder.add_child(NewMap)
 	MapPath = NewMap.find_child("PATH",true,false)
 	WaveIDX = -1
-	Health = 100
+	SetHealth(100)
 	RoundLabel.text = "Round 1" + "/" + str(CurrentMap.WaveResources.size())
 	for i in ActiveEnemies.size():
 		ActiveEnemies[i].queue_free()
@@ -305,6 +369,9 @@ func DisplayVictoryScreen():
 func SelectNextLevel():
 	VictoryScreen.hide()
 	MapIDX+=1
+	if MapIDX > MAPS.size()-1:
+		GLOBALS.ChangeRoot(GLOBALS.ROOT_MAINMENU)
+		return
 	CheckForGoldSoftlock()
 	SwapLevel(MAPS[MapIDX])
 	
@@ -332,3 +399,7 @@ func CheckForGoldSoftlock():
 func SwitchPerspective():
 	var NextPersp = 1 if GLOBALS.PERSPECTIVE == 0 else 0
 	OptionsMenuManager.instance.ChangePerspective(NextPersp)
+
+func SmoothZoomCamera(_value:float):
+	var CamTween = create_tween().set_trans(Tween.TRANS_EXPO)
+	CamTween.tween_property(MainCamera,"fov",_value,2.0)
