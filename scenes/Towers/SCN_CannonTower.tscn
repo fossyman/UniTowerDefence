@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://tdsxlydol4qx"]
+[gd_scene load_steps=9 format=3 uid="uid://tdsxlydol4qx"]
 
 [ext_resource type="Script" uid="uid://d0o2gje0lnfdg" path="res://scripts/SCR_TowerScene.gd" id="1_andnk"]
 [ext_resource type="PackedScene" uid="uid://3s2k4702n0sd" path="res://assets/Models/Towers/CannonTower.glb" id="2_andnk"]
 [ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="3_lt215"]
 [ext_resource type="PackedScene" uid="uid://cv0ti5xmeliwe" path="res://assets/Models/Towers/CannonTowerHighRes.glb" id="4_i7g66"]
+[ext_resource type="Material" uid="uid://b44r6ogaskyrq" path="res://assets/Materials/CannonProjectile.tres" id="5_xmmue"]
+[ext_resource type="Material" uid="uid://vikgyhdfs846" path="res://assets/Materials/MAT_HighResTower_Body.tres" id="6_5abxd"]
+[ext_resource type="Material" uid="uid://bm156u573aqqa" path="res://assets/Materials/MAT_FinalMapStone.tres" id="7_5abxd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
 radius = 0.422864
@@ -13,7 +16,7 @@ height = 1.40848
 script = ExtResource("1_andnk")
 ProjectileSpawnPoint = NodePath("ProjectileSpawn")
 LookAtTarget = true
-LookAtNodes = [NodePath("MeshHolder"), NodePath("CannonTowerHighRes")]
+LookAtNodes = [NodePath("MeshHolder"), null]
 RangeDecal = NodePath("RangeDecal")
 MeshParent = NodePath("MeshHolder")
 RealworldRep = NodePath("CannonTowerHighRes")
@@ -38,8 +41,20 @@ texture_albedo = ExtResource("3_lt215")
 [node name="MeshHolder" type="Node3D" parent="."]
 
 [node name="CannonTower" parent="MeshHolder" instance=ExtResource("2_andnk")]
+visible = false
 
 [node name="CannonTowerHighRes" parent="." instance=ExtResource("4_i7g66")]
 visible = false
 
+[node name="Cylinder_002" parent="CannonTowerHighRes" index="0"]
+material_override = ExtResource("5_xmmue")
+
+[node name="Cylinder_003" parent="CannonTowerHighRes" index="1"]
+surface_material_override/0 = ExtResource("6_5abxd")
+surface_material_override/1 = ExtResource("6_5abxd")
+
+[node name="Cube_001" parent="CannonTowerHighRes" index="2"]
+surface_material_override/0 = ExtResource("7_5abxd")
+
 [editable path="MeshHolder/CannonTower"]
+[editable path="CannonTowerHighRes"]

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn75j8dgiswru"
-path.s3tc="res://.godot/imported/CannonTowerHighRes_free_cardboard_texture_01_design_instruct.jpg-433bbe357a562aa75bdb622ab37805ca.s3tc.ctex"
+uid="uid://c251mv20f1n2t"
+path.s3tc="res://.godot/imported/WizardTowerHighRes_BRUSH_BRICKS_specular.png-6f99e3fda2c641db0e4e67e6be013a4d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "dbd4b519b8359e0053d172734f26a442"
+"md5": "3c5356bfe426b08a2e9daa3f3e32db2c"
 }
 
 [deps]
 
-source_file="res://assets/Models/Towers/CannonTowerHighRes_free_cardboard_texture_01_design_instruct.jpg"
-dest_files=["res://.godot/imported/CannonTowerHighRes_free_cardboard_texture_01_design_instruct.jpg-433bbe357a562aa75bdb622ab37805ca.s3tc.ctex"]
+source_file="res://assets/Models/Towers/WizardTowerHighRes_BRUSH_BRICKS_specular.png"
+dest_files=["res://.godot/imported/WizardTowerHighRes_BRUSH_BRICKS_specular.png-6f99e3fda2c641db0e4e67e6be013a4d.s3tc.ctex"]
 
 [params]
 

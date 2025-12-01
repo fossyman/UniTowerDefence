@@ -1,0 +1,25 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://vikgyhdfs846"]
+
+[ext_resource type="Texture2D" uid="uid://bunym7xdih0ed" path="res://assets/Textures/Map/Bricks/BRUSH_BRICKS.png" id="2_msink"]
+[ext_resource type="Texture2D" uid="uid://baqlkvop6s7b5" path="res://assets/Textures/Map/Bricks/BRUSH_BRICKS_specular (3).png" id="3_th4xp"]
+
+[sub_resource type="Gradient" id="Gradient_2pdfv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_an7x2"]
+noise_type = 0
+frequency = 0.007
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2554j"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_2pdfv")
+noise = SubResource("FastNoiseLite_an7x2")
+
+[resource]
+albedo_texture = ExtResource("3_th4xp")
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = SubResource("NoiseTexture2D_2554j")
+roughness_texture = ExtResource("3_th4xp")
+normal_enabled = true
+normal_texture = ExtResource("2_msink")

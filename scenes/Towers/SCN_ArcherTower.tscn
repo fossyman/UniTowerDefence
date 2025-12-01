@@ -1,13 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5hqlanwlvy3l"]
+[gd_scene load_steps=10 format=3 uid="uid://c5hqlanwlvy3l"]
 
 [ext_resource type="Script" uid="uid://d0o2gje0lnfdg" path="res://scripts/SCR_TowerScene.gd" id="1_phuia"]
 [ext_resource type="PackedScene" uid="uid://d1hqqq05rh8m5" path="res://assets/Models/Towers/ArcherTower.glb" id="2_phuia"]
 [ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="3_sunm5"]
 [ext_resource type="PackedScene" uid="uid://dbuafo0dengl2" path="res://assets/Models/Towers/ArcherTowerHighRes.glb" id="4_v6gn5"]
+[ext_resource type="Material" uid="uid://u4mb4lrc5hqt" path="res://assets/Effects/Particles/PART_Fire.tres" id="5_jpfv6"]
+[ext_resource type="Texture2D" uid="uid://cos18grmqscd3" path="res://assets/Sprites/Particles/SPR_FireParticle.png" id="6_kmhk2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
 radius = 0.676535
 height = 2.03916
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ylca"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("6_kmhk2")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_as3gs"]
+material = SubResource("StandardMaterial3D_7ylca")
 
 [node name="ScnArcherTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint", "RangeDecal", "MeshParent", "RealworldRep")]
 script = ExtResource("1_phuia")
@@ -40,3 +55,9 @@ transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 
 [node name="ArcherTowerHighRes" parent="." instance=ExtResource("4_v6gn5")]
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, -0.267736, 0, -0.0417465)
 visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="ArcherTowerHighRes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.238034, 0.0920726, 0.0910451)
+lifetime = 5.0
+process_material = ExtResource("5_jpfv6")
+draw_pass_1 = SubResource("QuadMesh_as3gs")

@@ -41,7 +41,8 @@ func _process(delta: float) -> void:
 
 func ChangePerspective(_value:int = 0):
 	GLOBALS.PERSPECTIVE = _value
-	if GLOBALS.CURRENTROOT ==GLOBALS.ROOT_GAMEPLAY:
+	if GLOBALS.CURRENTROOT.name == "ROOT_GAMEPLAY":
+		print("CHANGING")
 		match _value:
 			0: # Default
 				GameplayController.instance.MainCamera.global_position = PerspectivePosition
@@ -74,3 +75,9 @@ func SaveConfig(_val:bool):
 
 func OptionsPressed() -> void:
 	pass # Replace with function body.
+
+func ReturnToMainMenuPressed():
+	pass
+
+func QuitPressed():
+	pass

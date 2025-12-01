@@ -8,13 +8,13 @@ point_count = 3
 curve = SubResource("Curve_we25a")
 
 [resource]
-emission_shape_offset = Vector3(0, 1, 0)
+emission_shape_offset = Vector3(0, 0.085, 0)
 emission_shape_scale = Vector3(0.5, 0.5, 0.5)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 0.27)
+emission_shape = 1
+emission_sphere_radius = 0.2
 gravity = Vector3(0, 0, 0)
 scale_min = 0.0
-scale_max = 2.0
+scale_max = 0.5
 scale_curve = SubResource("CurveTexture_4eren")
 turbulence_noise_strength = 20.0
 turbulence_noise_scale = 10.0

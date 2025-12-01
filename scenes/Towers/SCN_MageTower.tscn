@@ -1,13 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnufxdgy8fc1n"]
+[gd_scene load_steps=12 format=3 uid="uid://bnufxdgy8fc1n"]
 
 [ext_resource type="Script" uid="uid://d0o2gje0lnfdg" path="res://scripts/SCR_TowerScene.gd" id="1_tkgji"]
 [ext_resource type="PackedScene" uid="uid://dvmboswiq8kbk" path="res://assets/Models/Towers/WizardTower.glb" id="2_u4x05"]
 [ext_resource type="Texture2D" uid="uid://djkl8jsgkn7k" path="res://assets/Sprites/AttackRange.png" id="3_ggvnn"]
 [ext_resource type="PackedScene" uid="uid://bvu0mte8loq4a" path="res://assets/Models/Towers/WizardTowerHighRes.glb" id="4_a6v7o"]
+[ext_resource type="Material" uid="uid://mm5ctspkrdae" path="res://assets/Materials/MAT_EnergyBall.tres" id="4_i5iy6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngv6k"]
 radius = 0.35375
 height = 2.2277
+
+[sub_resource type="Curve" id="Curve_a6v7o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.727626, 0.0516394), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i5iy6"]
+curve = SubResource("Curve_a6v7o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a6v7o"]
+emission_shape = 2
+emission_sphere_radius = 0.15
+radial_velocity_min = 0.0999776
+radial_velocity_max = 0.0999776
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_i5iy6")
+
+[sub_resource type="QuadMesh" id="QuadMesh_i5iy6"]
+material = ExtResource("4_i5iy6")
+
+[sub_resource type="SphereMesh" id="SphereMesh_a6v7o"]
+material = ExtResource("4_i5iy6")
+radial_segments = 5
+rings = 3
 
 [node name="ScnMageTower" type="Node3D" node_paths=PackedStringArray("ProjectileSpawnPoint", "RangeDecal", "MeshParent", "RealworldRep")]
 script = ExtResource("1_tkgji")
@@ -34,7 +60,17 @@ size = Vector3(2, 0.048584, 2)
 texture_albedo = ExtResource("3_ggvnn")
 
 [node name="WizardTowerHighRes" parent="." instance=ExtResource("4_a6v7o")]
-visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="WizardTowerHighRes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0476, 0)
+amount = 32
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_a6v7o")
+draw_pass_1 = SubResource("QuadMesh_i5iy6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WizardTowerHighRes/GPUParticles3D"]
+transform = Transform3D(0.0224356, 0, 0.294278, 0, 0.295, 0, -0.294278, 0, 0.0224356, 0, 0, 0)
+mesh = SubResource("SphereMesh_a6v7o")
 
 [node name="MeshParent" type="Node3D" parent="."]
 

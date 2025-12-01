@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://mm5ctspkrdae"]
+
+[ext_resource type="Shader" uid="uid://bnvox305qbq4b" path="res://assets/Materials/Shaders/SHAD_EnergyBall.gdshader" id="1_3cqfv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3cqfv"]
+frequency = 0.043
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w7fae"]
+noise = SubResource("FastNoiseLite_3cqfv")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3cqfv")
+shader_parameter/albedo = Color(0, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_w7fae")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_w7fae")
+shader_parameter/emission = Color(0, 1, 1, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
