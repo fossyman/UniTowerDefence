@@ -31,11 +31,11 @@ RangeDecal = NodePath("RangeDecal")
 MeshParent = NodePath("MeshHolder")
 RealworldRep = NodePath("ArcherTowerHighRes")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="UpgradeTower" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpgradeTower"]
 shape = SubResource("CapsuleShape3D_ngv6k")
 debug_color = Color(0.976219, 0, 0.4171, 0.596078)
 

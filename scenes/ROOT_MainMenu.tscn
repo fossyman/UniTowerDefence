@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://m8v4ibhr58d5"]
+[gd_scene load_steps=64 format=4 uid="uid://m8v4ibhr58d5"]
 
 [ext_resource type="Texture2D" uid="uid://b5xum4j6febne" path="res://assets/Sprites/UI/Titlecard.png" id="1_gtgwm"]
 [ext_resource type="Script" uid="uid://x2pjtqx2mwox" path="res://scripts/SCR_OptionsMenuManager.gd" id="1_wriv1"]
@@ -84,9 +84,22 @@ generate_mipmaps = false
 seamless = true
 noise = SubResource("FastNoiseLite_cegyy")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ol8q5"]
+noise_type = 0
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p2kfc"]
+in_3d_space = true
+as_normal_map = true
+bump_strength = 6.7
+normalize = false
+noise = SubResource("FastNoiseLite_ol8q5")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sywc"]
 albedo_color = Color(0, 0.644531, 0.0402832, 1)
 albedo_texture = SubResource("NoiseTexture2D_5bqn3")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_p2kfc")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjorj"]
 albedo_color = Color(0.382813, 0.382813, 0.382813, 1)
@@ -794,6 +807,7 @@ bus = &"RadioSFX"
 [node name="MainMenuLayout" parent="POSTCOMP_MM" instance=ExtResource("11_ffmoq")]
 
 [node name="Plane" parent="POSTCOMP_MM/MainMenuLayout" index="0"]
+transform = Transform3D(-0.176144, -4.65661e-10, 0.0952723, 0.00580348, 0.199887, 0.0107297, -0.0950954, 0.0121987, -0.175817, 9.64771, -0.436606, -26.2258)
 material_override = SubResource("StandardMaterial3D_0sywc")
 
 [node name="Plane_001" parent="POSTCOMP_MM/MainMenuLayout" index="1"]
@@ -969,7 +983,6 @@ light_energy = 0.381
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="POSTCOMP_MM"]
 transform = Transform3D(-0.549524, -0.62204, 0.557753, -0.734329, 0.678007, 0.0326596, -0.398476, -0.391627, -0.829364, 0, 7.4892, 0)
 light_color = Color(0.274841, 0.312285, 0.617188, 1)
-light_energy = 7.143
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3.54078, 0, 6.92196, 0, 7.775, 0, -6.92196, 0, -3.54078, 0, -1.47178, -22.9096)

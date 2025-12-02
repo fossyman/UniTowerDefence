@@ -16,7 +16,7 @@ height = 1.40848
 script = ExtResource("1_andnk")
 ProjectileSpawnPoint = NodePath("ProjectileSpawn")
 LookAtTarget = true
-LookAtNodes = [NodePath("MeshHolder"), null]
+LookAtNodes = [NodePath("MeshHolder"), NodePath("CannonTowerHighRes")]
 RangeDecal = NodePath("RangeDecal")
 MeshParent = NodePath("MeshHolder")
 RealworldRep = NodePath("CannonTowerHighRes")
@@ -41,7 +41,6 @@ texture_albedo = ExtResource("3_lt215")
 [node name="MeshHolder" type="Node3D" parent="."]
 
 [node name="CannonTower" parent="MeshHolder" instance=ExtResource("2_andnk")]
-visible = false
 
 [node name="CannonTowerHighRes" parent="." instance=ExtResource("4_i7g66")]
 visible = false

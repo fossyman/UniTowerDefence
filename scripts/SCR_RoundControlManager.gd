@@ -31,6 +31,7 @@ func ShowBeginRoundButton():
 
 func BeginRoundButtonPressed():
 	GameplayController.instance.BeginNewWave()
+	NormalSpeedButtonPressed()
 	if GameplayController.instance.MapIDX >= 2 and  GameplayController.instance.WaveIDX <= 0:
 		GameplayController.instance.StartFantasyTransition()
 		NormalSpeedButtonPressed()

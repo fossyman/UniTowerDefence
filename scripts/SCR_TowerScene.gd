@@ -45,10 +45,7 @@ func Tick():
 			var diff = (Target.global_position - global_position)
 			for i in LookAtNodes.size():
 				targetlerp.tween_property(LookAtNodes[i],"rotation:y",atan2(diff.x,diff.z),0.5)
-			#LookAtNode.rotation.y = atan2(diff.x,diff.z)
 			await targetlerp.finished
-			
-			
 		SpawnProjectile()
 
 func SpawnProjectile():

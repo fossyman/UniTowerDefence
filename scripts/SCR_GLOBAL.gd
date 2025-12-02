@@ -16,6 +16,8 @@ var GAMECOMPLETED:bool = false
 
 var DELTA:float
 
+var DEVMODE:bool = false
+
 var LOADING_HINTS:Array[String] = ["Make sure to use your Power-Ups when you are in a pickle.",
 									"Money is vital, spend it wisely.",
 									"Hope you are having a great day :).",

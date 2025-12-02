@@ -97,7 +97,10 @@ func StartFantasyTransition():
 	SwapFantasyMode(true)
 	AUDIOMANAGER.PlaySFX(LightningSFX,0,-10)
 
-func SwapFantasyMode(_Fantasy:bool = true):
+func SwapFantasyMode(_Fantasy:bool = true,_lightning:bool = false):
+	if _lightning:
+		FadeManager.instance.FlashFade(8.0,Color.WHITE)
+		AUDIOMANAGER.PlaySFX(LightningSFX,0,-10)
 	if _Fantasy:
 		FullFantasyBoard.visible = true
 		FullFantasyBoard.process_mode = Node.PROCESS_MODE_INHERIT
@@ -106,6 +109,7 @@ func SwapFantasyMode(_Fantasy:bool = true):
 		RainSFX.play()
 		FullFantasy = true
 	else:
+		MUSICMANAGER.MusicPlayer.stop()
 		FullFantasyBoard.visible = false
 		FullFantasyBoard.process_mode = Node.PROCESS_MODE_DISABLED
 		DefaultMapBoard.visible = true
@@ -140,8 +144,8 @@ func _process(delta: float) -> void:
 	
 	if CameraFocusPoint:
 		MainCamera.look_at(CameraFocusPoint.global_position)
-	
-	DEVTOOLS_PROCESS()
+	if GLOBALS.DEVMODE:
+		DEVTOOLS_PROCESS()
 	if CinematicMode:
 		CinematicNode.rotate_y(CinematicSpeed)
 	
@@ -267,6 +271,7 @@ func DEVTOOLS_PROCESS():
 		Engine.time_scale+=10
 	elif Input.is_action_just_pressed("DEV_SlowTime"):
 		Engine.time_scale-=10
+		Engine.time_scale = clamp(Engine.time_scale,1.0,999.0)
 	if Input.is_action_just_pressed("ui_accept"):
 		MapIDX += 1
 		MapIDX = wrap(MapIDX,0,GLOBALS.MAPS.size())
@@ -305,11 +310,13 @@ func SubtractHealth(_value:int):
 	Health -= _value
 	HealthLabel.text = str(Health) + " HP"
 	UpdateHealthVisuals()
+	CheckIfDead()
 	
 func SetHealth(_value:int):
 	Health = _value
 	HealthLabel.text = str(Health) + " HP"
 	UpdateHealthVisuals()
+	CheckIfDead()
 	
 func UpdateHealthVisuals():
 	if Health > 70:
@@ -381,6 +388,9 @@ func DisplayFailScreen():
 	
 func RestartLevel():
 	FailScreen.hide()
+	if MapIDX == MAPS.size()-1:
+		SwapFantasyMode(false,true)
+		CheckForGoldSoftlock()
 	SwapLevel(MAPS[MapIDX])
 	
 func CheckForGoldSoftlock():
@@ -388,6 +398,7 @@ func CheckForGoldSoftlock():
 	var RefundMoney:int = 0
 	for i in TowerHolder.get_child_count():
 		Towers.append(TowerHolder.get_child(i))
+		
 	for i in Towers.size():
 		RefundMoney += Towers[i].TowerResource.Price
 	if RefundMoney < 500:
