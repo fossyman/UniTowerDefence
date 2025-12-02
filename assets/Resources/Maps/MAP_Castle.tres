@@ -56,8 +56,8 @@ metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 [sub_resource type="Resource" id="Resource_smpcd"]
 script = ExtResource("2_ouq2v")
 Enemies = Array[PackedScene]([ExtResource("3_8l7lu"), ExtResource("4_u6axc"), ExtResource("5_ouq2v")])
-SpawnOrder = Array[int]([0, 1, 0, 1, 2])
-EnemyCapacity = 25
+SpawnOrder = Array[int]([])
+EnemyCapacity = 50
 SpawnSpeed = 1.5
 RandomSpawning = true
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"

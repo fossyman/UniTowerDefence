@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 func Btn_Pressed():
 	if GameplayController.instance.Gold < TowerRes.Price:
 		print("YOU ARE BROKE")
+		DM_Manager.instance.PlayNoGoldLine()
 		return
 	GameplayController.instance.CurrentCollisionMask = GameplayController.instance.PLACEMENTCOLLISIONMASK
 	GameplayController.instance.PlacingTower = TowerRes

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://blnn2qk3pjqlf"
+path="res://.godot/imported/DMVOICELINES_NEEDS CUTTING AND EDITING-01.ogg-d6e73043208e46bc1262ece65090457c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/DM_Voicelines/DMVOICELINES_NEEDS CUTTING AND EDITING-01.ogg"
+dest_files=["res://.godot/imported/DMVOICELINES_NEEDS CUTTING AND EDITING-01.ogg-d6e73043208e46bc1262ece65090457c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

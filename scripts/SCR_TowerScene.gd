@@ -91,7 +91,8 @@ func refreshStats():
 
 func ShowRangeDecal():
 	RangeDecal.show()
-	RangeDecal.scale = Vector3.ONE * GetCurrentAttackRange()
+	var range = GetCurrentAttackRange()
+	RangeDecal.scale = Vector3(range,1.0,range)
 	
 func HideRangeDecal():
 	RangeDecal.hide()

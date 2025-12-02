@@ -2,7 +2,7 @@ extends Node
 
 @export var MusicPlayer:AudioStreamPlayer
 
-@onready var SongList:Array[SongMetadata] = [ResourceLoader.load("res://assets/Resources/Songs/RES_Battlecry_META.tres"),ResourceLoader.load("res://assets/Resources/Songs/RES_Black Stone Wielder_META.tres"),ResourceLoader.load("res://assets/Resources/Songs/RES_The Well of Souls_META.tres")]
+@onready var SongList:Array[SongMetadata] = [ResourceLoader.load("res://assets/Resources/Songs/RES_PlanesSong.tres"),ResourceLoader.load("res://assets/Resources/Songs/RES_MountainSong.tres"),ResourceLoader.load("res://assets/Resources/Songs/RES_The Well of Souls_META.tres")]
 
 @export var SongTitleText:RichTextLabel
 
@@ -30,7 +30,9 @@ func _ready() -> void:
 		#SongTitleText.position.x = 0
 	#pass
 
-func PickNewSong(_SpecificSong:AudioStream = null):
+func PickNewSong(_SpecificSong:AudioStream = null,_restart:bool = false,_bus= &"Music"):
+	if MusicPlayer.stream == _SpecificSong && _restart == false:
+		return
 	var Song
 	if !_SpecificSong:
 		SongIDX +=1
@@ -38,7 +40,7 @@ func PickNewSong(_SpecificSong:AudioStream = null):
 		print(SongIDX)
 		Song = SongList[SongIDX].SongAsset
 	Song = _SpecificSong
-	
+	MusicPlayer.bus = _bus
 	MusicPlayer.stream = Song
 	MusicPlayer.play()
 	#CurrentSongString = Song.SongName + " - " + Song.SongArtist + " - " + Song.SongAlbum + " - " + Song.SongYear + " - "

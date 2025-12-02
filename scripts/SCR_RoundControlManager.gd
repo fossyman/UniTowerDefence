@@ -32,9 +32,13 @@ func ShowBeginRoundButton():
 func BeginRoundButtonPressed():
 	GameplayController.instance.BeginNewWave()
 	NormalSpeedButtonPressed()
-	if GameplayController.instance.MapIDX >= 2 and  GameplayController.instance.WaveIDX <= 0:
+	
+	if GameplayController.instance.MapIDX >= 2 and GameplayController.instance.WaveIDX <= 0:
 		GameplayController.instance.StartFantasyTransition()
 		NormalSpeedButtonPressed()
+	else:
+		print("RoundBegin")
+		MUSICMANAGER.PickNewSong(MUSICMANAGER.SongList[GameplayController.instance.MapIDX].SongAsset,false,&"RadioSFX")
 		
 	if ControlsTween:
 		ControlsTween.kill()
@@ -45,7 +49,7 @@ func BeginRoundButtonPressed():
 	
 func SpeedupButtonPressed():
 	GameplayController.instance.SetSpeedModifier(4.0)
-	AUDIOMANAGER.PlaySFX(ClickSFX)
+	AUDIOMANAGER.PlaySFX(ClickSFX,0.1,-5)
 	for i in RoundControlButtons.size():
 		RoundControlButtons[i].FadeToColor(RoundControlButtons[i].OriginalColour)
 	RoundControlButtons[2].FadeToColor(RoundControlButtons[2].ClickColor)
@@ -54,7 +58,7 @@ func SpeedupButtonPressed():
 
 func NormalSpeedButtonPressed():
 	GameplayController.instance.SetSpeedModifier(1.0)
-	AUDIOMANAGER.PlaySFX(ClickSFX)
+	AUDIOMANAGER.PlaySFX(ClickSFX,0.1,-5)
 	for i in RoundControlButtons.size():
 		RoundControlButtons[i].FadeToColor(RoundControlButtons[i].OriginalColour)
 	RoundControlButtons[1].FadeToColor(RoundControlButtons[1].ClickColor)
@@ -63,7 +67,7 @@ func NormalSpeedButtonPressed():
 
 func PausedButtonPressed():
 	GameplayController.instance.SetSpeedModifier(0.0)
-	AUDIOMANAGER.PlaySFX(ClickSFX)
+	AUDIOMANAGER.PlaySFX(ClickSFX,0.1,-5)
 	for i in RoundControlButtons.size():
 		RoundControlButtons[i].FadeToColor(RoundControlButtons[i].OriginalColour)
 	RoundControlButtons[0].FadeToColor(RoundControlButtons[0].ClickColor)

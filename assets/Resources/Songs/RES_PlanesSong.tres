@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SongMetadata" load_steps=3 format=3 uid="uid://brhyleevi4ban"]
+
+[ext_resource type="AudioStream" uid="uid://b6nfk2ifwbgrc" path="res://assets/Audio/Music/2019-01-22_-_Ready_to_Fight_-_David_Fesliyan.mp3" id="1_71ewo"]
+[ext_resource type="Script" uid="uid://bd7gygvad0jvw" path="res://scripts/Resources/SCR_SongMetadataResource.gd" id="2_u43h7"]
+
+[resource]
+script = ExtResource("2_u43h7")
+SongAsset = ExtResource("1_71ewo")
+SongName = ""
+SongArtist = ""
+SongAlbum = ""
+SongYear = ""
+metadata/_custom_type_script = "uid://bd7gygvad0jvw"

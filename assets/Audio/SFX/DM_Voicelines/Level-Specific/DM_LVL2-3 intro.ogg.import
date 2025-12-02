@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dmvrhqnsx64g"
+path="res://.godot/imported/DM_LVL2-3 intro.ogg-40242e40e4cd8629c44be62de3b44dbb.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/DM_Voicelines/Level-Specific/DM_LVL2-3 intro.ogg"
+dest_files=["res://.godot/imported/DM_LVL2-3 intro.ogg-40242e40e4cd8629c44be62de3b44dbb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

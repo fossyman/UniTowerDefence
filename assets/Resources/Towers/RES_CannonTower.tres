@@ -17,25 +17,25 @@ metadata/_custom_type_script = "uid://d1mwqxyusqdo4"
 [sub_resource type="Resource" id="Resource_wsvwy"]
 script = ExtResource("4_o0dei")
 Name = "Launch Force"
-Amount = Array[float]([1.0, 2.0, 4.0])
+Amount = Array[float]([4.0, 5.0, 6.0, 7.0, 8.0, 9.0])
 Level = 0
-Cost = Array[int]([200, 400, 1000])
+Cost = Array[int]([400, 650, 1000, 1300, 1700, 2300])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_sdif4"]
 script = ExtResource("4_o0dei")
 Name = "Launch Range"
-Amount = Array[float]([2.0, 4.0, 6.0])
+Amount = Array[float]([1.0, 2.0, 3.0, 4.0, 5.0, 6.0])
 Level = 0
-Cost = Array[int]([200, 400, 600])
+Cost = Array[int]([200, 400, 600, 1000, 1500, 2000])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [sub_resource type="Resource" id="Resource_5amgi"]
 script = ExtResource("4_o0dei")
 Name = "Fuse Shortness"
-Amount = Array[float]([1.0, 0.7, 0.3])
+Amount = Array[float]([2.0, 1.6, 1.2, 1.0, 0.9, 0.7])
 Level = 0
-Cost = Array[int]([200, 400, 600])
+Cost = Array[int]([300, 600, 1000, 1300, 1800, 2400])
 metadata/_custom_type_script = "uid://btxknbasomvh3"
 
 [resource]

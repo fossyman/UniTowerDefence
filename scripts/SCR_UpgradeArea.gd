@@ -42,8 +42,10 @@ func populateSettings(_scene:TowerScene):
 		btn.UpgradeStat = _scene.Stats[i]
 		btn.UpgradingTower = _scene
 		btn.pressed.connect(btn.Pressed)
+		btn.SetValues()
 	print("POPULATING")
 	ToggleMenu(true)
+	
 	pass
 
 func ToggleMenu(_value:bool = false,Speed:float = 1.0):

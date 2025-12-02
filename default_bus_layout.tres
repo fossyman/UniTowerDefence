@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://es5iwgh4xv5q"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://es5iwgh4xv5q"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
@@ -21,6 +21,15 @@ band_db/250_hz = -60.0
 band_db/350_hz = -60.0
 band_db/2800_hz = -60.0
 band_db/4000_hz = -60.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
+resource_name = "Reverb"
+predelay_msec = 50.0
+predelay_feedback = 0.1
+room_size = 0.0
+damping = 0.0
+spread = 0.01
+wet = 0.1
 
 [resource]
 bus/1/name = &"Reverb"
@@ -51,3 +60,11 @@ bus/4/volume_db = 0.0
 bus/4/send = &"SFX"
 bus/4/effect/0/effect = SubResource("AudioEffectEQ21_j3pel")
 bus/4/effect/0/enabled = true
+bus/5/name = &"VOICE"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = -5.04224
+bus/5/send = &"SFX"
+bus/5/effect/0/effect = SubResource("AudioEffectReverb_g28q7")
+bus/5/effect/0/enabled = true

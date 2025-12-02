@@ -8,8 +8,14 @@ class_name StatUpgradeButton
 @export var UpgradeStat:Stat
 @export var UpgradingTower:TowerScene
 
+
+
 func Pressed():
 	if !UpgradeStat:
+		return
+	
+	if UpgradeStat.Level >= UpgradeStat.Amount.size()-1:
+		DM_Manager.instance.PlayMaxLevelUpgradeLine()
 		return
 	
 	if GameplayController.instance.Gold >= UpgradeStat.Cost[UpgradeStat.Level]:
@@ -21,13 +27,12 @@ func Pressed():
 		GameplayController.instance.UpgradeScreen.SelectedTowerScene.ShowRangeDecal()
 	else:
 		print(str(UpgradeStat.Cost[UpgradeStat.Level]) + " needed. You have: " + str(GameplayController.instance.Gold))
+		DM_Manager.instance.PlayNoGoldLine()
 	pass
 	
 func SetValues():
 	if UpgradeStat.Level != UpgradeStat.Cost.size()-1:
 		PriceText.text = "$" + str(UpgradeStat.Cost[UpgradeStat.Level])
-		disabled = false
 	else:
 		PriceText.text = "Maxed out"
-		disabled = true
 		

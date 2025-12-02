@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SongMetadata" load_steps=3 format=3 uid="uid://ck2qkaberyrnd"]
+
+[ext_resource type="AudioStream" uid="uid://c6fuwdhfboe1k" path="res://assets/Audio/Music/Underscore-2022-03-16_-_Escape_Route_-_www.FesliyanStudios.com_.mp3" id="1_rvvog"]
+[ext_resource type="Script" uid="uid://bd7gygvad0jvw" path="res://scripts/Resources/SCR_SongMetadataResource.gd" id="1_tymfy"]
+
+[resource]
+script = ExtResource("1_tymfy")
+SongAsset = ExtResource("1_rvvog")
+SongName = ""
+SongArtist = ""
+SongAlbum = ""
+SongYear = ""
+metadata/_custom_type_script = "uid://bd7gygvad0jvw"

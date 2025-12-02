@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RES_Map" load_steps=10 format=3 uid="uid://dkord1odhw1d2"]
+[gd_resource type="Resource" script_class="RES_Map" load_steps=11 format=3 uid="uid://dkord1odhw1d2"]
 
 [ext_resource type="PackedScene" uid="uid://b01f0v771kqv2" path="res://scenes/Maps/SCN_Map2.tscn" id="1_qw3r4"]
 [ext_resource type="Script" uid="uid://dnofd3ooi6rrv" path="res://scripts/Resources/SCR_WaveResource.gd" id="2_1t716"]
@@ -42,8 +42,17 @@ SpawnSpeed = 1.5
 RandomSpawning = false
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
+[sub_resource type="Resource" id="Resource_qw3r4"]
+script = ExtResource("2_1t716")
+Enemies = Array[PackedScene]([ExtResource("3_qw3r4"), ExtResource("4_l7fa8")])
+SpawnOrder = Array[int]([])
+EnemyCapacity = 30
+SpawnSpeed = 1.5
+RandomSpawning = true
+metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
+
 [resource]
 script = ExtResource("5_nembc")
-WaveResources = Array[ExtResource("2_1t716")]([SubResource("Resource_1t716"), SubResource("Resource_1t716"), SubResource("Resource_irocw"), SubResource("Resource_irocw"), SubResource("Resource_l7fa8"), SubResource("Resource_nembc")])
+WaveResources = Array[ExtResource("2_1t716")]([SubResource("Resource_1t716"), SubResource("Resource_1t716"), SubResource("Resource_irocw"), SubResource("Resource_irocw"), SubResource("Resource_l7fa8"), SubResource("Resource_nembc"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4")])
 MapScene = ExtResource("1_qw3r4")
 metadata/_custom_type_script = "uid://cwq3mcch85ig4"

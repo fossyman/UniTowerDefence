@@ -371,6 +371,7 @@ func SwapLevel(_NewLevel:RES_Map):
 func DisplayVictoryScreen():
 	VictoryScreen.show()
 	VictoryStatsText.text = "Time spent\n %s\nGold spent\n%s\nEnemies killed\n%s" % [STATS_Time, STATS_GoldSpent,STATS_Kills]
+	DM_Manager.instance.PlayWinLine()
 	pass
 	
 func SelectNextLevel():
@@ -379,11 +380,14 @@ func SelectNextLevel():
 	if MapIDX > MAPS.size()-1:
 		GLOBALS.ChangeRoot(GLOBALS.ROOT_MAINMENU)
 		return
+	else:
+		DM_Manager.instance.PlayAudio(DM_Manager.instance.LevelSpecificLines[MapIDX-1])
 	CheckForGoldSoftlock()
 	SwapLevel(MAPS[MapIDX])
 	
 func DisplayFailScreen():
 	FailScreen.show()
+	DM_Manager.instance.PlayFailLine()
 	pass
 	
 func RestartLevel():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=4 uid="uid://comrba122j0wy"]
+[gd_scene load_steps=148 format=4 uid="uid://comrba122j0wy"]
 
 [ext_resource type="Resource" uid="uid://d0ley3n4jn2ba" path="res://assets/Resources/Maps/MAP_Forest.tres" id="2_mahky"]
 [ext_resource type="Script" uid="uid://cwq3mcch85ig4" path="res://scripts/Resources/SCR_MapResource.gd" id="2_w0fjt"]
@@ -56,23 +56,47 @@
 [ext_resource type="Texture2D" uid="uid://b4ke0jro0bqfi" path="res://assets/THIRDPARTY/kenney_ui-pack-adventure/Vector/button_brown.svg" id="34_jjqr0"]
 [ext_resource type="Texture2D" uid="uid://odxynhocsfnx" path="res://assets/THIRDPARTY/kenney_ui-pack-adventure/Vector/banner_classic_curtain.svg" id="35_rg3t3"]
 [ext_resource type="Script" uid="uid://26gvnjw2rkqy" path="res://scripts/DM_Manager.gd" id="36_6uoyw"]
+[ext_resource type="AudioStream" uid="uid://3g85mrndkhq6" path="res://assets/Audio/SFX/DM_Voicelines/NoGold/DM_NoGoldError-01.ogg" id="37_cqt0n"]
+[ext_resource type="AudioStream" uid="uid://dm4j5c3ryyhwl" path="res://assets/Audio/SFX/DM_Voicelines/Level-Specific/DM_LVL1-2 intro.ogg" id="37_cyc4m"]
 [ext_resource type="Texture2D" uid="uid://bonahurshtoav" path="res://assets/THIRDPARTY/kenney_ui-pack-adventure/Vector/checkbox_brown_cross.svg" id="37_w2vis"]
+[ext_resource type="AudioStream" uid="uid://0vhertyjp5te" path="res://assets/Audio/SFX/DM_Voicelines/NoGold/DM_NoGoldError-02.ogg" id="38_3k4oi"]
 [ext_resource type="Texture2D" uid="uid://c53pskgu2fmql" path="res://assets/THIRDPARTY/kenney_ui-pack-adventure/Vector/round_brown.svg" id="38_5jclj"]
+[ext_resource type="AudioStream" uid="uid://dmvrhqnsx64g" path="res://assets/Audio/SFX/DM_Voicelines/Level-Specific/DM_LVL2-3 intro.ogg" id="38_fa2lf"]
 [ext_resource type="Texture2D" uid="uid://jmhiqyrie10q" path="res://assets/THIRDPARTY/kenney_ui-pack-adventure/Vector/panel_brown_damaged_dark.svg" id="38_pnafr"]
 [ext_resource type="Animation" uid="uid://bxrwn2qsdyk55" path="res://assets/Animations/DungeonMaster/DM_Emote1.res" id="39_6h6lk"]
+[ext_resource type="AudioStream" uid="uid://cvkv852i43332" path="res://assets/Audio/SFX/DM_Voicelines/Level-Specific/DM_LVL3Outro.ogg" id="39_48ld0"]
 [ext_resource type="Texture2D" uid="uid://b7hwjx834relf" path="res://assets/THIRDPARTY/kenney_ui-pack-adventure/Vector/minimap_arrow_a.svg" id="39_jmymb"]
+[ext_resource type="AudioStream" uid="uid://c60cwn7q4c11m" path="res://assets/Audio/SFX/DM_Voicelines/NoGold/DM_NoGoldError-03.ogg" id="39_tdpfg"]
 [ext_resource type="Texture2D" uid="uid://c5okpbrnrbee3" path="res://assets/THIRDPARTY/kenney_ui-pack-adventure/Vector/progress_white.svg" id="40_1lurb"]
 [ext_resource type="Animation" uid="uid://ca1qybwienla7" path="res://assets/Animations/DungeonMaster/DM_Emote2.res" id="40_6uoyw"]
+[ext_resource type="AudioStream" uid="uid://8wy7h3qqv2b1" path="res://assets/Audio/SFX/DM_Voicelines/NoGold/DM_NoGoldError-04.ogg" id="40_cyc4m"]
 [ext_resource type="Animation" uid="uid://fkcc8lrrsef7" path="res://assets/Animations/DungeonMaster/DM_Emote3.res" id="41_0bg01"]
+[ext_resource type="AudioStream" uid="uid://dvhxsxb5hscmu" path="res://assets/Audio/SFX/DM_Voicelines/NoGold/DM_NoGoldError-05.ogg" id="41_fa2lf"]
+[ext_resource type="AudioStream" uid="uid://c7d56l3r8uy86" path="res://assets/Audio/SFX/DM_Voicelines/NoGold/DM_NoGoldError-06.ogg" id="42_48ld0"]
 [ext_resource type="Animation" uid="uid://cr6o1kne8ywf" path="res://assets/Animations/DungeonMaster/DM_Emote4.res" id="42_g63xs"]
+[ext_resource type="AudioStream" uid="uid://b0feu6sblxmfl" path="res://assets/Audio/SFX/DM_Voicelines/MaxUpgrade/DM_MaxUpgradeClicked-01.ogg" id="43_v0rs4"]
+[ext_resource type="AudioStream" uid="uid://bc88veoxhoh2r" path="res://assets/Audio/SFX/DM_Voicelines/MaxUpgrade/DM_MaxUpgradeClicked-02.ogg" id="44_gbbxy"]
 [ext_resource type="Script" uid="uid://x2pjtqx2mwox" path="res://scripts/SCR_OptionsMenuManager.gd" id="44_ji5ju"]
 [ext_resource type="Animation" uid="uid://dirw7mfu5w50x" path="res://assets/Animations/DungeonMaster/TABLE_LEVELSWAP.res" id="44_ugayw"]
+[ext_resource type="AudioStream" uid="uid://op5wr12neleb" path="res://assets/Audio/SFX/DM_Voicelines/MaxUpgrade/DM_MaxUpgradeClicked-03.ogg" id="45_vte8l"]
 [ext_resource type="PackedScene" uid="uid://lmixgwkj2e6l" path="res://assets/Models/Characters/DM/DungeonMaster.glb" id="46_5ibga"]
 [ext_resource type="Animation" uid="uid://dqfhtgp6b1ewg" path="res://assets/Animations/DungeonMaster/DM_LevelSwap.res" id="46_go414"]
+[ext_resource type="AudioStream" uid="uid://11kclumj7lof" path="res://assets/Audio/SFX/DM_Voicelines/MaxUpgrade/DM_MaxUpgradeClicked-04.ogg" id="46_vvghy"]
 [ext_resource type="Animation" uid="uid://bpaw7j3cma08u" path="res://assets/Animations/DungeonMaster/DM_Idle.res" id="47_7epab"]
+[ext_resource type="AudioStream" uid="uid://dlwohi0j73lhh" path="res://assets/Audio/SFX/DM_Voicelines/LevelFail/DM_FailLines-01.ogg" id="47_fe83m"]
+[ext_resource type="AudioStream" uid="uid://bbxl48u8krnus" path="res://assets/Audio/SFX/DM_Voicelines/LevelFail/DM_FailLines-02.ogg" id="48_66kjr"]
+[ext_resource type="AudioStream" uid="uid://bqupa5lt1vi2k" path="res://assets/Audio/SFX/DM_Voicelines/LevelFail/DM_FailLines-03.ogg" id="49_771nn"]
 [ext_resource type="AudioStream" uid="uid://csb2mstip81k1" path="res://assets/THIRDPARTY/kenney_interface-sounds/Audio/bong_001.ogg" id="50_3ouqv"]
+[ext_resource type="AudioStream" uid="uid://cho6slhp4rqva" path="res://assets/Audio/SFX/DM_Voicelines/LevelVictory/DM_Victory-01.ogg" id="50_o7vgx"]
+[ext_resource type="AudioStream" uid="uid://b71pglhah8kej" path="res://assets/Audio/SFX/DM_Voicelines/LevelVictory/DM_Victory-02.ogg" id="51_y7sos"]
+[ext_resource type="AudioStream" uid="uid://7ugdpkrly2la" path="res://assets/Audio/SFX/DM_Voicelines/LevelVictory/DM_Victory-03.ogg" id="52_7q6ir"]
+[ext_resource type="AudioStream" uid="uid://c2vcdkmclusob" path="res://assets/Audio/SFX/DM_Voicelines/LevelVictory/DM_Victory-04.ogg" id="53_r3jmu"]
 [ext_resource type="Script" uid="uid://cjetcyl13w1ll" path="res://scripts/SCR_BetterTextureButtons.gd" id="54_2ugd7"]
+[ext_resource type="AudioStream" uid="uid://cqbm7qc88cn3n" path="res://assets/Audio/SFX/DM_Voicelines/AFK/DM_AFKWARNING-01.ogg" id="54_rssxh"]
 [ext_resource type="Material" uid="uid://uqpowxa2ebfy" path="res://assets/Materials/Characters/MAT_DM.tres" id="55_2ugd7"]
+[ext_resource type="AudioStream" uid="uid://bupaqrbpduiqb" path="res://assets/Audio/SFX/DM_Voicelines/AFK/DM_AFKWARNING-02.ogg" id="55_6oe8y"]
+[ext_resource type="AudioStream" uid="uid://c54ymrmtjuwwc" path="res://assets/Audio/SFX/DM_Voicelines/AFK/DM_AFKWARNING-03.ogg" id="56_xtkgw"]
+[ext_resource type="AudioStream" uid="uid://j23i2g7x6q6k" path="res://assets/Audio/SFX/DM_Voicelines/AFK/DM_AFKWARNING-04.ogg" id="57_uglbi"]
 [ext_resource type="Texture2D" uid="uid://b5y02nhrhhrmq" path="res://assets/Sprites/UI/SelectorSprite.png" id="60_w0fjt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qx2ee"]
@@ -620,9 +644,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_t8sp8")
 }
 
-[node name="DungeonMaster" parent="Map/MapBoard1" instance=ExtResource("46_5ibga")]
+[node name="DungeonMaster" parent="Map/MapBoard1" node_paths=PackedStringArray("AnimPlayer") instance=ExtResource("46_5ibga")]
 transform = Transform3D(1, 0, 6.35729e-08, 0, 1, 0, -6.35729e-08, 0, 1, 2.04779e-07, 0, 1.35619)
 script = ExtResource("36_6uoyw")
+AnimPlayer = NodePath("DM_AnimPlayer")
+LevelSpecificLines = Array[AudioStream]([ExtResource("37_cyc4m"), ExtResource("38_fa2lf"), ExtResource("39_48ld0")])
+NoGoldLines = Array[AudioStream]([ExtResource("37_cqt0n"), ExtResource("38_3k4oi"), ExtResource("39_tdpfg"), ExtResource("40_cyc4m"), ExtResource("41_fa2lf"), ExtResource("42_48ld0")])
+MaxLevelUpgradeLines = Array[AudioStream]([ExtResource("43_v0rs4"), ExtResource("44_gbbxy"), ExtResource("45_vte8l"), ExtResource("46_vvghy")])
+FailLines = Array[AudioStream]([ExtResource("47_fe83m"), ExtResource("48_66kjr"), ExtResource("49_771nn")])
+WinLines = Array[AudioStream]([ExtResource("50_o7vgx"), ExtResource("51_y7sos"), ExtResource("52_7q6ir"), ExtResource("53_r3jmu")])
+AFKLines = Array[AudioStream]([ExtResource("54_rssxh"), ExtResource("55_6oe8y"), ExtResource("56_xtkgw"), ExtResource("57_uglbi")])
 
 [node name="Cube_001" parent="Map/MapBoard1/DungeonMaster/DM_Rig/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("55_2ugd7")

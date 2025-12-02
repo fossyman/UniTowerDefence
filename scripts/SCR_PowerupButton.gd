@@ -17,6 +17,7 @@ func ApplyEffect():
 		return
 	if GameplayController.instance.Gold < Price:
 		NOTIFICATIONMANAGER.DisplayWarningMessage("Not enough Gold!",get_global_mouse_position())
+		DM_Manager.instance.PlayNoGoldLine()
 		return
 	AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
 	GameplayController.instance.SubtractGold(Price)

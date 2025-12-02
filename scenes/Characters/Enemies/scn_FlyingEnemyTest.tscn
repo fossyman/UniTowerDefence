@@ -142,8 +142,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3hdu3")
 
 [node name="HEALTH" type="Node" parent="."]
 script = ExtResource("2_5qlp6")
-Health = 10
-HealthCap = 10
+Health = 15
+HealthCap = 15
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598628, 0)
