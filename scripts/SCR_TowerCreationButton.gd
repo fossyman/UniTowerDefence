@@ -23,11 +23,12 @@ func Btn_Pressed():
 	GameplayController.instance.CurrentCollisionMask = GameplayController.instance.PLACEMENTCOLLISIONMASK
 	GameplayController.instance.PlacingTower = TowerRes
 	GameplayController.instance.MouseState = GameplayController.instance.MOUSESTATES.PLACING
-	var Size:Vector3 = Vector3.ONE * TowerRes.PlacementRange
-	GameplayController.instance.PlacementArea.get_child(0).scale = Size
+	GameplayController.instance.PlacementDecal.size = Vector3(TowerRes.PlacementRange+0.5,2.0,TowerRes.PlacementRange+0.5)
 	print(str(TowerRes.Name) + " OR " + str(GameplayController.instance.PlacingTower.Stats.size()))
-	GameplayController.instance.PlacementRangeDecal.scale = Vector3.ONE * TowerRes.Stats[1].Amount[TowerRes.Stats[1].Level]
+	GameplayController.instance.PlacementAttackRangeDecal.size = Vector3(TowerRes.Stats[1].Amount[0]+1,2.0,TowerRes.Stats[1].Amount[0]+1)
 	GameplayController.instance.PlacementCollisionChecker.shape.radius = TowerRes.PlacementRange
 	GameplayController.instance.TowerPurchaseScreen.ToggleMenu()
 	GameplayController.instance.PlacementArea.visible = true
+	
+	TowerPurchaseMenu.instance.ToggleStopTowerPlacement()
 	pass

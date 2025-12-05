@@ -4,7 +4,7 @@ class_name DM_Manager
 static var instance:DM_Manager
 
 @export var AnimPlayer:AnimationPlayer
-
+@export var Voicebox:AudioStreamPlayer
 @export var LevelSpecificLines:Array[AudioStream]
 @export var NoGoldLines:Array[AudioStream]
 @export var MaxLevelUpgradeLines:Array[AudioStream]
@@ -30,26 +30,32 @@ func _process(delta: float) -> void:
 			PlayAFKLine()
 			LastInteractionTime = 0
 
-func PlayAudio(_sample:AudioStream):
-	AUDIOMANAGER.PlaySFX(_sample,0.0,0.0,&"VOICE")
+func PlayAudio(_sample:AudioStream,_volumedifference:float = 0.0):
+	PlayVoiceline(_sample)
 	pass
 	
 func PlayNoGoldLine():
-	AUDIOMANAGER.PlaySFX(NoGoldLines.pick_random(),0.0,0.0,&"VOICE")
+	PlayVoiceline(NoGoldLines.pick_random())
 	pass
 func PlayMaxLevelUpgradeLine():
-	AUDIOMANAGER.PlaySFX(MaxLevelUpgradeLines.pick_random(),0.0,0.0,&"VOICE")
+	PlayVoiceline(MaxLevelUpgradeLines.pick_random())
 	pass
 func PlayFailLine():
-	AUDIOMANAGER.PlaySFX(FailLines.pick_random(),0.0,0.0,&"VOICE")
+	PlayVoiceline(FailLines.pick_random())
 	pass
 func PlayWinLine():
-	AUDIOMANAGER.PlaySFX(WinLines.pick_random(),0.0,0.0,&"VOICE")
+	PlayVoiceline(WinLines.pick_random())
 	pass
 func PlayAFKLine():
-	AUDIOMANAGER.PlaySFX(AFKLines.pick_random(),0.0,0.0,&"VOICE")
+	PlayVoiceline(AFKLines.pick_random())
 	pass
 
 func _input(event: InputEvent) -> void:
 	if event is InputEvent:
 		LastInteractionTime = 0.0
+
+func PlayVoiceline(_line:AudioStream):
+	Voicebox.stop()
+	Voicebox.stream = _line
+	Voicebox.play()
+	pass

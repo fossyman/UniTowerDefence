@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://cthm6jxl6x74p"]
+
+[ext_resource type="Texture2D" uid="uid://8si8jgrmv8g0" path="res://assets/Sprites/BTS/8.png" id="1_76a1b"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_b7ddh"]
+
+[resource]
+script = ExtResource("1_b7ddh")
+ReferenceImage = ExtResource("1_76a1b")
+Description = "Coloured version of King Alden's sprite"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

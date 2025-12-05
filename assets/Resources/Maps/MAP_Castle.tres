@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://4aidqsbu2wy7" path="res://scenes/Characters/Enemies/scn_Enemy.tscn" id="3_8l7lu"]
 [ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_FlyingEnemyTest.tscn" id="4_u6axc"]
 [ext_resource type="Script" uid="uid://cwq3mcch85ig4" path="res://scripts/Resources/SCR_MapResource.gd" id="5_k07bm"]
-[ext_resource type="PackedScene" uid="uid://bfeos5dpg1ogh" path="res://scenes/Characters/Enemies/scn_BruteEnemy.tscn" id="5_ouq2v"]
 [ext_resource type="PackedScene" uid="uid://b5gc5euqdjq34" path="res://scenes/Characters/Enemies/scn_GobboKing.tscn" id="6_10ymj"]
+[ext_resource type="PackedScene" uid="uid://cm03gdsaprgee" path="res://scenes/Characters/Enemies/scn_Spiderball.tscn" id="6_u6axc"]
 
 [sub_resource type="Resource" id="Resource_ouq2v"]
 script = ExtResource("2_ouq2v")
@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="Resource" id="Resource_k07bm"]
 script = ExtResource("2_ouq2v")
-Enemies = Array[PackedScene]([ExtResource("3_8l7lu"), ExtResource("4_u6axc"), ExtResource("5_ouq2v")])
+Enemies = Array[PackedScene]([ExtResource("3_8l7lu"), ExtResource("4_u6axc"), ExtResource("6_u6axc")])
 SpawnOrder = Array[int]([0, 1, 1, 1, 0, 1, 0, 0, 1, 2])
 EnemyCapacity = 10
 SpawnSpeed = 1.5
@@ -46,7 +46,7 @@ metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="Resource" id="Resource_qiacs"]
 script = ExtResource("2_ouq2v")
-Enemies = Array[PackedScene]([ExtResource("4_u6axc"), ExtResource("5_ouq2v")])
+Enemies = Array[PackedScene]([ExtResource("4_u6axc"), ExtResource("6_u6axc")])
 SpawnOrder = Array[int]([0, 0, 0, 0, 1, 0, 0, 0, 1, 1])
 EnemyCapacity = 10
 SpawnSpeed = 1.5
@@ -55,7 +55,7 @@ metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="Resource" id="Resource_smpcd"]
 script = ExtResource("2_ouq2v")
-Enemies = Array[PackedScene]([ExtResource("3_8l7lu"), ExtResource("4_u6axc"), ExtResource("5_ouq2v")])
+Enemies = Array[PackedScene]([ExtResource("3_8l7lu"), ExtResource("4_u6axc"), ExtResource("6_u6axc")])
 SpawnOrder = Array[int]([])
 EnemyCapacity = 50
 SpawnSpeed = 1.5
@@ -64,9 +64,9 @@ metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="Resource" id="Resource_cjk41"]
 script = ExtResource("2_ouq2v")
-Enemies = Array[PackedScene]([ExtResource("6_10ymj")])
-SpawnOrder = Array[int]([])
-EnemyCapacity = 1
+Enemies = Array[PackedScene]([ExtResource("3_8l7lu"), ExtResource("6_10ymj")])
+SpawnOrder = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+EnemyCapacity = 20
 SpawnSpeed = 1.5
 RandomSpawning = false
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"

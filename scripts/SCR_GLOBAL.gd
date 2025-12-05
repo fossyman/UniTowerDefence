@@ -1,8 +1,8 @@
 extends Node
 
-var ROOT_MAINMENU:PackedScene = ResourceLoader.load("res://scenes/ROOT_MainMenu.tscn")
-var ROOT_CACHE:PackedScene = ResourceLoader.load("res://scenes/ROOT_Cacher.tscn")
-var ROOT_GAMEPLAY:PackedScene = ResourceLoader.load("res://scenes/ROOT_gameplay.tscn")
+const ROOT_MAINMENU:PackedScene = preload("res://scenes/ROOT_MainMenu.tscn")
+const ROOT_CACHE:PackedScene = preload("res://scenes/ROOT_Cacher.tscn")
+const ROOT_GAMEPLAY:PackedScene = preload("res://scenes/ROOT_gameplay.tscn")
 
 var MAIN:Node
 var ROOTCONTAINER:Node
@@ -44,4 +44,3 @@ func ChangeRoot(Rootpath:PackedScene):
 	ROOTCONTAINER.add_child(NEWROOT)
 	CURRENTROOT.queue_free()
 	CURRENTROOT = NEWROOT
-	MUSICMANAGER.MusicPlayer.stop()

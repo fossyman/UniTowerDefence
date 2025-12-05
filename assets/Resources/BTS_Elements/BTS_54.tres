@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://bapjo4yplwlkq"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_4v3us"]
+[ext_resource type="Texture2D" uid="uid://cdaktmpmhux1b" path="res://assets/Sprites/BTS/55.png" id="1_5x2uo"]
+
+[resource]
+script = ExtResource("1_4v3us")
+ReferenceImage = ExtResource("1_5x2uo")
+Description = "The beginning of the 3D version of the Goblin."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

@@ -7,7 +7,7 @@ static var instance:GameplayController
 var CameraFocusPoint:Node3D
 @export var PlacementArea:Area3D
 @export var PlacementDecal:Decal
-@export var PlacementRangeDecal:Decal
+@export var PlacementAttackRangeDecal:Decal
 @export var PlacementCollisionChecker:CollisionShape3D
 
 @export var GoldText:RichTextLabel
@@ -68,7 +68,7 @@ var CinematicSpeed:float = -0.003
 
 @export var RoundControls:RoundControlOptions
 
-@export var DMAnimPlayer:AnimationPlayer
+@export var DMAnimTree:AnimationTree
 @export var TableAnimPlayer:AnimationPlayer
 
 @export var VictoryScreen:Control
@@ -168,19 +168,17 @@ func _process(delta: float) -> void:
 				if result:
 					match (result["collider"].collision_layer):
 						8: # UpgradeAreaCollision
+							if UpgradeScreen.OpenTween:
+								UpgradeScreen.OpenTween.kill()
+								
 							print("UPGRADER HIT")
 							var SelectedTower = (result["collider"].get_parent() as TowerScene)
-							if !UpgradeScreen.SelectedTower:
-								if UpgradeScreen.SelectedTower:
-									UpgradeScreen.CloseMenu(0.1)
-									if UpgradeScreen.OpenTween:
-										await UpgradeScreen.OpenTween.finished
-								print(UpgradeScreen.OpenTween)
+							if !UpgradeScreen.SelectedTower and !UpgradeScreen.SelectedTowerScene:
 								UpgradeScreen.populateSettings(SelectedTower)
 							else:
+								print("selected tower")
 								if UpgradeScreen.SelectedTowerScene == SelectedTower:
-									UpgradeScreen.CloseMenu(0.5)
-									UpgradeScreen.SelectedTower = null
+									UpgradeScreen.CloseMenu(0.1)
 								else:
 									UpgradeScreen.CloseMenu(0.1)
 									if UpgradeScreen.OpenTween:
@@ -221,7 +219,12 @@ func _process(delta: float) -> void:
 					GameplayController.instance.SubtractGold(PlacingTower.Price)
 					AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
 					CurrentCollisionMask = GAMEPLAYCOLLISIONMASK
+					TowerPurchaseMenu.instance.ToggleStopTowerPlacement()
+				else:
+					#StopPlacingTower()
+					#TowerPurchaseMenu.instance.ToggleStopTowerPlacement()
 					pass
+				UpgradeScreen.DeselectTower()
 			pass
 	pass
 
@@ -252,6 +255,9 @@ func SpawnEnemy(_enemy:PackedScene):
 func CheckWaveCompletion():
 	if EnemyCount >= CurrentMap.WaveResources[WaveIDX].EnemyCapacity and ActiveEnemies.is_empty():
 		WaveFinished = true
+		if Health <= 0:
+			DisplayFailScreen()
+			return
 		if MapIDX >=2 and WaveIDX == CurrentMap.WaveResources.size() - 1:
 			CinematicNode.PlayKillAnim()
 			GLOBALS.GAMECOMPLETED = true
@@ -276,6 +282,7 @@ func DEVTOOLS_PROCESS():
 		MapIDX += 1
 		MapIDX = wrap(MapIDX,0,GLOBALS.MAPS.size())
 		SwapLevel(ResourceLoader.load(GLOBALS.MAPS[MapIDX]))
+	Health = 999
 	pass
 
 func AddGold(_amount:int):
@@ -351,8 +358,11 @@ func SetSpeedModifier(_value:float):
 
 
 func SwapLevel(_NewLevel:RES_Map):
+	RoundControls.visible = false
+	RoundControls.ShowBeginRoundButton()
+	UpgradeScreen.CloseMenu()
 	CurrentMap = _NewLevel
-	DMAnimPlayer.play("swap")
+	DMAnimTree["parameters/swap/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	TableAnimPlayer.play("swap")
 	await get_tree().create_timer(2.0).timeout
 	for i in TowerHolder.get_child_count():
@@ -367,11 +377,14 @@ func SwapLevel(_NewLevel:RES_Map):
 	for i in ActiveEnemies.size():
 		ActiveEnemies[i].queue_free()
 	ActiveEnemies.clear()
+	await DMAnimTree.animation_finished
+	RoundControls.visible = true
 
 func DisplayVictoryScreen():
 	VictoryScreen.show()
 	VictoryStatsText.text = "Time spent\n %s\nGold spent\n%s\nEnemies killed\n%s" % [STATS_Time, STATS_GoldSpent,STATS_Kills]
 	DM_Manager.instance.PlayWinLine()
+	MUSICMANAGER.MusicPlayer.stop()
 	pass
 	
 func SelectNextLevel():
@@ -387,7 +400,9 @@ func SelectNextLevel():
 	
 func DisplayFailScreen():
 	FailScreen.show()
+	RoundControls.PausedButtonPressed()
 	DM_Manager.instance.PlayFailLine()
+	MUSICMANAGER.MusicPlayer.stop()
 	pass
 	
 func RestartLevel():
@@ -395,21 +410,12 @@ func RestartLevel():
 	if MapIDX == MAPS.size()-1:
 		SwapFantasyMode(false,true)
 		CheckForGoldSoftlock()
+	RoundControls.visible = false
 	SwapLevel(MAPS[MapIDX])
 	
 func CheckForGoldSoftlock():
-	var Towers:Array[TowerScene] = []
-	var RefundMoney:int = 0
-	for i in TowerHolder.get_child_count():
-		Towers.append(TowerHolder.get_child(i))
-		
-	for i in Towers.size():
-		RefundMoney += Towers[i].TowerResource.Price
-	if RefundMoney < 500:
-		AddGold(800)
-	else:
-		SetGold(RefundMoney)
-	pass
+	if Gold <= 400:
+		SetGold(700)
 
 func SwitchPerspective():
 	var NextPersp = 1 if GLOBALS.PERSPECTIVE == 0 else 0
@@ -418,3 +424,13 @@ func SwitchPerspective():
 func SmoothZoomCamera(_value:float):
 	var CamTween = create_tween().set_trans(Tween.TRANS_EXPO)
 	CamTween.tween_property(MainCamera,"fov",_value,2.0)
+
+func StopPlacingTower():
+	GameplayController.instance.PlacingTower = null
+	MouseState = MOUSESTATES.PLAYING
+	CurrentCollisionMask = GAMEPLAYCOLLISIONMASK
+	PlacementArea.visible = false
+
+func SetAllEnemyAnimationSpeed():
+	for i in ActiveEnemies.size():
+		ActiveEnemies[i].ChangeAnimSpeed(SpeedModifier)

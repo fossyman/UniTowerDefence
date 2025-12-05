@@ -4,6 +4,7 @@ class_name OptionsMenuManager
 @export var MasterVolumeSlider:HSlider
 @export var MusicVolumeSlider:HSlider
 @export var SFXVolumeSlider:HSlider
+@export var VoiceVolumeSlider:HSlider
 
 @export var PerspectiveDropdown:OptionButton
 @export var PerspectivePosition:Vector3 = Vector3(0.0,5.297,7.082)
@@ -26,10 +27,12 @@ func _ready() -> void:
 	MasterVolumeSlider.connect("value_changed",SetAudioValue.bind(MasterVolumeSlider.value,&"Master"))
 	MusicVolumeSlider.connect("value_changed",SetAudioValue.bind(MusicVolumeSlider.value,&"Music"))
 	SFXVolumeSlider.connect("value_changed",SetAudioValue.bind(SFXVolumeSlider.value,&"SFX"))
+	VoiceVolumeSlider.connect("value_changed",SetAudioValue.bind(SFXVolumeSlider.value,&"VOICE"))
 	
 	MasterVolumeSlider.connect("drag_ended",SaveConfig)
 	MusicVolumeSlider.connect("drag_ended",SaveConfig)
 	SFXVolumeSlider.connect("drag_ended",SaveConfig)
+	VoiceVolumeSlider.connect("drag_ended",SaveConfig)
 	
 	UpdateAudioSliderValues()
 	pass # Replace with function body.

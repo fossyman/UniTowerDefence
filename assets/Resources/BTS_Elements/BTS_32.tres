@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://cyk5a7fx48ivy"]
+
+[ext_resource type="Texture2D" uid="uid://bbc35ki57ekg2" path="res://assets/Sprites/BTS/32.png" id="1_fec3c"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_lkgft"]
+
+[resource]
+script = ExtResource("1_lkgft")
+ReferenceImage = ExtResource("1_fec3c")
+Description = "Skybox V2"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

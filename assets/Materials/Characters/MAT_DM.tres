@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://uqpowxa2ebfy"]
 
-[ext_resource type="Texture2D" uid="uid://cpljy2b1b3lv2" path="res://assets/Textures/Characters/DungeonMaster/DM TextureAtlas.png" id="1_r5gq4"]
+[ext_resource type="Texture2D" uid="uid://wjokxo2j4qoi" path="res://assets/Models/Characters/DM/DungeonMaster_DM TextureAtlas.png" id="1_r5gq4"]
 
 [resource]
 cull_mode = 2

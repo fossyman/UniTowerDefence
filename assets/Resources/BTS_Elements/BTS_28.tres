@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://w0qqcujxwy3c"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_2rd1u"]
+[ext_resource type="Texture2D" uid="uid://ceqn26g78rsye" path="res://assets/Sprites/BTS/28.png" id="1_o7pts"]
+
+[resource]
+script = ExtResource("1_2rd1u")
+ReferenceImage = ExtResource("1_o7pts")
+Description = "The final Cannon Texture."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://by1dc8uavqnao"]
+
+[ext_resource type="Texture2D" uid="uid://bs7rxis4ixoqa" path="res://assets/Sprites/BTS/48.png" id="1_7yecy"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_exypi"]
+
+[resource]
+script = ExtResource("1_exypi")
+ReferenceImage = ExtResource("1_7yecy")
+Description = "The texture on the back of the dark lord"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

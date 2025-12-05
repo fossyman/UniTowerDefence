@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://cgigfl5cu5fie"]
+
+[ext_resource type="Texture2D" uid="uid://nuigto14bg01" path="res://assets/Sprites/BTS/60.png" id="1_24nf5"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_rmm8q"]
+
+[resource]
+script = ExtResource("1_rmm8q")
+ReferenceImage = ExtResource("1_24nf5")
+Description = "The Dark Lords pet, the Bonebird. This was designed to be used in the finale."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

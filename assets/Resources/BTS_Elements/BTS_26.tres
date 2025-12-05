@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://duw0k0r0f6v65"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_ga307"]
+[ext_resource type="Texture2D" uid="uid://50dcx27f2ro8" path="res://assets/Sprites/BTS/26.png" id="1_q8e3q"]
+
+[resource]
+script = ExtResource("1_ga307")
+ReferenceImage = ExtResource("1_q8e3q")
+Description = "The cannon's tube, modeled to look similar to a tapered cylinder created with a toilet paper tube. and cellotape"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

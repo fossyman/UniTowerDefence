@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://b1u4pv453r5le"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_g0odd"]
+[ext_resource type="Texture2D" uid="uid://bhw203iw3g7nt" path="res://assets/Sprites/BTS/54.png" id="1_wiaet"]
+
+[resource]
+script = ExtResource("1_g0odd")
+ReferenceImage = ExtResource("1_wiaet")
+Description = "A strange one. I created this as an easter egg for the loading screen.
+One of the loading screen tips is a quote from PT, a now unavailable demo for a horror game created by Konami in 2014. If this quote is picked, this image model will be displayed in the background."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

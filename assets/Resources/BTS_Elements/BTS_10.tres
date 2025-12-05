@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://b3mk3qrgw7jd7"]
+
+[ext_resource type="Texture2D" uid="uid://w4nv68q7yx10" path="res://assets/Sprites/BTS/10.png" id="1_1ndbo"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_mcn38"]
+
+[resource]
+script = ExtResource("1_mcn38")
+ReferenceImage = ExtResource("1_1ndbo")
+Description = "King Alden, with the beginnings of the cardboard cutout for the character."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://dik6qa454xx0k"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_o1aep"]
+[ext_resource type="Texture2D" uid="uid://wqe4b3c647gm" path="res://assets/Sprites/BTS/66.png" id="1_p7lu6"]
+
+[resource]
+script = ExtResource("1_o1aep")
+ReferenceImage = ExtResource("1_p7lu6")
+Description = "The model of the final boss, the King Goblin. It combines both the Goblin and King Alden models into one and then I fattened the model to create the visual themeing of an evil, Gluttonous king."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

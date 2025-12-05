@@ -10,7 +10,7 @@ radial_segments = 7
 rings = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_htbna"]
-radius = 0.209483
+radius = 0.064352
 
 [node name="ScnProjectileTest" type="Node3D"]
 script = ExtResource("1_dk722")

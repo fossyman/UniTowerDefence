@@ -1,11 +1,11 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dn42nyq5qooiy"]
 
 [ext_resource type="Texture2D" uid="uid://dd0y41wlfno50" path="res://assets/Textures/Map/Paths/TowerDefence_Path3.png" id="1_3araw"]
-[ext_resource type="Texture2D" uid="uid://c0n04ntxbophy" path="res://assets/Textures/Third Party/Cardboard Textures/Cardboard_02_NORMAL.png" id="2_0nyo6"]
+[ext_resource type="Texture2D" uid="uid://cpmdrwxradw4c" path="res://assets/Textures/Third Party/Cardboard Textures/Cardboard_02_NORMAL.jpg" id="2_3araw"]
 
 [resource]
 albedo_texture = ExtResource("1_3araw")
 normal_enabled = true
 normal_scale = 3.0
-normal_texture = ExtResource("2_0nyo6")
+normal_texture = ExtResource("2_3araw")
 texture_filter = 1

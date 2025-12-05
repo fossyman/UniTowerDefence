@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://b1bkvkcdotxcx"]
+
+[ext_resource type="Texture2D" uid="uid://cud00pb7tah76" path="res://assets/Sprites/BTS/5.png" id="1_n3rkf"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_y8x6v"]
+
+[resource]
+script = ExtResource("1_y8x6v")
+ReferenceImage = ExtResource("1_n3rkf")
+Description = "The first sketch of the game's protagonist, King Alden."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

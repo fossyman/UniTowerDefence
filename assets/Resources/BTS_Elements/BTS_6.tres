@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://dl7isba0vf4rj"]
+
+[ext_resource type="Texture2D" uid="uid://mmg8c4blxuhj" path="res://assets/Sprites/BTS/6.png" id="1_bkwsg"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_hymi4"]
+
+[resource]
+script = ExtResource("1_hymi4")
+ReferenceImage = ExtResource("1_bkwsg")
+Description = "Mid-progress shot of creating  the cardboard version of King Alden for use in the game."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

@@ -12,6 +12,10 @@ func _process(delta: float) -> void:
 	if RealworldRep and dir != Vector3.ZERO:
 		RealworldRep.rotation.y = atan2(dir.x,dir.z)
 func DeathEffect():
+	if GameplayController.instance.FullFantasy:
+		if RealworldRep:
+			RealworldRep.visible = false
+		pass
 	Deathtween = get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 	Deathtween.parallel().tween_property(MeshParent,"position:y",15,3)
 	pass

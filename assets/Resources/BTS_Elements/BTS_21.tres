@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://c81c3oppxitar"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_6t368"]
+[ext_resource type="Texture2D" uid="uid://bln65rtfykmh8" path="res://assets/Sprites/BTS/21.png" id="1_tyjbk"]
+
+[resource]
+script = ExtResource("1_6t368")
+ReferenceImage = ExtResource("1_tyjbk")
+Description = "Main menu with the mini-theatre and titlecard"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

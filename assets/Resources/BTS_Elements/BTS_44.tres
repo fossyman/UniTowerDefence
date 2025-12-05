@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://dd713ef5sbpuq"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_dof61"]
+[ext_resource type="Texture2D" uid="uid://bfrf8xi3aphqn" path="res://assets/Sprites/BTS/45.png" id="1_fl6wf"]
+
+[resource]
+script = ExtResource("1_dof61")
+ReferenceImage = ExtResource("1_fl6wf")
+Description = "The Dark Lord's character model."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

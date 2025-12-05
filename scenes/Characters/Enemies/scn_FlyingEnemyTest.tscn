@@ -50,7 +50,7 @@ alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("3_wgy47")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ybv72"]
-height = 3.23247
+height = 7.06736
 
 [sub_resource type="QuadMesh" id="QuadMesh_vngxj"]
 
@@ -100,7 +100,7 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_iuhgu"]
 material = SubResource("StandardMaterial3D_i4v11")
 
-[node name="SCN_FlyingEnemy" type="PathFollow3D" node_paths=PackedStringArray("Pinpoint", "MeshParent", "HealthComp", "Hurtbox", "RealworldRep")]
+[node name="SCN_FlyingEnemy" type="PathFollow3D" node_paths=PackedStringArray("Pinpoint", "MeshParent", "HealthComp", "Hurtbox", "AnimPlayer", "RealworldRep")]
 transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
 progress = 23.5245
 rotation_mode = 0
@@ -112,13 +112,13 @@ TravelSpeed = 0.02
 MeshParent = NodePath("Node3D")
 HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
+AnimPlayer = NodePath("Skull3D/AnimationPlayer")
 SpawnSFX = Array[AudioStream]([ExtResource("2_rc0vh"), ExtResource("3_vngxj"), ExtResource("4_pcx51"), ExtResource("5_y0w5c"), ExtResource("6_qp87b"), ExtResource("7_i4v11")])
-DeathReward = 10
+DeathReward = 20
 RealworldRep = NodePath("Skull3D")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99809, 0)
-visible = false
 
 [node name="Pinpoint" type="Node3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.42392, 0)
@@ -140,10 +140,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0426789)
 mesh = SubResource("QuadMesh_vet01")
 surface_material_override/0 = SubResource("StandardMaterial3D_3hdu3")
 
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/Pinpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.99982, 0)
+cast_shadow = 3
+mesh = SubResource("BoxMesh_5erwy")
+skeleton = NodePath("../../..")
+
 [node name="HEALTH" type="Node" parent="."]
 script = ExtResource("2_5qlp6")
-Health = 15
-HealthCap = 15
+Health = 6
+HealthCap = 6
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598628, 0)

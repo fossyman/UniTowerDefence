@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://bwlpnm7eccirl"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_gy64c"]
+[ext_resource type="Texture2D" uid="uid://cih7ss1mk1mr6" path="res://assets/Sprites/BTS/46.png" id="1_slsn4"]
+
+[resource]
+script = ExtResource("1_gy64c")
+ReferenceImage = ExtResource("1_slsn4")
+Description = "Closeup of the Dark Lord's face. The choice to make the face pointy was decided as a way to define the face shape from a distance, as these character models would be seen from a distance."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

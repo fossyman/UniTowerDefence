@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://beeyjdehppp1f"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_0p117"]
+[ext_resource type="Texture2D" uid="uid://d0hc7c83aqbem" path="res://assets/Sprites/BTS/3.png" id="1_gxpue"]
+
+[resource]
+script = ExtResource("1_0p117")
+ReferenceImage = ExtResource("1_gxpue")
+Description = "Mid-progress shot of the first level's pathway."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

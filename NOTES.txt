@@ -1,6 +1,6 @@
 SFX LOCATIONS
 https://freesound.org/people/SpaceJoe/sounds/485729/
-https://freesound.org/people/eZZin/sounds/545857/
+https://freesound.org/people/eZZin/sounds/545857/ *UNUSED*
 https://freesound.org/people/el_boss/sounds/677853/
 https://freesound.org/people/Anthousai/sounds/336576/
 https://freesound.org/people/Flem0527/sounds/630018/
@@ -13,7 +13,7 @@ https://freesound.org/people/jzielke011/sounds/649774/
 https://freesound.org/people/JohnBuhr/sounds/326863/
 https://freesound.org/people/JohnBuhr/sounds/326861/
 https://freesound.org/people/JohnBuhr/sounds/326860/
-
+https://freesound.org/people/Yuval/sounds/196199/
 
 MUSIC:
 CANDLEMASS: The Well of Souls

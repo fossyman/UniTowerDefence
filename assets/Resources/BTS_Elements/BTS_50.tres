@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://vuw18y4hibte"]
+
+[ext_resource type="Texture2D" uid="uid://b66l4o74dipld" path="res://assets/Sprites/BTS/51.png" id="1_c4h53"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_m03x5"]
+
+[resource]
+script = ExtResource("1_m03x5")
+ReferenceImage = ExtResource("1_c4h53")
+Description = "The beginnings of the older brother, AKA \"The DM\""
+metadata/_custom_type_script = "uid://c758gxdanigh0"

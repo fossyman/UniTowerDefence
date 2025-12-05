@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://c0xx2uyn5f1s7"]
+
+[ext_resource type="Texture2D" uid="uid://c1rvv3yojn7wy" path="res://assets/Sprites/BTS/17.png" id="1_t6jl4"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_vmuh4"]
+
+[resource]
+script = ExtResource("1_vmuh4")
+ReferenceImage = ExtResource("1_t6jl4")
+Description = "The first screenshot of the game with textures. Including the wizard tower, archer tower, and Goblins
+"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

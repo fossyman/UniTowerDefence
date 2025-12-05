@@ -1,0 +1,112 @@
+[gd_scene load_steps=20 format=3 uid="uid://cm03gdsaprgee"]
+
+[ext_resource type="Script" uid="uid://cpdhqs5q7lns1" path="res://scripts/SCR_Enemy.gd" id="1_n0rst"]
+[ext_resource type="AudioStream" uid="uid://cmygj2iyh2s3j" path="res://assets/Audio/SFX/EnemySFX/Ball o Spiders/Spiderball_Spawn-01.ogg" id="2_nve52"]
+[ext_resource type="AudioStream" uid="uid://b3gc4a38wkxcn" path="res://assets/Audio/SFX/EnemySFX/Ball o Spiders/Spiderball_Spawn-02.ogg" id="3_hkxki"]
+[ext_resource type="AudioStream" uid="uid://dqvqn818ip36" path="res://assets/Audio/SFX/EnemySFX/Ball o Spiders/Spiderball_Spawn-03.ogg" id="4_r1psq"]
+[ext_resource type="AudioStream" uid="uid://botpw17omxaye" path="res://assets/Audio/SFX/EnemySFX/Ball o Spiders/Spiderball_Spawn-04.ogg" id="5_rbu7d"]
+[ext_resource type="AudioStream" uid="uid://8uj67meyagcq" path="res://assets/Audio/SFX/EnemySFX/Ball o Spiders/Spiderball_Spawn-05.ogg" id="6_boean"]
+[ext_resource type="AudioStream" uid="uid://dqvlrhj6yie7e" path="res://assets/Audio/SFX/EnemySFX/Ball o Spiders/Spiderball_Spawn-06.ogg" id="7_b5ts0"]
+[ext_resource type="Material" uid="uid://v24kx8rvt6nx" path="res://assets/Materials/MAT_Cardboard1.tres" id="7_trkqx"]
+[ext_resource type="Material" uid="uid://bomg0f7l4mxlw" path="res://assets/Materials/MAT_SpiderballPaint.tres" id="8_n0rst"]
+[ext_resource type="Script" uid="uid://dahitxda5ofvw" path="res://scripts/SCR_HealthComponent.gd" id="9_6tjp5"]
+[ext_resource type="Material" uid="uid://bpnrt2qyya566" path="res://assets/Materials/MAT_CocktailStick.tres" id="10_hkxki"]
+[ext_resource type="Script" uid="uid://cjeyk8jbi2soa" path="res://scripts/SCR_HurtboxComponent.gd" id="10_jee04"]
+[ext_resource type="Script" uid="uid://koqtfibvr2k" path="res://scripts/SCR_QuickRotator.gd" id="11_n0rst"]
+[ext_resource type="PackedScene" uid="uid://dee3l8m0v7non" path="res://assets/Models/Characters/Spiderball/SpiderBall.glb" id="12_nve52"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5erwy"]
+size = Vector3(1, 1, 0.065)
+
+[sub_resource type="QuadMesh" id="QuadMesh_pqfbv"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r1psq"]
+material = ExtResource("10_hkxki")
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.3
+radial_segments = 4
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rbu7d"]
+material = ExtResource("10_hkxki")
+top_radius = 0.1
+bottom_radius = 0.1
+radial_segments = 4
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkn23"]
+
+[node name="SCN_Enemy" type="PathFollow3D" node_paths=PackedStringArray("MeshParent", "HealthComp", "Hurtbox", "RealworldRep")]
+transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
+progress = 23.5245
+rotation_mode = 0
+loop = false
+tilt_enabled = false
+script = ExtResource("1_n0rst")
+TravelSpeed = 0.02
+MeshParent = NodePath("Node3D")
+HealthComp = NodePath("HEALTH")
+Hurtbox = NodePath("Hurtbox")
+SpawnSFX = Array[AudioStream]([ExtResource("2_nve52"), ExtResource("3_hkxki"), ExtResource("4_r1psq"), ExtResource("5_rbu7d"), ExtResource("6_boean"), ExtResource("7_b5ts0")])
+DeathReward = 50
+RealworldRep = NodePath("Node3D2")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305368, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_5erwy")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_trkqx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0649998)
+material_override = ExtResource("8_n0rst")
+mesh = SubResource("QuadMesh_pqfbv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1.87738, -0.0669388)
+mesh = SubResource("CylinderMesh_r1psq")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.727584, -0.0669388)
+mesh = SubResource("CylinderMesh_rbu7d")
+skeleton = NodePath("")
+
+[node name="HEALTH" type="Node" parent="."]
+script = ExtResource("9_6tjp5")
+Health = 7
+HealthCap = 7
+
+[node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99994, 0)
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("10_jee04")
+HealthComponent = NodePath("../HEALTH")
+metadata/_custom_type_script = "uid://cjeyk8jbi2soa"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.161554, 0)
+shape = SubResource("CapsuleShape3D_vkn23")
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1.00077, 0, 0, 0, 0.805836, -0.59327, 0, 0.593273, 0.805834, 0, 0.399976, 0)
+
+[node name="Node3D" type="Node3D" parent="Node3D2"]
+transform = Transform3D(1, 0, 0, 0, -0.628542, 0.77876, 0, -0.77876, -0.628542, 0, 0, 0)
+script = ExtResource("11_n0rst")
+RotateSpeedX = -0.5
+
+[node name="SpiderBall" parent="Node3D2/Node3D" instance=ExtResource("12_nve52")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[connection signal="Death" from="HEALTH" to="." method="Death"]

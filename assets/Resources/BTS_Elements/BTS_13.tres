@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://0n40h8pxa7jf"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_mjlou"]
+[ext_resource type="Texture2D" uid="uid://b44ntdpbrp55b" path="res://assets/Sprites/BTS/13.png" id="1_xkwpt"]
+
+[resource]
+script = ExtResource("1_mjlou")
+ReferenceImage = ExtResource("1_xkwpt")
+Description = "Goblins finished Lineart"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

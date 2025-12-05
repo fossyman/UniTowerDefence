@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://prkwxs6cm2vd"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_aj31l"]
+[ext_resource type="Texture2D" uid="uid://c4nr78lsi0wm" path="res://assets/Sprites/BTS/65.png" id="1_tr87g"]
+
+[resource]
+script = ExtResource("1_aj31l")
+ReferenceImage = ExtResource("1_tr87g")
+Description = "Progress shot of the cancelled Bear enemy."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

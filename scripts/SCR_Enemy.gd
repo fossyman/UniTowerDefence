@@ -1,6 +1,7 @@
 extends PathFollow3D
 class_name Enemy
 
+@export var Damage:int = 1
 @export var TravelSpeed:float = 1.0
 var CurrentTravelSpeed = 1.0
 var dir:Vector3
@@ -9,7 +10,7 @@ var PosCache:Vector3
 @export var HealthComp:COMPONENT_HEALTH
 var IsDead:bool = false
 @export var Hurtbox:HurtboxComponent
-
+@export var AnimPlayer:AnimationPlayer
 var Deathtween:Tween
 
 @export var CurrentStatusEffect:StatusEffect
@@ -27,10 +28,13 @@ var StatusLifetime = 1.0
 func _ready() -> void:
 	CurrentTravelSpeed = TravelSpeed
 	CheckIfRealWorld()
-	
+	HealthComp.HealthCap += GameplayController.instance.WaveIDX
+	HealthComp.SetHealth(HealthComp.HealthCap)
 	if !SpawnSFX.is_empty():
 		AUDIOMANAGER.PlaySFX(SpawnSFX.pick_random(),0.1,0.0,&"RadioSFX")
-
+	
+	ChangeAnimSpeed()
+	
 func _process(delta: float) -> void:
 	if IsDead:
 		return
@@ -56,11 +60,11 @@ func _process(delta: float) -> void:
 
 func Death(_AddGold:bool = true, AtEnd:bool = false):
 	if _AddGold:
-		GameplayController.instance.AddGold(randi_range(DeathReward,DeathReward+5))
+		GameplayController.instance.AddGold(randi_range(DeathReward,DeathReward+5) + GameplayController.instance.MapIDX + GameplayController.instance.WaveIDX)
 	if !AtEnd:
 		GameplayController.instance.STATS_Kills += 1
 	else:
-		GameplayController.instance.SubtractHealth(1)
+		GameplayController.instance.SubtractHealth(Damage)
 		
 	IsDead = true
 	DeathEffect()
@@ -68,25 +72,31 @@ func Death(_AddGold:bool = true, AtEnd:bool = false):
 	Hurtbox.set_deferred("monitoring",false)
 	GameplayController.instance.ActiveEnemies.erase(self)
 	GameplayController.instance.CheckWaveCompletion()
-	await Deathtween.finished
+	if Deathtween:
+		await Deathtween.finished
 	queue_free()
 	pass
 func DeathEffect():
-	Deathtween = get_tree().create_tween()
-	if dir.x > 0.9 || dir.x < -0.9:
-		#LEFT
-		Deathtween.parallel().tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
-		Deathtween.parallel().tween_property(MeshParent,"position:y",-5,1)
-		pass
-	elif dir.z > 0.9 || dir.z < -0.9:
-		#UP
-		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,90,0),0.3)
-		Deathtween.tween_property(MeshParent,"position:y",-5,1)
+	if GameplayController.instance.FullFantasy:
+		if RealworldRep:
+			RealworldRep.visible = false
 		pass
 	else:
-		Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
-		Deathtween.tween_property(MeshParent,"position:y",-5,1)
-	await Deathtween.finished
+		Deathtween = get_tree().create_tween()
+		if dir.x > 0.9 || dir.x < -0.9:
+			#LEFT
+			Deathtween.parallel().tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
+			Deathtween.parallel().tween_property(MeshParent,"position:y",-5,1)
+			pass
+		elif dir.z > 0.9 || dir.z < -0.9:
+			#UP
+			Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,90,0),0.3)
+			Deathtween.tween_property(MeshParent,"position:y",-5,1)
+			pass
+		else:
+			Deathtween.tween_property(MeshParent,"rotation_degrees",Vector3(0,0,0),0.3)
+			Deathtween.tween_property(MeshParent,"position:y",-5,1)
+		await Deathtween.finished
 
 func CheckStatusEffects():
 	if CurrentStatusEffect.StatusType == StatusEffect.STATUSTYPE.DAMAGE:
@@ -124,3 +134,7 @@ func CheckIfRealWorld():
 		if RealworldRep:
 			RealworldRep.visible = false
 		MeshParent.visible = true
+
+func ChangeAnimSpeed(_value = GameplayController.instance.SpeedModifier):
+	if AnimPlayer:
+		AnimPlayer.speed_scale = _value

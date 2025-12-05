@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://ccokpuahjlas6"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_1wiiv"]
+[ext_resource type="Texture2D" uid="uid://dlugvilyaml7j" path="res://assets/Sprites/BTS/49.png" id="1_qc123"]
+
+[resource]
+script = ExtResource("1_1wiiv")
+ReferenceImage = ExtResource("1_qc123")
+Description = "This is the texture that I created for the back of the Dark Lords cloak."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

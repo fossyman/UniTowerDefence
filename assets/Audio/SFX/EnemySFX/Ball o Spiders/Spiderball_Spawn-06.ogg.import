@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dqvlrhj6yie7e"
+path="res://.godot/imported/Spiderball_Spawn-06.ogg-a467e13859ca3605d9166f570c84e4cb.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/EnemySFX/Ball o Spiders/Spiderball_Spawn-06.ogg"
+dest_files=["res://.godot/imported/Spiderball_Spawn-06.ogg-a467e13859ca3605d9166f570c84e4cb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

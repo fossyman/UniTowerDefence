@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://yr2s3pxg1orr"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_0jxnn"]
+[ext_resource type="Texture2D" uid="uid://crumw1tgy03ek" path="res://assets/Sprites/BTS/67.png" id="1_ky040"]
+
+[resource]
+script = ExtResource("1_0jxnn")
+ReferenceImage = ExtResource("1_ky040")
+Description = "The final version of the King Goblin. Now with a primarily black and red colour scheme. The crown is also more spiky and bent to give the appearance of a discarded crown that this goblin found."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

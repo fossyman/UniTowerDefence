@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://d2ss58mparsls"]
+
+[ext_resource type="Texture2D" uid="uid://dbuehakyog0jd" path="res://assets/Sprites/BTS/44.png" id="1_fvpd0"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_ohjp5"]
+
+[resource]
+script = ExtResource("1_ohjp5")
+ReferenceImage = ExtResource("1_fvpd0")
+Description = "King Alden's character model"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

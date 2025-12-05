@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://6sg5el711yuu"]
+
+[ext_resource type="Texture2D" uid="uid://bn68ltp53o63b" path="res://assets/Sprites/BTS/71.png" id="1_swv6x"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_wcp8j"]
+
+[resource]
+script = ExtResource("1_wcp8j")
+ReferenceImage = ExtResource("1_swv6x")
+Description = "Finally, the second main menu. This menu is used after the game is completed."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://c5518h67ov3j4"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_do1mn"]
+[ext_resource type="Texture2D" uid="uid://nqdv6qugyw7h" path="res://assets/Sprites/BTS/36.png" id="1_ubpdp"]
+
+[resource]
+script = ExtResource("1_do1mn")
+ReferenceImage = ExtResource("1_ubpdp")
+Description = "The basemesh created to make the character on the \"POWER\" poster in the bedroom."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

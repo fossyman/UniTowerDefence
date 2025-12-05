@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://7yqrsoyj1v07"]
+
+[ext_resource type="Texture2D" uid="uid://cdg6y8jdwqb3b" path="res://assets/Sprites/BTS/16.png" id="1_3sa7b"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_fw5xw"]
+
+[resource]
+script = ExtResource("1_fw5xw")
+ReferenceImage = ExtResource("1_3sa7b")
+Description = "Shot of details at the bottom, including a curved plane used to mimic cellotape."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

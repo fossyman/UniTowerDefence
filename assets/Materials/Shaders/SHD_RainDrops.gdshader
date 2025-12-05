@@ -1,8 +1,3 @@
-// Rain puddles with ripples using SSR
-// CC0, shadecore_dev, 2025.
-// Includes parts of the SSR implementation created by marcelb: https://godotshaders.com/shader/transparent-water-shader-supporting-ssr/
-// Includes the rain ripple effect created by Zavie: https://www.shadertoy.com/view/ldfyzl
-
 shader_type spatial;
 render_mode fog_disabled,blend_mul;
 

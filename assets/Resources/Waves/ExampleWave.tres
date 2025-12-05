@@ -9,4 +9,5 @@ Enemies = Array[PackedScene]([ExtResource("1_qkmlb")])
 SpawnOrder = Array[int]([])
 EnemyCapacity = 5
 SpawnSpeed = 1.5
+RandomSpawning = false
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"

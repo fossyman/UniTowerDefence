@@ -12,6 +12,8 @@ var _damage:float
 
 var Target:Node3D
 
+@export var AttackSFX:Array[AudioStream]
+
 var TowerModifiers:Array[TowerModifier]
 
 @export var LookAtTarget:bool = false
@@ -30,7 +32,7 @@ var TowerModifiers:Array[TowerModifier]
 
 func _ready() -> void:
 	CheckIfRealWorld()
-
+	refreshStats()
 func _process(delta: float) -> void:
 	TickAmt += delta * GameplayController.instance.SpeedModifier
 	if TickAmt > Tickrate:
@@ -41,12 +43,13 @@ func Tick():
 	Target = Get_ClosestEnemy(true)
 	if Target:
 		if LookAtTarget:
-			var targetlerp = get_tree().create_tween().set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN_OUT)
 			var diff = (Target.global_position - global_position)
-			for i in LookAtNodes.size():
-				targetlerp.tween_property(LookAtNodes[i],"rotation:y",atan2(diff.x,diff.z),0.5)
-			await targetlerp.finished
+			rotation.y = atan2(diff.x,diff.z)
+			SpawnProjectile()
+			AUDIOMANAGER.PlaySFX(AttackSFX.pick_random(),0.5,-5)
+			return
 		SpawnProjectile()
+		AUDIOMANAGER.PlaySFX(AttackSFX.pick_random(),0.5,-5)
 
 func SpawnProjectile():
 	if !Target:
@@ -92,7 +95,8 @@ func refreshStats():
 func ShowRangeDecal():
 	RangeDecal.show()
 	var range = GetCurrentAttackRange()
-	RangeDecal.scale = Vector3(range,1.0,range)
+	RangeDecal.size.x = 1.0 + range
+	RangeDecal.size.z = 1.0 + range
 	
 func HideRangeDecal():
 	RangeDecal.hide()

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://1qymjpy1k4bb"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_1pktq"]
+[ext_resource type="Texture2D" uid="uid://c1cxgrfivsnai" path="res://assets/Sprites/BTS/1.png" id="1_dmcam"]
+
+[resource]
+script = ExtResource("1_1pktq")
+ReferenceImage = ExtResource("1_dmcam")
+Description = "The start of the project. I began with Godot's path system, allowing me to have enemies progress from the start to the end of the level."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

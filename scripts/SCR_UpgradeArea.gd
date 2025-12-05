@@ -24,7 +24,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func DeselectTower():
+	if SelectedTower && SelectedTowerScene:
+		SelectedTowerScene.HideRangeDecal()
+	SelectedTower = null
+	SelectedTowerScene = null
+
 func populateSettings(_scene:TowerScene):
+	if SelectedTower and SelectedTowerScene:
+		DeselectTower()
 	SelectedTower = _scene.TowerResource
 	SelectedTowerScene = _scene
 	SelectedTowerScene.ShowRangeDecal()
@@ -66,12 +74,11 @@ func CloseMenu(_time:float = 1.0):
 	ToggleMenu(false,_time)
 	if SelectedTowerScene:
 		SelectedTowerScene.HideRangeDecal()
+	DeselectTower()
 
 func SellSelectedTower() -> void:
-	CloseMenu(0.5)
 	GameplayController.instance.AddGold(SelectedTower.Price)
 	AUDIOMANAGER.PlaySFX(AUDIOMANAGER.BUY_SFX)
 	SelectedTowerScene.queue_free()
-	SelectedTowerScene = null
-	SelectedTower = null
+	CloseMenu(0.1)
 	pass # Replace with function body.

@@ -39,7 +39,8 @@ func PlayKillAnim():
 	AnimTimer.stop()
 	DM_Manager.instance.PlayAudio(DM_Manager.instance.LevelSpecificLines[2])
 	var FinisherTween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	FightRoot.RotateSpeed = 0.0
+	FightRoot.RotateSpeedY = 0.0
+	FightRoot.RotateSpeedX = 0.0
 	FinisherTween.tween_property(FightRoot,"rotation_degrees:y",0.0,1.0)
 	GameplayController.instance.SmoothZoomCamera(30)
 	GameplayController.instance.CameraFocusPoint = ImpactSprite

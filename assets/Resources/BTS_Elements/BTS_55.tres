@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://c5qmygadcco8v"]
+
+[ext_resource type="Texture2D" uid="uid://c828687ndhikj" path="res://assets/Sprites/BTS/56.png" id="1_qskoc"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_sx357"]
+
+[resource]
+script = ExtResource("1_sx357")
+ReferenceImage = ExtResource("1_qskoc")
+Description = "3D Goblin progress shot 2"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

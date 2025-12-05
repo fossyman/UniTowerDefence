@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://v7j65qynlg2n"]
+
+[ext_resource type="Texture2D" uid="uid://dlrlg8746pvov" path="res://assets/Sprites/BTS/18.png" id="1_3fbrl"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_okn71"]
+
+[resource]
+script = ExtResource("1_okn71")
+ReferenceImage = ExtResource("1_3fbrl")
+Description = "The initial version of the game's title."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

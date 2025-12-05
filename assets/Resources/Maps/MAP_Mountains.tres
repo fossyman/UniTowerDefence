@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dnofd3ooi6rrv" path="res://scripts/Resources/SCR_WaveResource.gd" id="2_1t716"]
 [ext_resource type="PackedScene" uid="uid://4aidqsbu2wy7" path="res://scenes/Characters/Enemies/scn_Enemy.tscn" id="3_qw3r4"]
 [ext_resource type="PackedScene" uid="uid://vck1yjpyatn8" path="res://scenes/Characters/Enemies/scn_FlyingEnemyTest.tscn" id="4_l7fa8"]
+[ext_resource type="PackedScene" uid="uid://cm03gdsaprgee" path="res://scenes/Characters/Enemies/scn_Spiderball.tscn" id="5_1t716"]
 [ext_resource type="Script" uid="uid://cwq3mcch85ig4" path="res://scripts/Resources/SCR_MapResource.gd" id="5_nembc"]
 
 [sub_resource type="Resource" id="Resource_1t716"]
@@ -35,24 +36,15 @@ metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [sub_resource type="Resource" id="Resource_nembc"]
 script = ExtResource("2_1t716")
-Enemies = Array[PackedScene]([ExtResource("3_qw3r4"), ExtResource("4_l7fa8")])
-SpawnOrder = Array[int]([0, 1, 1, 0, 1, 1, 0, 1, 1, 1])
-EnemyCapacity = 15
-SpawnSpeed = 1.5
-RandomSpawning = false
-metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
-
-[sub_resource type="Resource" id="Resource_qw3r4"]
-script = ExtResource("2_1t716")
-Enemies = Array[PackedScene]([ExtResource("3_qw3r4"), ExtResource("4_l7fa8")])
+Enemies = Array[PackedScene]([ExtResource("3_qw3r4"), ExtResource("4_l7fa8"), ExtResource("5_1t716")])
 SpawnOrder = Array[int]([])
-EnemyCapacity = 30
+EnemyCapacity = 10
 SpawnSpeed = 1.5
 RandomSpawning = true
 metadata/_custom_type_script = "uid://dnofd3ooi6rrv"
 
 [resource]
 script = ExtResource("5_nembc")
-WaveResources = Array[ExtResource("2_1t716")]([SubResource("Resource_1t716"), SubResource("Resource_1t716"), SubResource("Resource_irocw"), SubResource("Resource_irocw"), SubResource("Resource_l7fa8"), SubResource("Resource_nembc"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4"), SubResource("Resource_qw3r4")])
+WaveResources = Array[ExtResource("2_1t716")]([SubResource("Resource_1t716"), SubResource("Resource_1t716"), SubResource("Resource_irocw"), SubResource("Resource_irocw"), SubResource("Resource_l7fa8"), SubResource("Resource_nembc"), SubResource("Resource_nembc"), SubResource("Resource_nembc"), SubResource("Resource_nembc"), SubResource("Resource_nembc")])
 MapScene = ExtResource("1_qw3r4")
 metadata/_custom_type_script = "uid://cwq3mcch85ig4"

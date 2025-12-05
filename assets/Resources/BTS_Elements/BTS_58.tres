@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://digq8lprc3vd2"]
+
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_3xnud"]
+[ext_resource type="Texture2D" uid="uid://cm2xijxk8n8pv" path="res://assets/Sprites/BTS/59.png" id="1_rep3m"]
+
+[resource]
+script = ExtResource("1_3xnud")
+ReferenceImage = ExtResource("1_rep3m")
+Description = "Fire particle process. The additional lines was drawn to replicate randomness. It helped me with deciding when to curve the outer line."
+metadata/_custom_type_script = "uid://c758gxdanigh0"

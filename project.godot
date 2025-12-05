@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Uni Tower Defence Project"
+config/name="Our Kingdom's Last Stand"
 run/main_scene="uid://3pu1ralxgg5i"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+run/max_fps=60
+config/icon="uid://dll8kn3gbc5m5"
+config/windows_native_icon="res://assets/Textures/Icon.ico"
 
 [autoload]
 
@@ -22,6 +24,11 @@ AUDIOMANAGER="*res://scripts/SCR_AudioManager.gd"
 NOTIFICATIONMANAGER="*res://scripts/SCR_NotificationManager.gd"
 SAVELOADMANAGER="*res://scripts/SCR_SaveLoadManager.gd"
 MUSICMANAGER="*res://scripts/SCR_MusicManager.gd"
+
+[compression]
+
+formats/zlib/compression_level=2
+formats/gzip/compression_level=2
 
 [debug_draw_3d]
 
@@ -35,6 +42,7 @@ window/stretch/mode="canvas_items"
 
 [filesystem]
 
+import/fbx2gltf/enabled=false
 import/blender/enabled=false
 
 [gui]

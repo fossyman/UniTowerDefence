@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BTS_Image" load_steps=3 format=3 uid="uid://ba25xyoi52lum"]
+
+[ext_resource type="Texture2D" uid="uid://dcjg80pb60ugj" path="res://assets/Sprites/BTS/11.png" id="1_gqtbd"]
+[ext_resource type="Script" uid="uid://c758gxdanigh0" path="res://scripts/Resources/SCR_BTSShowcaseResource.gd" id="1_ibhc7"]
+
+[resource]
+script = ExtResource("1_ibhc7")
+ReferenceImage = ExtResource("1_gqtbd")
+Description = "Beginnings of the Goblin, the lowest-level enemy"
+metadata/_custom_type_script = "uid://c758gxdanigh0"

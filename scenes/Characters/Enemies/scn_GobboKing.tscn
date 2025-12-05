@@ -31,20 +31,23 @@ texture_filter = 0
 [sub_resource type="QuadMesh" id="QuadMesh_pqfbv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkn23"]
+height = 7.79473
 
-[node name="SCN_Enemy" type="PathFollow3D" node_paths=PackedStringArray("MeshParent", "HealthComp", "Hurtbox", "RealworldRep")]
+[node name="SCN_Enemy" type="PathFollow3D" node_paths=PackedStringArray("MeshParent", "HealthComp", "Hurtbox", "AnimPlayer", "RealworldRep")]
 transform = Transform3D(0.999834, 0, 0, 0, 1.00006, 0, 0, 0, 0.999839, 0, 0, 0)
 progress = 23.5245
 rotation_mode = 0
 loop = false
 tilt_enabled = false
 script = ExtResource("1_r7fo4")
-TravelSpeed = 0.001
+Damage = 999
+TravelSpeed = 0.008
 MeshParent = NodePath("Node3D")
 HealthComp = NodePath("HEALTH")
 Hurtbox = NodePath("Hurtbox")
+AnimPlayer = NodePath("KingGobbo/AnimationPlayer")
 SpawnSFX = Array[AudioStream]([ExtResource("2_vo80j"), ExtResource("3_0n531"), ExtResource("4_sy8l5"), ExtResource("5_q0xre"), ExtResource("6_gqlsp")])
-DeathReward = 10
+DeathReward = 9999
 RealworldRep = NodePath("KingGobbo")
 
 [node name="Node3D" type="Node3D" parent="."]
@@ -71,8 +74,8 @@ skeleton = NodePath("../..")
 
 [node name="HEALTH" type="Node" parent="."]
 script = ExtResource("9_5lguc")
-Health = 1000
-HealthCap = 1000
+Health = 200
+HealthCap = 200
 
 [node name="Hurtbox" type="Area3D" parent="." node_paths=PackedStringArray("HealthComponent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99994, 0)

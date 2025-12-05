@@ -20,8 +20,8 @@ func ResumeGame():
 	TogglePauseMenu()
 	pass
 
-func TogglePauseMenu():
-	IsPaused = !IsPaused
+func TogglePauseMenu(_specific:bool = !IsPaused):
+	IsPaused = _specific
 	get_tree().paused = IsPaused
 	visible = IsPaused
 	PauseLayer.visible = IsPaused
@@ -34,4 +34,6 @@ func ToggleOptionsMenu(_value:bool = false):
 	pass
 	
 func Quit():
+	TogglePauseMenu(false)
+	GLOBALS.ChangeRoot(GLOBALS.ROOT_MAINMENU)
 	pass

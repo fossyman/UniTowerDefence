@@ -7,6 +7,7 @@
 script = ExtResource("1_lu2y5")
 TickTime = 1.0
 StatusVisual = ExtResource("1_drkc8")
+StatusType = 0
 StatusPower = 1
 StatusLifetime = 5.0
 metadata/_custom_type_script = "uid://dglqshf5u0wv0"
